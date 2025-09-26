@@ -1,0 +1,102 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  color: #111827;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  line-height: 1.5;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+header {
+  background: #032828;
+  padding: 12px 0;
+}
+header .top-part {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .top-part .support-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+header .bottom-part {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .bottom-part ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+}
+
+.dark-block * {
+  color: #fff;
+  text-decoration: none;
+}
+
+.container {
+  margin: auto;
+  padding: 0 20px;
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1240px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .container {
+    padding: 0 24px;
+  }
+}
+@media (max-width: 767px) {
+  .container {
+    padding: 0 16px;
+  }
+}
+
+.btn {
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: red;
+}
+.btn-transparent {
+  border: 1px solid #ffffff;
+  background: transparent;
+}
+.btn-matte {
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+}
+.btn-matte::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  filter: blur(2px) saturate(120%);
+  transform: scale(1.1);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/*# sourceMappingURL=style.css.map */

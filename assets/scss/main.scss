@@ -1,0 +1,51 @@
+@use  'variables' as *;
+@use  'mixins' as *;
+
+@use  'base/base';
+@use  'components/header';
+// Пример использования миксинов (удалите при необходимости)
+
+.dark-block{
+    *{
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.container {
+    margin: auto;
+    padding: 0 20px;
+    @include desktop { max-width: 1240px; }
+    @include tablet { padding: 0 24px; }
+    @include mobile { padding: 0 16px; }
+}
+
+
+.btn{
+    padding: 6px 12px;
+    border-radius: 12px;
+    background: red;
+
+    &-transparent{
+        border:1px solid #ffffff;
+        background: transparent;
+    }
+
+    &-matte{
+        background: transparent;
+        position: relative;
+        overflow: hidden;
+        &::after{
+            content: "";
+                position: absolute;
+                inset: 0;
+                background: #ffffff;
+                filter: blur(2px) saturate(120%);
+                transform: scale(1.1);
+                z-index: 0;
+                pointer-events: none;
+                opacity: 0.5;
+        }
+    }
+}
+

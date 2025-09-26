@@ -1,0 +1,32 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+header{
+    background: $color-primary;  
+    padding: 12px 0;  
+    .top-part{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .support-block{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+    }
+
+    .bottom-part{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        ul{
+            display: flex;
+            gap: 24px;
+            list-style: none;
+            margin: 16px 0 0;
+            padding: 0;
+        }
+    }
+}
