@@ -3,6 +3,9 @@
 
 @use  'base/base';
 @use  'components/header';
+@use  'components/hero';
+
+
 // Пример использования миксинов (удалите при необходимости)
 
 .dark-block{
@@ -22,9 +25,10 @@
 
 
 .btn{
+    display: inline-flex;
     padding: 6px 12px;
     border-radius: 12px;
-    background: red;
+    color:#ffffff;
 
     &-transparent{
         border:1px solid #ffffff;

@@ -1,23 +1,42 @@
-html {
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-*, *::before, *::after {
-  box-sizing: inherit;
-}
-
 body {
-  margin: 0;
-  color: #111827;
-  background: #ffffff;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  line-height: 1.5;
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  color: #333;
 }
 
-img, video {
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
   max-width: 100%;
   height: auto;
-  display: block;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 header {
@@ -48,6 +67,129 @@ header .bottom-part ul {
   padding: 0;
 }
 
+.hero .hero-slide {
+  aspect-ratio: 21/9;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero .hero-slide .hero-background {
+  position: absolute;
+  z-index: -10;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+}
+.hero .hero-slide .hero-title {
+  color: #ffffff;
+  text-align: center;
+  font-size: 116px;
+  font-weight: 500;
+}
+.hero .hero-slide .hero-text {
+  color: #ffffff;
+  text-align: center;
+  font-size: 44px;
+  font-weight: 300;
+}
+.hero .hero-slide .hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+}
+.hero .hero-slide .hero-content .hero-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hero .hero-slide .hero-content .nested-slider {
+  display: flex;
+  max-width: 600px;
+}
+.hero .hero-slide .hero-content .nested-slider .nested-slide {
+  margin-top: 20px;
+  position: relative;
+  transition: transform 0.8s ease;
+}
+.hero .hero-slide .hero-content .nested-slider .nested-slide::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -13px;
+  margin: auto;
+  height: 13px;
+  width: 30px;
+  background: #ffffff;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  transition: opacity 0.8s ease;
+}
+.hero .hero-slide .hero-content .nested-slider .nested-slide .nested-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #ffffff;
+  padding: 12px;
+  transition: border-color 0.8s ease;
+}
+.hero .hero-slide .hero-content .nested-slider .nested-slide .nested-content .nested-image {
+  border-radius: 8px;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.hero .hero-slide .hero-content .nested-slider .nested-slide .nested-content .nested-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(217, 217, 217, 0.1);
+  backdrop-filter: blur(3px);
+  border-top: 1px solid #ffffff;
+  text-align: center;
+  padding: 6px;
+  transition: opacity 0.8s ease;
+}
+.hero .hero-slide .hero-content .nested-slider .nested-slide .nested-content .nested-bottom .nested-name {
+  text-align: center;
+  color: #ffffff;
+  font-size: 18px;
+}
+.hero .hero-slide .hero-content .nested-slider .swiper-slide-prev .nested-slide, .hero .hero-slide .hero-content .nested-slider .swiper-slide-next .nested-slide {
+  transform: scale(0.8);
+}
+.hero .hero-slide .hero-content .nested-slider .swiper-slide-prev .nested-slide::after, .hero .hero-slide .hero-content .nested-slider .swiper-slide-next .nested-slide::after {
+  opacity: 0;
+}
+.hero .hero-slide .hero-content .nested-slider .swiper-slide-prev .nested-slide .nested-content, .hero .hero-slide .hero-content .nested-slider .swiper-slide-next .nested-slide .nested-content {
+  border-color: transparent;
+}
+.hero .hero-slide .hero-content .nested-slider .swiper-slide-prev .nested-slide .nested-content .nested-bottom, .hero .hero-slide .hero-content .nested-slider .swiper-slide-next .nested-slide .nested-content .nested-bottom {
+  opacity: 0;
+}
+.hero .hero-slide .hero-content .nested-slider .swiper-slide {
+  transition: transform 4s ease;
+}
+.hero .btn {
+  text-align: center;
+  padding: 6px 24px;
+  border-radius: 10px;
+  border: 1px solid #FFF;
+  backdrop-filter: blur(3px);
+  font-size: 24px;
+}
+.hero .btn::after {
+  background: rgba(217, 217, 217, 0.1);
+}
+
 .dark-block * {
   color: #fff;
   text-decoration: none;
@@ -74,9 +216,10 @@ header .bottom-part ul {
 }
 
 .btn {
+  display: inline-flex;
   padding: 6px 12px;
   border-radius: 12px;
-  background: red;
+  color: #ffffff;
 }
 .btn-transparent {
   border: 1px solid #ffffff;

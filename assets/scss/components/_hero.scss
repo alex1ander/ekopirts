@@ -1,0 +1,149 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+
+.hero{
+    
+    .hero-slide{
+        aspect-ratio: 21/9;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .hero-background{
+            position: absolute;
+            z-index: -10;
+            left: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        .hero-title{
+            color:#ffffff;
+            text-align: center;
+            font-size: 116px;
+            font-weight: 500;
+        }
+        .hero-text{
+            color:#ffffff;
+            text-align: center;
+            font-size: 44px;
+            font-weight: 300;
+        }
+
+        .hero-content{
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap:64px;
+
+            .hero-info{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .nested-slider{
+                display: flex;
+                max-width: 600px;
+
+                .nested-slide{
+                    margin-top: 20px;
+                    position: relative;
+
+                    transition: transform 0.8s ease;
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        top: -13px;
+                        margin: auto;
+                        height: 13px;
+                        width: 30px;
+                        background: #ffffff;
+                        clip-path: polygon(50% 0, 100% 100%, 0 100%);
+                        transition: opacity 0.8s ease;
+                    }
+
+
+                    .nested-content{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        position: relative;
+                        aspect-ratio: 1;
+                        border-radius: 14px;
+                        overflow: hidden;
+                        border: 1px solid #ffffff;
+                        padding: 12px;
+                        transition: border-color 0.8s ease;
+
+                        .nested-image{
+                            border-radius: 8px;
+                            height: 100%;
+                            width: 100%;
+                            object-fit: cover;
+                            aspect-ratio: 1;
+                        }
+
+                        .nested-bottom{
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            width: 100%;
+                            background: rgba(217, 217, 217, 0.10);
+                            backdrop-filter: blur(3px);
+                            border-top: 1px solid #ffffff;
+                            text-align: center;
+                            padding: 6px;
+                            transition: opacity 0.8s ease;
+                            .nested-name{
+                                text-align: center;
+                                color: #ffffff;
+                                font-size: 18px;
+                            }
+                        }
+                    }
+                }
+
+                .swiper-slide-prev, .swiper-slide-next{
+
+                    .nested-slide{
+                         transform: scale(0.8);
+                        &::after {
+                            opacity: 0;
+                        }
+
+                        .nested-content{ 
+                            border-color: transparent;
+
+                            .nested-bottom{
+                                opacity: 0;
+                            }
+                        }
+                }
+                }
+
+                .swiper-slide{
+                    transition: transform 4s ease;
+                }
+            }
+        }
+    }
+
+    .btn{
+        text-align: center;
+        padding: 6px 24px;
+        border-radius: 10px;
+        border: 1px solid #FFF;
+        backdrop-filter: blur(3px);
+        font-size: 24px;
+        &::after{
+            background: rgba(217, 217, 217, 0.10);
+        }
+    }
+
+}
