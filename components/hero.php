@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
         new Swiper(el, {
             loop: true,
             slidesPerView: 3,
-            spaceBetween: 0,
+            spaceBetween: 5,
             centeredSlides: true,
             nested: true, // чтобы корректно работал внутри другого Swiper
         });
