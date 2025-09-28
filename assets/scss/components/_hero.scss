@@ -25,6 +25,21 @@
             text-align: center;
             font-size: 116px;
             font-weight: 500;
+            position: relative;
+            &::after{
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: auto;
+                width: 33%;
+                min-width: 200px;
+                height: 6px;
+                border-radius: 6px;
+                background: $color-secondary;
+
+            }
         }
         .hero-text{
             color:#ffffff;
@@ -52,9 +67,11 @@
                 .nested-slide{
                     margin-top: 20px;
                     position: relative;
+                    transform: scale(0.8);
 
                     transition: transform 0.8s ease;
                     &::after {
+                        opacity: 0;
                         content: '';
                         position: absolute;
                         left: 0;
@@ -77,7 +94,7 @@
                         aspect-ratio: 1;
                         border-radius: 14px;
                         overflow: hidden;
-                        border: 1px solid #ffffff;
+                        border: 1px solid transparent;
                         padding: 12px;
                         transition: border-color 0.8s ease;
 
@@ -90,6 +107,7 @@
                         }
 
                         .nested-bottom{
+                            opacity: 0;
                             position: absolute;
                             bottom: 0;
                             left: 0;
@@ -109,19 +127,19 @@
                     }
                 }
 
-                .swiper-slide-prev, .swiper-slide-next{
+                .swiper-slide-active{
 
                     .nested-slide{
-                         transform: scale(0.8);
+                        transform: scale(1);
                         &::after {
-                            opacity: 0;
+                            opacity: 1;
                         }
 
                         .nested-content{ 
-                            border-color: transparent;
+                            border-color: #fff;
 
                             .nested-bottom{
-                                opacity: 0;
+                                opacity: 1;
                             }
                         }
                 }

@@ -4,8 +4,8 @@
 @use  'base/base';
 @use  'components/header';
 @use  'components/hero';
-
-
+@use  'components/promotions';
+@use  'components/show-cat';
 // Пример использования миксинов (удалите при необходимости)
 
 .dark-block{
@@ -53,3 +53,8 @@
     }
 }
 
+
+
+section{
+    padding: 32px 0;
+}

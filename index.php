@@ -6,6 +6,8 @@ include 'header.php';
     
 <?php
 include 'components/hero.php';
+include 'components/promotions.php';
+include 'components/show-cat.php';
 ?>
 
 </main>

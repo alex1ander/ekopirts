@@ -1,0 +1,59 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+
+.promotions-section{
+    position: relative;
+    margin-top: -32px;
+    z-index: 10;
+    .promotions-side{
+        .promotions-content{
+            height: 100%;
+            background: $color-primary;
+            display: grid; 
+            grid-template-columns: 5fr 2fr; 
+            justify-items: center;
+            align-items: center;
+            justify-items: center;
+            align-items: center;
+            border-radius: 10px;
+            overflow: hidden;
+
+            .promotions-info{
+                padding: 20px 24px;
+
+                .promotions-title{
+                    color: #ffffff;
+                    font-size: 28px;
+                }
+                .promotions-text{
+                    color: #ffffff;
+                    font-size: 14px;
+                }
+            }
+
+            .promotions-btn{
+                clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+                background: $color-secondary;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                 .btn{
+                    margin-left: 24px;
+                    text-align: center;
+                    padding: 6px 24px;
+                    border-radius: 10px;
+                    border: 1px solid #FFF;
+                    backdrop-filter: blur(3px);
+                    font-size: 24px;
+                    &::after{
+                        background: rgba(217, 217, 217, 0.10);
+                    }
+                }
+            }
+        }
+    }
+}

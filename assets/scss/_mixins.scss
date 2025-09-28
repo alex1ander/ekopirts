@@ -32,4 +32,10 @@ $bp-desktop: 1200px;
     }
 }
 
+@mixin grid-three-col() {
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 20px; 
+}
 

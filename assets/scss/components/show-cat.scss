@@ -1,0 +1,173 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+
+.show-cat{
+    .show-cat-content{
+
+        display: flex;
+        flex-direction: column;
+        gap:20px;
+        .show-cat-titles{
+            h2{
+                text-align: center;
+                font-size: 50px;
+                font-weight: 700;
+            }
+
+            P{
+                text-align: center;
+                font-size: 14px;
+            }
+        }
+
+        .benefits{
+            @include grid-three-col();
+            .benefit{
+                display: grid; 
+                grid-template-columns: 156px auto; 
+                grid-template-rows: auto auto; 
+                gap: 12px; 
+                grid-template-areas: 
+                    "gear-box title"
+                    "gear-box text"
+                    "list list"
+                    "preview preview"; 
+            }
+
+            .gear-box { grid-area: gear-box; }
+            .benefit-title { grid-area: title; }
+            .benefit-text { grid-area: text; }
+            .benefit-list { grid-area: list; }
+            .category-preview { grid-area: preview; }
+
+
+            .gear-box{
+                border: 6px solid $color-secondary;
+                border-radius: 100%;
+                aspect-ratio: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                svg{
+                    *{
+                        fill: $color-secondary;
+                    }
+                }
+            }
+
+            .benefit-title {
+                font-size: 34px;
+            }
+            
+            .benefit-text { 
+                font-size: 14px;
+            }
+
+
+         
+            .benefit-list{
+                margin-top: 24px;
+                list-style: none;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                margin-left: calc(156px / 2 - 7px);
+                
+                &::before{
+                    content: '';
+                    position: absolute;
+                    left: 8px;
+                    height: 100%;
+                    width: 1px;
+                    background: #ccc;
+                }
+
+                li{
+                    position: relative;
+                    line-height: 1;
+                    margin-left: 24px;
+                    font-weight: 600;
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        left: -24px;
+                        height: 13px;
+                        width: 13px;
+                        bottom: 0;
+                        top: 0;
+                        margin: auto;
+                        aspect-ratio: 1;
+                        background: #ffffff;
+                        border: 2px solid $color-secondary;
+                        border-radius: 100%;
+                    }
+                }
+            }
+
+
+            .category-preview{
+                margin-top: 24px;
+                position: relative;
+                display: flex;
+                .category-image{
+                    border-radius: 10px;
+                }
+
+                .category-info{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 6px 12px;
+                    border: 1px solid #D9D9D9;
+                    position: absolute;
+                    transform: translate(0, -50%);
+                    top: 100%;
+                    left:0;
+                    right: 0;
+                    margin: auto;
+                    background: #ffffff;
+                    width: 90%;
+                    border-radius: 10px;
+                     transition: 0.4s background ease,0.4s border-color ease;
+                     cursor: pointer;
+
+                    .name{
+                        font-size: 22px;
+                        font-weight: 700;
+                        transition: 0.4s color ease;
+                    }
+                    .category-arrow{
+                        background: #CD2122;
+                        border-radius: 100%;
+                        aspect-ratio: 1;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        height: 40px;
+                        width: 40px;
+                        transition: 0.4s background ease;
+                    }
+                }
+
+
+                &:hover{
+                    .category-info{
+                        background: $color-primary;
+                        border-color: $color-primary;
+                        .name{
+                            color: #ffffff;
+                        }
+
+                        .category-arrow{
+                            background: $color-secondary;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}
