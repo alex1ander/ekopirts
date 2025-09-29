@@ -1,0 +1,116 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+
+.slider{
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    gap: 20px; 
+}
+
+
+.product-card{
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 4px 4px 0;
+
+    .product-image{
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    .product-content{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 0 10px;
+        padding-bottom: 30px;
+        .product-name{
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+
+
+        .product-info{
+            display: flex;
+            gap: 10px;
+            .product-description{
+                width: 50%;
+                font-size: 14px;
+                font-weight: 400;
+                margin-bottom: 0;
+            }
+
+            &::before{
+                content: '';
+                display: flex;
+                height: auto;
+                width: 3px;
+                background: $color-secondary;
+                border-radius: 3px;
+            }
+        }
+
+        .product-price{
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+
+            .old-price{
+                font-size: 18px;
+                font-weight: 400;
+                text-decoration: line-through;
+                color: #D9D9D9;
+            }
+
+            .current-price{
+                font-size: 18px;
+                font-weight: 700;
+                color: $color-primary;
+            }
+        }
+
+        .product-more{
+            text-decoration: underline;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .add-order{
+            transform: translate(0,50%);
+            position: absolute;
+            z-index: 10;
+            bottom: 0;
+            width: 100%;
+            height: 45px;
+            background: $color-primary;
+            display: flex;
+            justify-content: space-between;
+            border-radius: 10px;
+
+            .order-text{
+                color: #ffffff;
+                width: 100%;
+                text-align: center;
+                font-size: 18px;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .icon{
+                border-radius: 10px;
+                background: #2FBF44;
+                height: 100%;
+                aspect-ratio: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}
