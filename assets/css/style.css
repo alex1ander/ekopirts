@@ -15,6 +15,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 
+h2 {
+  font-size: 34px;
+  font-weight: 700;
+}
+
 p {
   margin-bottom: 1rem;
 }
@@ -408,6 +413,43 @@ header .bottom-part ul {
   background: #4C7378;
 }
 
+.products-slider {
+  background: #4C7378;
+}
+.products-slider .products-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.products-slider .products-head .title-block {
+  position: relative;
+}
+.products-slider .products-head .title-block h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  left: 0;
+  margin: auto;
+  height: 16px;
+  width: 30px;
+  background: #032828;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.products-slider .products-head .title-block::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  height: 7px;
+  width: 9999px;
+  background: #032828;
+}
+.products-slider .products-head .category-tabs {
+  display: flex;
+  gap: 12px;
+}
+
 .dark-block * {
   color: #fff;
   text-decoration: none;
@@ -431,6 +473,12 @@ header .bottom-part ul {
   .container {
     padding: 0 16px;
   }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .btn {
@@ -458,10 +506,6 @@ header .bottom-part ul {
   z-index: 0;
   pointer-events: none;
   opacity: 0.5;
-}
-
-section {
-  padding: 32px 0;
 }
 
 /*# sourceMappingURL=style.css.map */

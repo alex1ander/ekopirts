@@ -6,6 +6,7 @@
 @use  'components/hero';
 @use  'components/promotions';
 @use  'components/show-cat';
+@use  'components/products-slider';
 // Пример использования миксинов (удалите при необходимости)
 
 .dark-block{
@@ -23,6 +24,12 @@
     @include mobile { padding: 0 16px; }
 }
 
+
+main{
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+}
 
 .btn{
     display: inline-flex;
@@ -51,10 +58,4 @@
                 opacity: 0.5;
         }
     }
-}
-
-
-
-section{
-    padding: 32px 0;
 }

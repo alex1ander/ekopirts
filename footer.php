@@ -1,4 +1,5 @@
-    <footer>
+    <footer style="height: 200px;">
+        Footer
         
     </footer>
     <!-- SVG sprite injected once per page -->

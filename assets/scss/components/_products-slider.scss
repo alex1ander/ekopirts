@@ -1,0 +1,47 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+
+.products-slider{
+    background: $color-secondary;
+
+    .products-head{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .title-block{
+            position: relative;
+
+            h2{
+                &::after{
+                    content: "";
+                    position: absolute;
+                    bottom: 0px;
+                    right: 0;
+                    left: 0;
+                    margin: auto;
+                    height: 16px;
+                    width: 30px;
+                    background: $color-primary;    
+                    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+                }
+            }
+
+            &::after{
+                content: "";
+                position: absolute;
+                bottom: 0px;
+                right: 0;
+                height: 7px;
+                width: 9999px;
+                background: $color-primary;    
+            }
+        }
+
+        .category-tabs{
+            display: flex;
+            gap: 12px;
+        }
+    }
+}
