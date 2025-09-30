@@ -9,11 +9,20 @@
     gap: 20px; 
 }
 
-
+.swiper-slide.flex-slide {
+    display: flex;            /* растягиваем внутреннюю карточку */
+    height: auto;             /* пусть высота адаптируется */
+    margin-bottom: 32px;
+}
 .product-card{
+    display: flex;
+    flex-direction: column;   /* элементы внутри идут сверху вниз */
+    justify-content: space-between;
+    height: 100%;             /* карточка тянется на всю высоту */
     background: #ffffff;
     border-radius: 10px;
     padding: 4px 4px 0;
+    // margin-bottom: 32px;
 
     .product-image{
         border-radius: 6px;

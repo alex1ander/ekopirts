@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -416,10 +417,19 @@ header .bottom-part ul {
 .products-slider {
   background: #4C7378;
 }
-.products-slider .products-head {
+.products-slider .products-slider-content {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  flex-direction: column;
+  gap: 20px;
+}
+.products-slider .products-slider-content .products-body {
+  position: relative;
+}
+.products-slider .products-head {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  justify-items: center;
+  align-items: end;
 }
 .products-slider .products-head .title-block {
   position: relative;
@@ -449,6 +459,25 @@ header .bottom-part ul {
   display: flex;
   gap: 12px;
 }
+.products-slider .products-head .category-tabs li {
+  cursor: pointer;
+}
+.products-slider .products-head .products-link {
+  margin-left: auto;
+}
+
+.products-tab-content {
+  display: none;
+}
+
+.products-tab-content.active {
+  display: block;
+}
+
+.category-tabs li.active {
+  color: #FFF;
+  text-decoration: underline;
+}
 
 .slider {
   display: grid;
@@ -457,7 +486,17 @@ header .bottom-part ul {
   gap: 20px;
 }
 
+.swiper-slide.flex-slide {
+  display: flex; /* растягиваем внутреннюю карточку */
+  height: auto; /* пусть высота адаптируется */
+  margin-bottom: 32px;
+}
+
 .product-card {
+  display: flex;
+  flex-direction: column; /* элементы внутри идут сверху вниз */
+  justify-content: space-between;
+  height: 100%; /* карточка тянется на всю высоту */
   background: #ffffff;
   border-radius: 10px;
   padding: 4px 4px 0;

@@ -5,10 +5,22 @@
 .products-slider{
     background: $color-secondary;
 
-    .products-head{
+    .products-slider-content{
         display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
+        flex-direction: column;
+        gap: 20px;
+
+
+        .products-body{
+            position: relative;
+        }
+    }
+    .products-head{
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        justify-items: center;
+        align-items: end;
+
 
         .title-block{
             position: relative;
@@ -42,6 +54,19 @@
         .category-tabs{
             display: flex;
             gap: 12px;
+
+            li{
+                cursor: pointer;
+            }
+        }
+
+
+        .products-link{
+            margin-left: auto;
         }
     }
 }
+
+.products-tab-content { display: none; }
+.products-tab-content.active { display: block; }
+.category-tabs li.active { color: #FFF;text-decoration: underline; }
