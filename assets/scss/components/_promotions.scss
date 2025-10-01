@@ -33,13 +33,24 @@
             }
 
             .promotions-btn{
-                clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+                clip-path: polygon(8% 0%, 100% 0, 100% 100%, 0% 100%);
                 background: $color-secondary;
                 height: 100%;
                 width: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                position: relative;
+
+                .leaflet{
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    z-index: -1 ;
+                }
 
                  .btn{
                     margin-left: 24px;

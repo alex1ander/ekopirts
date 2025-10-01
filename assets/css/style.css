@@ -47,8 +47,11 @@ button {
 }
 
 header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   background: #032828;
-  padding: 12px 0;
+  padding-top: 10px;
 }
 header .top-part {
   display: flex;
@@ -66,12 +69,22 @@ header .bottom-part {
   justify-content: space-between;
   align-items: center;
 }
-header .bottom-part ul {
+header .bottom-part .main-menu {
   display: flex;
-  gap: 24px;
+  gap: 4px;
   list-style: none;
   margin: 16px 0 0;
   padding: 0;
+}
+header .bottom-part .main-menu li a {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  padding: 4px 10px;
+  border-radius: 10px 10px 0 0;
+}
+header .bottom-part .main-menu li a:hover {
+  background: #4C7378;
 }
 
 .hero .hero-slide {
@@ -105,6 +118,7 @@ header .bottom-part ul {
   margin: auto;
   width: 33%;
   min-width: 200px;
+  max-width: 350px;
   height: 6px;
   border-radius: 6px;
   background: #4C7378;
@@ -243,13 +257,23 @@ header .bottom-part ul {
   font-size: 14px;
 }
 .promotions-section .promotions-side .promotions-content .promotions-btn {
-  clip-path: polygon(20% 0%, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(8% 0%, 100% 0, 100% 100%, 0% 100%);
   background: #4C7378;
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+.promotions-section .promotions-side .promotions-content .promotions-btn .leaflet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: -1;
 }
 .promotions-section .promotions-side .promotions-content .promotions-btn .btn {
   margin-left: 24px;
@@ -267,7 +291,11 @@ header .bottom-part ul {
 .show-cat .show-cat-content {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 60px;
+}
+.show-cat .show-cat-content .show-cat-titles {
+  position: relative;
+  padding-bottom: 24px;
 }
 .show-cat .show-cat-content .show-cat-titles h2 {
   text-align: center;
@@ -277,6 +305,20 @@ header .bottom-part ul {
 .show-cat .show-cat-content .show-cat-titles P {
   text-align: center;
   font-size: 14px;
+}
+.show-cat .show-cat-content .show-cat-titles::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 33%;
+  min-width: 200px;
+  max-width: 350px;
+  height: 6px;
+  border-radius: 6px;
+  background: #4C7378;
 }
 .show-cat .show-cat-content .benefits {
   display: grid;
@@ -590,6 +632,91 @@ header .bottom-part ul {
   justify-content: center;
 }
 
+.swiper-pagination-bullets {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+.swiper-pagination-bullets .swiper-pagination-bullet {
+  height: 16px;
+  width: 16px;
+  background: #ffffff;
+  border-radius: 16px;
+  transition: width 0.6s ease, background 0.6s ease;
+  opacity: 1;
+}
+.swiper-pagination-bullets .swiper-pagination-bullet-active {
+  width: 48px;
+  background: #032828;
+}
+
+.why-choose-us {
+  background: #032828;
+  padding: 40px 0;
+}
+.why-choose-us .why-us-content {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+.why-choose-us .why-us-content .info h2 {
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: 700;
+}
+.why-choose-us .why-us-content .info .benefits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.why-choose-us .why-us-content .info .benefits-list .benefit {
+  z-index: 1;
+  position: relative;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 64px 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px 20px;
+  grid-template-areas: "checkmark title" "checkmark text";
+}
+.why-choose-us .why-us-content .info .benefits-list .benefit .checkmark {
+  grid-area: checkmark;
+}
+.why-choose-us .why-us-content .info .benefits-list .benefit .title {
+  grid-area: title;
+}
+.why-choose-us .why-us-content .info .benefits-list .benefit .text {
+  grid-area: text;
+}
+.why-choose-us .why-us-content .info .benefits-list .benefit .title {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+}
+.why-choose-us .why-us-content .info .benefits-list .benefit .text {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+}
+.why-choose-us .why-us-content .info .benefits-list .benefit .checkmark-area {
+  background: #4C7378;
+  border-radius: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.why-choose-us .why-us-content .info .benefits-list .benefit:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 30px;
+  top: 0;
+  height: calc(100% + 40px);
+  width: 4px;
+  background: #4C7378;
+}
 .dark-block * {
   color: #fff;
   text-decoration: none;

@@ -8,6 +8,9 @@
                 </div>
                 <div class="promotions-btn">
                     <a href="#" class="btn btn-matte">+371 25912321</a>
+                    <svg class="leaflet" width="278" height="170" width="182" height="45">
+                        <use href="#leaflet"></use>
+                    </svg>
                 </div>
             </div>
         </div>

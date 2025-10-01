@@ -1,0 +1,87 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+
+.why-choose-us{
+    background: $color-primary;
+    padding: 40px 0;
+
+    .why-us-content{
+        display: grid; 
+        grid-auto-columns: 1fr; 
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+
+
+        .info{
+            h2{
+                color: #ffffff;
+                font-size: 50px;
+                font-weight: 700;
+            }
+
+            .benefits-list{
+                display: flex;
+                flex-direction: column;
+                gap: 40px;
+
+                .benefit {
+                    z-index: 1;
+                    position: relative;
+                    display: grid; 
+                    grid-auto-columns: 1fr; 
+                    grid-template-columns: 64px 1fr; 
+                    grid-template-rows: 1fr 1fr; 
+                    gap: 10px 20px; 
+                    grid-template-areas: 
+                        "checkmark title"
+                        "checkmark text"; 
+
+
+                    .checkmark { grid-area: checkmark; }
+                    .title { grid-area: title; }
+                    .text { grid-area: text; }
+
+                    .title{
+                        color: #ffffff;
+                        font-size: 20px;
+                        font-weight: 700;
+                    }
+
+                    .text{
+                        color: #ffffff;
+                        font-size: 14px;
+                        font-weight: 400;
+                    }
+                    .checkmark-area{
+                        background: $color-secondary;
+                        border-radius: 100%;
+                        aspect-ratio: 1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                    
+
+                    &:not(:last-child){
+                        &::before{
+                            content: '';
+                            position: absolute;
+                            z-index: -1;
+                            left:30px;
+                            top: 0;
+                            height: calc(100% + 40px);
+                            width: 4px;
+                            background: $color-secondary;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .video{
+
+        }
+    }
+}

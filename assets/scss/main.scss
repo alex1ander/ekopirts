@@ -8,7 +8,9 @@
 @use  'components/show-cat';
 @use  'components/products-slider';
 @use  'components/product-card';
-// Пример использования миксинов (удалите при необходимости)
+@use  'components/sliders';
+@use  'components/why-choose-us';
+// Пример использования миксинов
 
 .dark-block{
     *{
