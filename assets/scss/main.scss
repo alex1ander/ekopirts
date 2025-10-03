@@ -3,6 +3,7 @@
 
 @use  'base/base';
 @use  'components/header';
+@use  'components/footer';
 @use  'components/hero';
 @use  'components/promotions';
 @use  'components/show-cat';
@@ -10,6 +11,8 @@
 @use  'components/product-card';
 @use  'components/sliders';
 @use  'components/why-choose-us';
+@use  'components/steps';
+@use  'components/partners';
 // Пример использования миксинов
 
 .dark-block{
@@ -60,5 +63,36 @@ main{
                 pointer-events: none;
                 opacity: 0.5;
         }
+    }
+}
+
+
+.title-block{
+    position: relative;
+    width: fit-content;
+
+    h2{
+        &::after{
+            content: "";
+            position: absolute;
+            bottom: 0px;
+            right: 0;
+            left: 0;
+            margin: auto;
+            height: 16px;
+            width: 30px;
+            background: $color-primary;    
+            clip-path: polygon(50% 0, 100% 100%, 0 100%);
+        }
+    }
+
+    &::after{
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        right: 0;
+        height: 7px;
+        width: 9999px;
+        background: $color-primary;    
     }
 }

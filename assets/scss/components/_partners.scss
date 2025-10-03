@@ -1,0 +1,11 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+
+.partners-content{
+    .partner-card{
+        aspect-ratio: 16 / 9;
+        border-radius: 10px;
+        background: gray;
+    }
+}

@@ -10,6 +10,8 @@ include 'components/promotions.php';
 include 'components/show-cat.php';
 include 'components/products-slider.php';
 include 'components/why-choose-us.php';
+include 'components/steps.php';
+include 'components/partners.php';
 ?>
 
 </main>

@@ -87,6 +87,69 @@ header .bottom-part .main-menu li a:hover {
   background: #4C7378;
 }
 
+footer {
+  background: #032828;
+  padding: 20px 0;
+}
+footer * {
+  color: #ffffff;
+}
+footer .footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+}
+footer .footer-content .footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+footer .footer-content .footer-col h3 {
+  font-size: 20px;
+  font-weight: 700;
+  position: relative;
+  line-height: 3em;
+  padding-left: 32px;
+}
+footer .footer-content .footer-col h3::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: 4px;
+  height: 100%;
+  background: #4C7378;
+  border-radius: 4px;
+}
+footer .footer-content .footer-col h3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 13px;
+  margin: auto;
+  width: 8px;
+  height: 13px;
+  background: #4C7378;
+  clip-path: polygon(0 0, 0% 100%, 100% 50%);
+}
+footer .footer-content .footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: inside;
+}
+footer .footer-content .footer-col ul li {
+  font-size: 14px;
+}
+footer .footer-content .footer-col ul li a {
+  font-size: 14px;
+}
+footer .footer-content .footer-col .social-links {
+  display: flex;
+  gap: 10px;
+}
 .hero .hero-slide {
   aspect-ratio: 21/9;
   position: relative;
@@ -473,30 +536,6 @@ header .bottom-part .main-menu li a:hover {
   justify-items: center;
   align-items: end;
 }
-.products-slider .products-head .title-block {
-  position: relative;
-}
-.products-slider .products-head .title-block h2::after {
-  content: "";
-  position: absolute;
-  bottom: 0px;
-  right: 0;
-  left: 0;
-  margin: auto;
-  height: 16px;
-  width: 30px;
-  background: #032828;
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
-}
-.products-slider .products-head .title-block::after {
-  content: "";
-  position: absolute;
-  bottom: 0px;
-  right: 0;
-  height: 7px;
-  width: 9999px;
-  background: #032828;
-}
 .products-slider .products-head .category-tabs {
   display: flex;
   gap: 12px;
@@ -657,7 +696,7 @@ header .bottom-part .main-menu li a:hover {
 .why-choose-us .why-us-content {
   display: grid;
   grid-auto-columns: 1fr;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 3fr;
   gap: 60px;
 }
 .why-choose-us .why-us-content .info h2 {
@@ -717,6 +756,97 @@ header .bottom-part .main-menu li a:hover {
   width: 4px;
   background: #4C7378;
 }
+.why-choose-us .why-us-content .video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.steps .steps-flex {
+  display: flex;
+  flex-direction: row;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.steps .steps-flex .step-item {
+  flex: 1;
+  padding: 24px 10px 24px 24px;
+  background: #032828;
+  align-items: center;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  gap: 0px 0px;
+  grid-template-areas: "h3 h3" "svg p";
+}
+.steps .steps-flex .step-item h3 {
+  grid-area: h3;
+}
+.steps .steps-flex .step-item svg {
+  grid-area: svg;
+}
+.steps .steps-flex .step-item p {
+  grid-area: p;
+}
+.steps .steps-flex .step-item.first {
+  background: #4C7378;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 20px;
+}
+.steps .steps-flex .step-item.first h3 {
+  text-align: left;
+}
+.steps .steps-flex .step-item:not(:last-child) {
+  position: relative;
+}
+.steps .steps-flex .step-item:not(:last-child)::after {
+  content: "";
+  height: 60px;
+  width: 20px;
+  position: absolute;
+  right: -20px;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  clip-path: polygon(0 0, 0% 100%, 100% 50%);
+  background: #4C7378;
+}
+.steps .steps-flex .step-item:nth-child(2) {
+  background: #283B3E;
+}
+.steps .steps-flex .step-item:nth-child(2)::after {
+  background: #283B3E;
+}
+.steps .steps-flex .step-item:nth-child(3) {
+  background: #213032;
+}
+.steps .steps-flex .step-item:nth-child(3)::after {
+  background: #213032;
+}
+.steps .steps-flex .step-item h3 {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+.steps .steps-flex .step-item p {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.partners-content .partner-card {
+  aspect-ratio: 16/9;
+  border-radius: 10px;
+  background: gray;
+}
+
 .dark-block * {
   color: #fff;
   text-decoration: none;
@@ -773,6 +903,32 @@ main {
   z-index: 0;
   pointer-events: none;
   opacity: 0.5;
+}
+
+.title-block {
+  position: relative;
+  width: fit-content;
+}
+.title-block h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  left: 0;
+  margin: auto;
+  height: 16px;
+  width: 30px;
+  background: #032828;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+.title-block::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  height: 7px;
+  width: 9999px;
+  background: #032828;
 }
 
 /*# sourceMappingURL=style.css.map */

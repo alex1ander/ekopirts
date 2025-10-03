@@ -20,9 +20,11 @@
                     <?php endfor; ?>
                 </div>
             </div>
-        </div>
-        <div class="video">
-
+            <div class="video">
+                <iframe 
+                    src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                </iframe>
+            </div>
         </div>
     </div>
 </section>
