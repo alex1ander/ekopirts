@@ -40,8 +40,16 @@
                 </div>
                 <?php endfor; ?>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-prev">
+                <svg width="15" height="28">
+                    <use href="#arrow-right"></use>
+                </svg>
+            </div>
+            <div class="swiper-button-next">
+                <svg width="15" height="28">
+                    <use href="#arrow-right"></use>
+                </svg>
+            </div>
         </div>
     </div>
 </section>

@@ -32,7 +32,6 @@
                 <li><a href="#">page</a></li>
                 <li><a href="#">page</a></li>
             </ul>
-
         </div>
     </div>
 </header>

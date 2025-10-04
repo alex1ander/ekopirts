@@ -18,9 +18,9 @@
                         </div>
                     <?php endfor; ?>
                     </div>
-                </div>
-                <div class="swiper-button-next products-slider-button-next"></div>
+                    <div class="swiper-button-next products-slider-button-next"></div>
                 <div class="swiper-button-prev products-slider-button-prev"></div>
+                </div>
                 <div class="products-slider-pagination"></div>
             </div>
         </div>

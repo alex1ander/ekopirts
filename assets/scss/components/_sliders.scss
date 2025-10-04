@@ -20,3 +20,26 @@
         }
     }
 }
+
+
+.swiper-button-prev{
+    transform: rotate(180deg);
+}
+#hero{
+    .swiper-button-prev,.swiper-button-next{
+        svg{
+            transform: scale(2);
+        }
+    }
+}
+
+.swiper-button-prev,.swiper-button-next{
+    svg{
+        height: auto!important;
+        width: auto!important;
+    }
+}
+
+.partners-slider{
+    position: relative;
+}

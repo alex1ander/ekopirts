@@ -89,12 +89,12 @@ header .bottom-part .main-menu li a:hover {
 
 footer {
   background: #032828;
-  padding: 20px 0;
 }
 footer * {
   color: #ffffff;
 }
 footer .footer-content {
+  padding: 20px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -134,22 +134,43 @@ footer .footer-content .footer-col h3::after {
   background: #4C7378;
   clip-path: polygon(0 0, 0% 100%, 100% 50%);
 }
-footer .footer-content .footer-col ul {
+footer .footer-content .footer-col .social-links {
+  display: flex;
+  gap: 10px;
+}
+footer ul {
   display: flex;
   flex-direction: column;
   gap: 4px;
   list-style: inside;
 }
-footer .footer-content .footer-col ul li {
+footer ul li {
   font-size: 14px;
 }
-footer .footer-content .footer-col ul li a {
+footer ul li a {
   font-size: 14px;
 }
-footer .footer-content .footer-col .social-links {
+footer .footer-line {
+  background: #4C7378;
+  padding: 20px 0;
+}
+footer .footer-line .footer-line-content {
   display: flex;
-  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-between;
 }
+footer .footer-line .footer-line-content .part {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+footer .footer-line .footer-line-content ul {
+  flex-direction: row;
+}
+
 .hero .hero-slide {
   aspect-ratio: 21/9;
   position: relative;
@@ -389,6 +410,11 @@ footer .footer-content .footer-col .social-links {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 20px;
 }
+@media (max-width: 767px) {
+  .show-cat .show-cat-content .benefits {
+    grid-template-columns: 1fr;
+  }
+}
 .show-cat .show-cat-content .benefits .benefit {
   display: grid;
   grid-template-columns: 156px auto;
@@ -538,7 +564,7 @@ footer .footer-content .footer-col .social-links {
 }
 .products-slider .products-head .category-tabs {
   display: flex;
-  gap: 12px;
+  gap: 20px;
 }
 .products-slider .products-head .category-tabs li {
   cursor: pointer;
@@ -687,6 +713,23 @@ footer .footer-content .footer-col .social-links {
 .swiper-pagination-bullets .swiper-pagination-bullet-active {
   width: 48px;
   background: #032828;
+}
+
+.swiper-button-prev {
+  transform: rotate(180deg);
+}
+
+#hero .swiper-button-prev svg, #hero .swiper-button-next svg {
+  transform: scale(2);
+}
+
+.swiper-button-prev svg, .swiper-button-next svg {
+  height: auto !important;
+  width: auto !important;
+}
+
+.partners-slider {
+  position: relative;
 }
 
 .why-choose-us {
@@ -875,7 +918,6 @@ footer .footer-content .footer-col .social-links {
 main {
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .btn {

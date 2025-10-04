@@ -84,6 +84,29 @@
         </div>
 
         </div>
+
+        <div class="footer-line">
+            <div class="container">
+                <div class="footer-line-content">
+                    <div class="part">
+                        <span>Izstrādāja</span>
+                    
+                        <?php include __DIR__ . '/assets/svg/jkonsult.svg'; ?>
+                        <?php include __DIR__ . '/assets/svg/kurpirkt.svg'; ?>
+
+                        <span>© 2024 Eko Pirts | Visas tiesības aizsargātas</span>
+                    </div>
+
+                    <div class="part">
+                        <ul>
+                            <li>E-pasts: rttimber@gmail.com</li>
+                            <li>E-pasts: rttimber@gmail.com</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </footer>
     <!-- SVG sprite injected once per page -->
     <?php include __DIR__ . '/assets/sprite.svg'; ?>

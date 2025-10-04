@@ -42,6 +42,9 @@
 
         .benefits{
             @include grid-three-col();
+            @include mobile{
+                grid-template-columns: 1fr; 
+            }
             .benefit{
                 display: grid; 
                 grid-template-columns: 156px auto; 

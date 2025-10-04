@@ -11,7 +11,7 @@
           <li data-tab="tab3">Produktu katalogs</li>
           <li data-tab="tab4">Mājas</li>
         </ul>
-        <a href="#" class="products-link">View All Products</a>
+        <a href="#" class="products-link">Radit visu</a>
       </div>
 
       <div class="products-body">
