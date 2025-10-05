@@ -19,6 +19,10 @@
             border-radius: 10px;
             overflow: hidden;
 
+            @include mobile{
+                grid-template-columns: 1fr; 
+            }
+
             .promotions-info{
                 padding: 20px 24px;
 
@@ -41,6 +45,10 @@
                 align-items: center;
                 justify-content: center;
                 position: relative;
+                min-height: 180px;
+                @include mobile{
+                    clip-path: none;
+                }
 
                 .leaflet{
                     position: absolute;
@@ -49,7 +57,7 @@
                     top: 0;
                     bottom: 0;
                     margin: auto;
-                    z-index: -1 ;
+                    z-index: 0;
                 }
 
                  .btn{

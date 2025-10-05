@@ -18,10 +18,10 @@
                         </div>
                     <?php endfor; ?>
                     </div>
-                    <div class="swiper-button-next products-slider-button-next"></div>
-                <div class="swiper-button-prev products-slider-button-prev"></div>
                 </div>
-                <div class="products-slider-pagination"></div>
+                <div class="swiper-button-next products-slider-button-next desktop-only"></div>
+                <div class="swiper-button-prev products-slider-button-prev desktop-onl"></div>
+                <div class="products-slider-pagination gray"></div>
             </div>
         </div>
     </div>
@@ -30,14 +30,25 @@
 
 <script>
 var swiper = new Swiper(".partners-slider-swiper", {
-    slidesPerView: 6,
-      spaceBetween: 20,
-      pagination: {
-        el: ".partners-slider .products-slider-pagination",
-      },
-      navigation: {
-        nextEl: ".partners-slider .products-slider-button-next",
-        prevEl: ".partners-slider .products-slider-button-prev",
-      },
+    slidesPerView: 2,
+        spaceBetween: 20,
+        pagination: {
+            el: ".partners-slider .products-slider-pagination",
+        },
+        navigation: {
+            nextEl: ".partners-slider .products-slider-button-next",
+            prevEl: ".partners-slider .products-slider-button-prev",
+        },
+       breakpoints: {
+            540: {
+            slidesPerView: 2,
+            },
+            768: {
+            slidesPerView: 4,
+            },
+            1024: {
+            slidesPerView: 6,
+            },
+        },
 });
 </script>

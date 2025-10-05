@@ -3,8 +3,10 @@
 
 
 .products-slider{
-    background: $color-secondary;
-
+    // background: $color-secondary;
+    @include mobile{
+        background: $color-secondary;
+    }
     .products-slider-content{
         display: flex;
         flex-direction: column;
@@ -20,6 +22,11 @@
         grid-template-columns: 1fr 2fr 1fr;
         justify-items: center;
         align-items: end;
+
+        @include mobile{
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
 
 
         .category-tabs{

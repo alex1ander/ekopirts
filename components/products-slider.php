@@ -26,8 +26,8 @@
               <?php endfor; ?>
             </div>
           </div>
-          <div class="swiper-button-next products-slider-button-next"></div>
-          <div class="swiper-button-prev products-slider-button-prev"></div>
+          <div class="swiper-button-next products-slider-button-next desktop-only"></div>
+          <div class="swiper-button-prev products-slider-button-prev desktop-only"></div>
           <div class="products-slider-pagination"></div>
         </div>
 
@@ -42,8 +42,8 @@
               <?php endfor; ?>
             </div>
           </div>
-          <div class="swiper-button-next products-slider-button-next"></div>
-          <div class="swiper-button-prev products-slider-button-prev"></div>
+          <div class="swiper-button-next products-slider-button-next desktop-only"></div>
+          <div class="swiper-button-prev products-slider-button-prev desktop-only"></div>
           <div class="products-slider-pagination"></div>
         </div>
 
@@ -58,8 +58,8 @@
               <?php endfor; ?>
             </div>
           </div>
-          <div class="swiper-button-next products-slider-button-next"></div>
-          <div class="swiper-button-prev products-slider-button-prev"></div>
+          <div class="swiper-button-next products-slider-button-next desktop-only"></div>
+          <div class="swiper-button-prev products-slider-button-prev desktop-only"></div>
           <div class="products-slider-pagination"></div>
         </div>
 
@@ -74,8 +74,8 @@
               <?php endfor; ?>
             </div>
           </div>
-          <div class="swiper-button-next products-slider-button-next"></div>
-          <div class="swiper-button-prev products-slider-button-prev"></div>
+          <div class="swiper-button-next products-slider-button-next desktop-only"></div>
+          <div class="swiper-button-prev products-slider-button-prev desktop-only"></div>
           <div class="products-slider-pagination"></div>
         </div>
       </div>
@@ -88,7 +88,7 @@
   const swipers = {};
   document.querySelectorAll('.products-slider-swiper').forEach((el, i) => {
     swipers[i] = new Swiper(el, {
-      slidesPerView: 4,
+      slidesPerView: 1,
       spaceBetween: 20,
       pagination: {
         el: el.closest('.products-tab-content').querySelector('.products-slider-pagination'),
@@ -97,6 +97,17 @@
       navigation: {
         nextEl: el.closest('.products-tab-content').querySelector('.products-slider-button-next'),
         prevEl: el.closest('.products-tab-content').querySelector('.products-slider-button-prev'),
+      },
+      breakpoints: {
+        540: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+        1024: {
+          slidesPerView: 4,
+        },
       },
     });
   });

@@ -41,14 +41,8 @@
                 <?php endfor; ?>
             </div>
             <div class="swiper-button-prev">
-                <svg width="15" height="28">
-                    <use href="#arrow-right"></use>
-                </svg>
             </div>
             <div class="swiper-button-next">
-                <svg width="15" height="28">
-                    <use href="#arrow-right"></use>
-                </svg>
             </div>
         </div>
     </div>
@@ -72,6 +66,17 @@ document.addEventListener("DOMContentLoaded", function() {
             spaceBetween: 5,
             centeredSlides: true,
             nested: true, // чтобы корректно работал внутри другого Swiper
+            // breakpoints: {
+            //     540: {
+            //     slidesPerView: 1.5,
+            //     },
+            //     768: {
+            //     slidesPerView: 2.1,
+            //     },
+            //     1024: {
+            //     slidesPerView: 3,
+            //     },
+            // },
         });
     });
 });

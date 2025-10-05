@@ -99,6 +99,10 @@
             display: flex;
             justify-content: space-between;
             border-radius: 10px;
+            left: 0;
+            right: 0;
+            margin: auto;
+            max-width: 300px;
 
             .order-text{
                 color: #ffffff;

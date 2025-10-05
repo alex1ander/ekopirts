@@ -4,11 +4,16 @@
 
 
 .steps{
+    margin-top: -40px;
     .steps-flex{
         display: flex;
         flex-direction: row;
         border-radius: 10px;
         overflow: hidden;
+
+        @include mobile{
+            flex-direction: column;
+        }
 
         .step-item{
             flex: 1;
@@ -22,6 +27,10 @@
             grid-template-areas: 
                 "h3 h3"
                 "svg p"; 
+
+            @include mobile{
+                aspect-ratio: 5 / 3;
+            }
 
             h3 { grid-area: h3; }
             svg { grid-area: svg; }
@@ -52,7 +61,17 @@
                     bottom: 0;
                     margin: auto;
                     clip-path: polygon(0 0, 0% 100%, 100% 50%);
-                    background: $color-secondary;                  
+                    background: $color-secondary; 
+                    
+                    @include mobile{
+                        left: 0;
+                        right: 0;
+                        bottom: -20px;
+                        top: auto;
+                        height: 20px;
+                        width: 60px;
+                        clip-path: polygon(50% 100%, 0 0, 100% 0);
+                    }
                 }
             }
 

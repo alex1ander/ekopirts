@@ -13,6 +13,7 @@
 @use  'components/why-choose-us';
 @use  'components/steps';
 @use  'components/partners';
+@use  'components/decorations';
 // Пример использования миксинов
 
 .dark-block{
@@ -93,5 +94,19 @@ main{
         height: 7px;
         width: 9999px;
         background: $color-primary;    
+    }
+}
+
+
+.desktop-only{
+    @include mobile {
+        display: none!important;
+    }
+}
+
+.mobile-only{
+    display: none!important;
+    @include mobile {
+        display: flex!important;
     }
 }

@@ -1,0 +1,33 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+
+.triangle-area{
+    position: relative;
+    width: 100%;
+    .triangle{
+        position: absolute;
+        z-index: -1;
+        left: 0;
+        top: 0;
+        background: $color-secondary;
+        width: 25%;
+        aspect-ratio: 2 / 3;
+        clip-path: polygon(0 0, 0% 100%, 100% 0);
+    }
+}
+
+.trapezoid-area{
+    position: relative;
+    width: 100%;
+    .trapezoid{
+        position: absolute;
+        z-index: -1;
+        right: 0;
+        bottom: 0;
+        background: $color-secondary;
+        width: 100%;
+        aspect-ratio: 7 / 3;
+        clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+}

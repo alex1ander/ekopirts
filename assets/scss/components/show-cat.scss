@@ -15,6 +15,10 @@
                 text-align: center;
                 font-size: 50px;
                 font-weight: 700;
+
+                @include mobile{
+                    font-size: 40px;
+                }
             }
 
             P{
@@ -41,10 +45,10 @@
         }
 
         .benefits{
-            @include grid-three-col();
-            @include mobile{
-                grid-template-columns: 1fr; 
-            }
+            // @include grid-three-col();
+            // @include mobile{
+            //     grid-template-columns: 1fr; 
+            // }
             .benefit{
                 display: grid; 
                 grid-template-columns: 156px auto; 
@@ -55,6 +59,7 @@
                     "gear-box text"
                     "list list"
                     "preview preview"; 
+                margin-bottom: 32px;
             }
 
             .gear-box { grid-area: gear-box; }
@@ -71,10 +76,21 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                transition: 0.4s background ease;
                 svg{
                     *{
                         fill: $color-secondary;
+                        transition:  0.4s fill ease;
                     }
+                }
+
+                &:hover{
+                    background: $color-secondary;
+                    svg{
+                    *{
+                        fill: #ffffff;
+                    }
+                }
                 }
             }
 
@@ -109,12 +125,12 @@
                 li{
                     position: relative;
                     line-height: 1;
-                    margin-left: 24px;
+                    padding-left: 32px;
                     font-weight: 600;
                     &::before{
                         content: '';
                         position: absolute;
-                        left: -24px;
+                        left: 0px;
                         height: 13px;
                         width: 13px;
                         bottom: 0;
@@ -124,6 +140,15 @@
                         background: #ffffff;
                         border: 2px solid $color-secondary;
                         border-radius: 100%;
+                    }
+
+
+                    &:hover{
+                        color: $color-secondary;
+
+                        &::before{
+                            background: $color-secondary;
+                        }
                     }
                 }
             }
