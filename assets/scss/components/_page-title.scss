@@ -1,0 +1,17 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+
+.page-title-area{
+    display: flex;
+    width: 100%;
+    padding: 6px 0;
+    background: $color-secondary;
+
+    .page-title{
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 46px;
+        font-weight: 700;
+    }
+}

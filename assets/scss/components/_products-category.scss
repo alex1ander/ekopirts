@@ -1,0 +1,101 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+
+.grid-show{
+    margin-bottom: 60px;
+    .products-area{
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        
+        .category-list-block{
+            border: 1px solid rgba(3, 40, 40, 0.43);
+            border-radius: 20px;
+            overflow: hidden;
+            padding: 10px 24px 32px;
+            min-width: 280px;
+            height: fit-content;
+            position: sticky;
+            top: 140px;
+            .category-block-title{
+                color: $color-secondary;
+                font-size: 24px;
+                font-weight: 600;
+                position: relative;
+                text-align: center;
+                width: fit-content;
+                margin: auto;
+                &::after{
+                    content: "";
+                    background: #4C7378;
+                    height: 3px;
+                    width: 500%;
+                    position: absolute;
+                    right: 0;
+                    bottom: -4px;
+                }
+            }
+
+            .category-list{
+                margin-top: 24px;
+                list-style: none;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                gap: 24px;
+                
+                &::before{
+                    content: '';
+                    position: absolute;
+                    left: 8px;
+                    height: 100%;
+                    width: 1px;
+                    background: #ccc;
+                }
+
+                li{
+                    position: relative;
+                    line-height: 1;
+                    padding-left: 32px;
+                    font-weight: 600;
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        left: 0px;
+                        height: 13px;
+                        width: 13px;
+                        bottom: 0;
+                        top: 0;
+                        margin: auto;
+                        aspect-ratio: 1;
+                        background: #ffffff;
+                        border: 2px solid $color-secondary;
+                        border-radius: 100%;
+                    }
+
+
+                    &:hover{
+                        color: $color-secondary;
+
+                        &::before{
+                            background: $color-secondary;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .category-elements-block{
+            .grid-products-elements{
+                @include desktop{
+                     @include grid-three-col
+                }
+            }
+        }
+
+
+    }
+
+}

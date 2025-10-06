@@ -9,6 +9,13 @@ body {
   font-family: "Arial", sans-serif;
   line-height: 1.6;
   color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -692,59 +699,6 @@ footer .footer-line .footer-line-content ul {
 .show-cat .show-cat-content .benefits .benefit-list li:hover::before {
   background: #4C7378;
 }
-.show-cat .show-cat-content .benefits .category-preview {
-  margin-top: 24px;
-  position: relative;
-  display: flex;
-}
-.show-cat .show-cat-content .benefits .category-preview .category-image {
-  border-radius: 10px;
-}
-.show-cat .show-cat-content .benefits .category-preview .category-info {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 6px 12px;
-  border: 1px solid #D9D9D9;
-  position: absolute;
-  transform: translate(0, -50%);
-  top: 100%;
-  left: 0;
-  right: 0;
-  margin: auto;
-  background: #ffffff;
-  width: 90%;
-  border-radius: 10px;
-  transition: 0.4s background ease, 0.4s border-color ease;
-  cursor: pointer;
-}
-.show-cat .show-cat-content .benefits .category-preview .category-info .name {
-  font-size: 22px;
-  font-weight: 700;
-  transition: 0.4s color ease;
-}
-.show-cat .show-cat-content .benefits .category-preview .category-info .category-arrow {
-  background: #CD2122;
-  border-radius: 100%;
-  aspect-ratio: 1;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  width: 40px;
-  transition: 0.4s background ease;
-}
-.show-cat .show-cat-content .benefits .category-preview:hover .category-info {
-  background: #032828;
-  border-color: #032828;
-}
-.show-cat .show-cat-content .benefits .category-preview:hover .category-info .name {
-  color: #ffffff;
-}
-.show-cat .show-cat-content .benefits .category-preview:hover .category-info .category-arrow {
-  background: #4C7378;
-}
 
 @media (max-width: 767px) {
   .products-slider {
@@ -908,6 +862,60 @@ footer .footer-line .footer-line-content ul {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.category-preview {
+  margin-top: 24px;
+  position: relative;
+  display: flex;
+}
+.category-preview .category-image {
+  border-radius: 10px;
+}
+.category-preview .category-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  border: 1px solid #D9D9D9;
+  position: absolute;
+  transform: translate(0, -50%);
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: #ffffff;
+  width: 90%;
+  border-radius: 10px;
+  transition: 0.4s background ease, 0.4s border-color ease;
+  cursor: pointer;
+}
+.category-preview .category-info .name {
+  font-size: 22px;
+  font-weight: 700;
+  transition: 0.4s color ease;
+}
+.category-preview .category-info .category-arrow {
+  background: #CD2122;
+  border-radius: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  transition: 0.4s background ease;
+}
+.category-preview:hover .category-info {
+  background: #032828;
+  border-color: #032828;
+}
+.category-preview:hover .category-info .name {
+  color: #ffffff;
+}
+.category-preview:hover .category-info .category-arrow {
+  background: #4C7378;
 }
 
 .swiper-pagination-bullets {
@@ -1220,12 +1228,147 @@ body .benefits .swiper-button-next svg * {
   clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
 }
 
+.breadcrums-area {
+  display: flex;
+  width: 100%;
+  padding: 6px 0;
+  background: #4C7378;
+}
+.breadcrums-area .breadcrums {
+  display: flex;
+  gap: 20px;
+}
+.breadcrums-area .breadcrums .breadcrums-link {
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: #ffffff;
+  font-size: 12px;
+}
+.breadcrums-area .breadcrums .breadcrums-link svg {
+  margin-bottom: 2px;
+}
+.breadcrums-area .breadcrums .breadcrums-link::after {
+  content: "/";
+  color: #ffffff;
+  position: absolute;
+  right: -13px;
+  font-size: 16px;
+}
+.breadcrums-area .breadcrums .breadcrums-current {
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-size: 12px;
+}
+
+.page-title-area {
+  display: flex;
+  width: 100%;
+  padding: 6px 0;
+  background: #4C7378;
+}
+.page-title-area .page-title {
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 46px;
+  font-weight: 700;
+}
+
+.grid-show {
+  margin-bottom: 60px;
+}
+.grid-show .products-area {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+.grid-show .products-area .category-list-block {
+  border: 1px solid rgba(3, 40, 40, 0.43);
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 10px 24px 32px;
+  min-width: 280px;
+  height: fit-content;
+  position: sticky;
+  top: 140px;
+}
+.grid-show .products-area .category-list-block .category-block-title {
+  color: #4C7378;
+  font-size: 24px;
+  font-weight: 600;
+  position: relative;
+  text-align: center;
+  width: fit-content;
+  margin: auto;
+}
+.grid-show .products-area .category-list-block .category-block-title::after {
+  content: "";
+  background: #4C7378;
+  height: 3px;
+  width: 500%;
+  position: absolute;
+  right: 0;
+  bottom: -4px;
+}
+.grid-show .products-area .category-list-block .category-list {
+  margin-top: 24px;
+  list-style: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.grid-show .products-area .category-list-block .category-list::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  height: 100%;
+  width: 1px;
+  background: #ccc;
+}
+.grid-show .products-area .category-list-block .category-list li {
+  position: relative;
+  line-height: 1;
+  padding-left: 32px;
+  font-weight: 600;
+}
+.grid-show .products-area .category-list-block .category-list li::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  height: 13px;
+  width: 13px;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  aspect-ratio: 1;
+  background: #ffffff;
+  border: 2px solid #4C7378;
+  border-radius: 100%;
+}
+.grid-show .products-area .category-list-block .category-list li:hover {
+  color: #4C7378;
+}
+.grid-show .products-area .category-list-block .category-list li:hover::before {
+  background: #4C7378;
+}
+@media (min-width: 1200px) {
+  .grid-show .products-area .category-elements-block .grid-products-elements {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+}
+
 .dark-block * {
   color: #fff;
   text-decoration: none;
 }
 
 .container {
+  width: 100%;
   margin: auto;
   padding: 0 20px;
 }

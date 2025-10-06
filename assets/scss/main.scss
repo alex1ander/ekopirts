@@ -9,11 +9,15 @@
 @use  'components/show-cat';
 @use  'components/products-slider';
 @use  'components/product-card';
+@use  'components/category-preview';
 @use  'components/sliders';
 @use  'components/why-choose-us';
 @use  'components/steps';
 @use  'components/partners';
 @use  'components/decorations';
+@use  'components/breadcrums';
+@use  'components/page-title';
+@use  'components/products-category';
 // Пример использования миксинов
 
 .dark-block{
@@ -24,6 +28,7 @@
 }
 
 .container {
+    width: 100%;
     margin: auto;
     padding: 0 20px;
     @include desktop { max-width: 1240px; }
