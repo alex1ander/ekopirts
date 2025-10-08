@@ -68,6 +68,8 @@
   </div>
 </header>
 
+<?php include 'components/modal-order.php'; ?>
+
 <!-- Мобильное меню -->
 <nav class="mobile-menu">
   <ul>
@@ -126,6 +128,62 @@ submenuParents.forEach(parentLink => {
     // переключаем текущее
     li.classList.toggle('open');
   });
+});
+
+// Модальное окно заказа
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('order-modal');
+  const dialog = modal ? modal.querySelector('.modal__dialog') : null;
+  const openTriggers = document.querySelectorAll('.add-order .order-text');
+  const closeTriggers = modal ? modal.querySelectorAll('.modal-close') : [];
+
+  const openModal = () => {
+    if (!modal) return;
+    modal.setAttribute('aria-hidden', 'false');
+    modal.classList.add('is-open');
+    document.body.classList.add('modal-open');
+  };
+
+  const closeModal = () => {
+    if (!modal) return;
+    modal.setAttribute('aria-hidden', 'true');
+    modal.classList.remove('is-open');
+    document.body.classList.remove('modal-open');
+  };
+
+  openTriggers.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Найдём карточку товара и вытащим данные
+      const card = btn.closest('.product-card, .the-product');
+      const titleEl = card ? card.querySelector('.product-name, h1') : null;
+      const imgEl = card ? card.querySelector('img') : null;
+      const title = titleEl ? titleEl.textContent.trim() : '';
+      const img = imgEl ? imgEl.getAttribute('src') : '/images/product.png';
+
+      // Проставим в модалку
+      const modalTitle = document.getElementById('order-product-title');
+      const modalImg = document.getElementById('order-product-image');
+      const inputName = document.getElementById('order-product-name-input');
+      const inputImg = document.getElementById('order-product-image-input');
+      if (modalTitle) modalTitle.textContent = title || 'Produkts';
+      if (modalImg && img) modalImg.src = img;
+      if (inputName) inputName.value = title || '';
+      if (inputImg) inputImg.value = img || '';
+
+      openModal();
+    });
+  });
+
+  if (modal) {
+    closeTriggers.forEach(el => el.addEventListener('click', closeModal));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  }
 });
 
 </script>

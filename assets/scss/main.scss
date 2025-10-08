@@ -18,6 +18,8 @@
 @use  'components/breadcrums';
 @use  'components/page-title';
 @use  'components/products-category';
+@use  'components/product';
+@use  'components/modal';
 // Пример использования миксинов
 
 .dark-block{
