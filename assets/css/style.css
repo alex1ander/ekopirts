@@ -53,6 +53,18 @@ button {
   cursor: pointer;
 }
 
+.text {
+  font-size: 18px;
+}
+.text * {
+  font-size: 18px;
+}
+.text ul {
+  list-style-type: disc;
+  margin-left: 32px;
+  margin-bottom: 1em;
+}
+
 header {
   position: sticky;
   top: 0;
@@ -1689,6 +1701,31 @@ textarea {
   display: flex;
   flex-direction: row;
   gap: 13px;
+}
+
+.text-form-section {
+  background: #4C7378;
+}
+
+.text-form {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 3fr 2fr;
+  gap: 20px;
+}
+
+.text-area {
+  padding: 20px 0;
+}
+
+.form-area {
+  padding: 20px 0;
+  background: #032828;
+  display: flex;
+  justify-content: center;
+}
+.form-area form {
+  max-width: 380px;
 }
 
 .dark-block * {

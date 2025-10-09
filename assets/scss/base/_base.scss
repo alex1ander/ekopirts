@@ -55,3 +55,17 @@ button {
     background: none;
     cursor: pointer;
 }
+
+
+.text{
+    font-size: 18px;
+    *{
+        font-size: 18px;
+    }
+
+    ul{
+        list-style-type: disc;
+        margin-left: 32px;
+        margin-bottom: 1em;
+    }
+}
