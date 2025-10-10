@@ -21,6 +21,7 @@
 @use  'components/product';
 @use  'components/modal';
 @use  'components/forms';
+@use  'components/contacts';
 // Пример использования миксинов
 
 .dark-block{
@@ -116,5 +117,35 @@ main{
     display: none!important;
     @include mobile {
         display: flex!important;
+    }
+}
+
+
+.text-with-image{
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 3fr 2fr; 
+    gap: 60px;
+    grid-template-areas: 
+    "text image"; 
+
+    @include mobile{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    &.reverse{
+        grid-template-columns: 2fr 3fr;
+        grid-template-areas: 
+        "image text"; 
+    }
+
+    .text { grid-area: text; }
+    img { grid-area: image; }
+
+    img{
+        aspect-ratio: 1;
+        border-radius: 20px;
     }
 }

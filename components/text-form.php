@@ -1,4 +1,4 @@
-<section class="text-form-section">
+<section class="text-form-section dark">
     <div class="container">
         <div class="text-form">
             <div class="text-area">
@@ -27,7 +27,9 @@
 
             </div>
             <div class="form-area">
-                <form action="#">
+                <form action="#" class="mxw-380">
+                    <h3>Uzdot jautājumu</h3>
+
                     <input type="text" placeholder="Vārds, Uzvārds">
                     <input type="text" placeholder="Vārds, Uzvārds">
                     <input type="text" placeholder="Vārds, Uzvārds">

@@ -31,6 +31,11 @@ h2{
     font-weight: 700;
 }
 
+h3{
+    font-size: 30px;
+    font-weight: 700;
+}
+
 p {
     margin-bottom: 1rem;
 }
@@ -68,4 +73,39 @@ button {
         margin-left: 32px;
         margin-bottom: 1em;
     }
+}
+
+
+.text-center{
+    text-align: center;
+}
+
+
+.dark{
+    
+    *{
+        color: #ffffff;
+    }
+
+    .products-title,.title-block{
+        &::after{
+            background: #ffffff;
+        }
+    }
+}
+
+.mxw-380{
+    max-width: 380px;
+}
+
+
+
+.container-flex{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;    
+}
+
+.m-0{
+    margin: 0;
 }

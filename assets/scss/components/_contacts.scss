@@ -1,0 +1,41 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+
+.contact-three-grid{
+    @include grid-three-col;
+
+    @include mobile{
+        grid-template-columns: 1fr; 
+    }
+
+    h4{
+        font-size: 28px;
+    }
+    ul{
+        li{
+            font-size: 20px;
+            a{
+                font-size: 20px;
+            }
+        }
+    }
+
+    .contact-block{
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+
+.contacts{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    h3{
+        font-size: 30px;
+        font-weight: 700;
+    }
+}
