@@ -62,7 +62,7 @@
                     background: #ccc;
                 }
 
-                li{
+                > li{
                     position: relative;
                     line-height: 1;
                     padding-left: 32px;
@@ -73,7 +73,6 @@
                         left: 0px;
                         height: 13px;
                         width: 13px;
-                        bottom: 0;
                         top: 0;
                         margin: auto;
                         aspect-ratio: 1;
@@ -84,10 +83,42 @@
 
 
                     &:hover{
-                        color: $color-secondary;
+                        // color: $color-secondary;
+
 
                         &::before{
                             background: $color-secondary;
+                        }
+                    }
+
+                    li{
+                        &:hover{
+                            a{
+                                color: $color-secondary;
+                            }
+                        }
+                    }
+
+                    ul{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 16px;
+                        margin-top: 16px;
+
+                        li{
+                            position: relative;
+                            margin-left: 16px;
+
+                            &::before{
+                                content: "";
+                                position: absolute;
+                                left: -24px;
+                                top: 8px;
+                                width: 17px;
+                                height: 1px;
+                                background: #ccc;
+                            }
+
                         }
                     }
                 }

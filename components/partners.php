@@ -21,8 +21,8 @@
                 </div>
                 <div class="swiper-button-next products-slider-button-next desktop-only"></div>
                 <div class="swiper-button-prev products-slider-button-prev desktop-onl"></div>
-                <div class="products-slider-pagination gray"></div>
             </div>
+            <div class="products-slider-pagination gray"></div>
         </div>
     </div>
 </section>
@@ -33,7 +33,7 @@ var swiper = new Swiper(".partners-slider-swiper", {
     slidesPerView: 2,
         spaceBetween: 20,
         pagination: {
-            el: ".partners-slider .products-slider-pagination",
+            el: ".partners .products-slider-pagination",
         },
         navigation: {
             nextEl: ".partners-slider .products-slider-button-next",

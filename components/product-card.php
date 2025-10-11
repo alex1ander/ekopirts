@@ -3,7 +3,7 @@
         <img src="/images/product.png" alt="">
     </div>
 
-    <div class="product-content">
+    <div class="product-content pb-30">
         <h4 class="product-name">Pirts Muca (ovālā) 6m + Terase + Kubls</h4>
         <div class="product-info">
             <p class="product-description">Pirts Muca (ovālā) 6m+Terase+ Kubls.</p>
