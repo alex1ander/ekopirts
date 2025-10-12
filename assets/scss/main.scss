@@ -54,10 +54,15 @@ main{
     padding: 6px 12px;
     border-radius: 12px;
     color:#ffffff;
+    transition: background 0.4s ease;
 
     &-transparent{
         border:1px solid #ffffff;
         background: transparent;
+
+        &:hover{
+            background: $color-secondary;
+        }
     }
 
     &-matte{
@@ -74,6 +79,10 @@ main{
                 z-index: 0;
                 pointer-events: none;
                 opacity: 0.5;
+        }
+
+        &:hover{
+            background: #2F4A4D;
         }
     }
 }

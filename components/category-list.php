@@ -19,7 +19,9 @@
             <div class="grid-products-elements">
                 <?php for($i = 0 ; $i < 15; $i++):?>
                 <div class="category-preview">
-                    <img class="category-image" src="/images/category.png" alt="">
+                    <div class="category-image">
+                        <img src="/images/category.png" alt="">
+                    </div>
                     <div class="category-info">
                         <span class="name">Apaļās pirts mucas</span>
                         <div class="category-arrow">

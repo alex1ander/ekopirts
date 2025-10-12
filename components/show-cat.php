@@ -30,7 +30,9 @@
 
 
                                     <div class="category-preview">
-                                        <img class="category-image" src="/images/category.png" alt="">
+                                        <div class="category-image">
+                                            <img src="/images/category.png" alt="">
+                                        </div>
                                         <div class="category-info">
                                             <span class="name">Apaļās pirts mucas</span>
                                             <div class="category-arrow">

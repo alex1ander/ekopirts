@@ -5,6 +5,10 @@
 .hero{
 
 
+    .slider-area{
+        position: relative;
+    }
+
     .container{
         // height: 80%;
     }
@@ -92,6 +96,10 @@
         font-size: 24px;
         &::after{
             background: rgba(217, 217, 217, 0.10);
+        }
+
+        &:hover{
+            background: rgba(205, 33, 34, 0.30);
         }
     }
 

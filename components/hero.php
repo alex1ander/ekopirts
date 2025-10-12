@@ -17,7 +17,7 @@
                 <div class="hero-info">
                   <h1 class="hero-title">Tava Mucu Pirts</h1>
                   <p class="hero-text">Pērc No Ražotāja būs Lētāk</p>
-                  <a href="#" class="btn btn-matte">+371 25912321</a>
+                  <a href="#" class="btn btn-matte hover-red">Uzzināt Vairak</a>
                 </div>
               </div>
             </div>
