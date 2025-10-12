@@ -630,6 +630,7 @@ footer .footer-line .footer-line-content ul {
   border: 1px solid #FFF;
   backdrop-filter: blur(3px);
   font-size: 24px;
+  z-index: 10;
 }
 .promotions-section .promotions-side .promotions-content .promotions-btn .btn::after {
   background: rgba(217, 217, 217, 0.1);
@@ -836,6 +837,31 @@ footer .footer-line .footer-line-content ul {
   padding: 4px 4px 4px;
   border: 1px solid #D9D9D9;
   gap: 12px;
+  position: relative;
+}
+.product-card .product-tags {
+  position: absolute;
+  top: 0;
+  left: 10%;
+  z-index: 10;
+}
+.product-card .product-tags .discount-tag {
+  background: #CD2122;
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 0 0 6px 6px;
+}
+.product-card .product-tags .discount-tag::after {
+  content: "";
+  background: #CD2122;
+  position: absolute;
+  top: 98%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 5px;
+  width: 10px;
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
 }
 .product-card:hover img {
   transform: scale(1.2);

@@ -68,6 +68,7 @@
                     border: 1px solid #FFF;
                     backdrop-filter: blur(3px);
                     font-size: 24px;
+                    z-index: 10;
                     &::after{
                         background: rgba(217, 217, 217, 0.10);
                     }

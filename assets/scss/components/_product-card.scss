@@ -25,6 +25,35 @@
     border: 1px solid #D9D9D9;
     gap: 12px;
 
+    position: relative;
+
+    .product-tags{
+        position: absolute;
+        top: 0;
+        left: 10%;
+        z-index: 10;
+
+        .discount-tag{
+            background: #CD2122;
+            color: #ffffff;
+            padding: 4px 8px;
+            border-radius: 0 0 6px 6px;
+
+            &::after{
+                content: "";
+                background: #CD2122;
+                position: absolute;
+                top: 98%;
+                left: 0;
+                right: 0;
+                margin: auto;
+                height: 5px;
+                width: 10px;
+                clip-path: polygon(50% 100%, 0 0, 100% 0);
+            }
+        }
+    }
+
 
     &:hover{
         img{

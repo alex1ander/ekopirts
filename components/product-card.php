@@ -1,4 +1,9 @@
 <div class="product-card">
+
+    <div class="product-tags">
+        <div class="discount-tag">%</div>
+    </div>
+
     <div class="product-image">
         <img src="/images/product.png" alt="">
     </div>
