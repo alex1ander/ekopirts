@@ -4,6 +4,10 @@
 
 .hero{
 
+
+    .container{
+        // height: 80%;
+    }
     .hero-slide{
         aspect-ratio: 21/9;
         position: relative;
@@ -13,7 +17,7 @@
         overflow: hidden;
 
         @include mobile{
-            aspect-ratio: 9/16;
+            aspect-ratio: 9/ 16;
         }
 
         .hero-background{
@@ -69,100 +73,12 @@
             flex-direction: column;
             align-items: center;
             gap:64px;
+            margin-bottom: 220px;
 
             .hero-info{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-            }
-            .nested-slider{
-                display: flex;
-                max-width: 650px;
-
-                .nested-slide{
-                    margin-top: 20px;
-                    position: relative;
-                    transform: scale(0.8);
-
-                    transition: transform 0.8s ease;
-                    &::after {
-                        opacity: 0;
-                        content: '';
-                        position: absolute;
-                        left: 0;
-                        right: 0;
-                        top: -13px;
-                        margin: auto;
-                        height: 13px;
-                        width: 30px;
-                        background: #ffffff;
-                        clip-path: polygon(50% 0, 100% 100%, 0 100%);
-                        transition: opacity 0.8s ease;
-                    }
-
-
-                    .nested-content{
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        position: relative;
-                        aspect-ratio: 1;
-                        border-radius: 14px;
-                        overflow: hidden;
-                        border: 1px solid transparent;
-                        padding: 12px;
-                        transition: border-color 0.8s ease;
-
-                        .nested-image{
-                            border-radius: 8px;
-                            height: 100%;
-                            width: 100%;
-                            object-fit: cover;
-                            aspect-ratio: 1;
-                        }
-
-                        .nested-bottom{
-                            opacity: 0;
-                            position: absolute;
-                            bottom: 0;
-                            left: 0;
-                            width: 100%;
-                            background: rgba(217, 217, 217, 0.10);
-                            backdrop-filter: blur(3px);
-                            border-top: 1px solid #ffffff;
-                            text-align: center;
-                            padding: 6px;
-                            transition: opacity 0.8s ease;
-                            .nested-name{
-                                text-align: center;
-                                color: #ffffff;
-                                font-size: 18px;
-                            }
-                        }
-                    }
-                }
-
-                .swiper-slide-active{
-
-                    .nested-slide{
-                        transform: scale(1);
-                        &::after {
-                            opacity: 1;
-                        }
-
-                        .nested-content{ 
-                            border-color: #fff;
-
-                            .nested-bottom{
-                                opacity: 1;
-                            }
-                        }
-                }
-                }
-
-                .swiper-slide{
-                    transition: transform 4s ease;
-                }
             }
         }
     }
@@ -176,6 +92,109 @@
         font-size: 24px;
         &::after{
             background: rgba(217, 217, 217, 0.10);
+        }
+    }
+
+
+    .heroSwiper{
+        position: relative;
+    }
+
+    .nested-slider{
+        position: absolute;
+        bottom: 10%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        z-index: 20;
+        display: flex;
+        max-width: 650px;
+
+        .nested-slide{
+            margin-top: 20px;
+            position: relative;
+            transform: scale(0.8);
+
+            transition: transform 0.8s ease;
+            &::after {
+                opacity: 0;
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: -13px;
+                margin: auto;
+                height: 13px;
+                width: 30px;
+                background: #ffffff;
+                clip-path: polygon(50% 0, 100% 100%, 0 100%);
+                transition: opacity 0.8s ease;
+            }
+
+
+            .nested-content{
+                width: fit-content;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                aspect-ratio: 1;
+                border-radius: 16px;
+                overflow: hidden;
+                border: 1px solid transparent;
+                padding: 6px;
+                transition: border-color 0.8s ease;
+
+                .nested-image{
+                    border-radius: 10px;
+                    height: 200px;
+                    width: 200px;
+                    object-fit: cover;
+                    aspect-ratio: 1;
+                    max-width: none;
+                }
+
+                .nested-bottom{
+                    opacity: 0;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    background: rgba(217, 217, 217, 0.10);
+                    backdrop-filter: blur(3px);
+                    border-top: 1px solid #ffffff;
+                    text-align: center;
+                    padding: 6px;
+                    transition: opacity 0.8s ease;
+                    .nested-name{
+                        text-align: center;
+                        color: #ffffff;
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+
+        .swiper-slide-active{
+
+            .nested-slide{
+                transform: scale(1);
+                &::after {
+                    opacity: 1;
+                }
+
+                .nested-content{ 
+                    border-color: #fff;
+
+                    .nested-bottom{
+                        opacity: 1;
+                    }
+                }
+        }
+        }
+
+        .swiper-slide{
+            transition: transform 4s ease;
         }
     }
 

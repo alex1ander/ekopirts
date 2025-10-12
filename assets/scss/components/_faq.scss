@@ -1,0 +1,118 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+
+.faq{
+    margin: 40px 0;
+}
+
+.faqs-block{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+
+.accordion {
+
+  .accordion-item {
+    border-bottom: 1px solid #032828;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+
+    .accordion-head {
+      display: flex;
+      gap: 20px;
+
+      .accordion-sign {
+        height: 46px;
+        width: 46px;
+        aspect-ratio: 1;
+        border-radius: 10px;
+        background: $color-primary;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        position: relative;
+
+        &::before{
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            width: 20px;
+            height: 3px;
+            background: #ffffff;
+        }
+        &::after{
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            width: 20px;
+            height: 3px;
+            transform: rotate(90deg);
+            background: #ffffff;
+            transition: transform 0.4s ease;
+        }
+      }
+
+      .accordion-btn {
+        color: $color-primary;
+        font-size: 25px;
+        transition: color 0.3s ease;
+      }
+    }
+
+    // Обертка контента с grid
+    .accordion-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      overflow: hidden;
+      transition: grid-template-rows 0.4s ease, padding 0.4s ease;
+      color: #ffffff;
+
+      // Внутренний контейнер для корректной работы grid
+      > * {
+        min-height: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    &.active {
+      background: $color-primary;
+      transition: background 0.3s ease;
+
+      .accordion-sign {
+        background: #ffffff;
+        color: $color-primary;
+        &::before{
+            background-color: $color-primary;
+        }
+        &::after{
+            background-color: $color-primary;
+            transform: rotate(0deg);
+        }
+      }
+
+      .accordion-btn {
+        color: #ffffff;
+      }
+
+      .accordion-content {
+        grid-template-rows: 1fr;
+        padding: 15px 0; // добавляем отступы при открытии
+      }
+    }
+  }
+}

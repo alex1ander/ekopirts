@@ -452,23 +452,44 @@ footer .footer-line .footer-line-content ul {
   flex-direction: column;
   align-items: center;
   gap: 64px;
+  margin-bottom: 220px;
 }
 .hero .hero-slide .hero-content .hero-info {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.hero .hero-slide .hero-content .nested-slider {
+.hero .btn {
+  text-align: center;
+  padding: 6px 24px;
+  border-radius: 10px;
+  border: 1px solid #FFF;
+  backdrop-filter: blur(3px);
+  font-size: 24px;
+}
+.hero .btn::after {
+  background: rgba(217, 217, 217, 0.1);
+}
+.hero .heroSwiper {
+  position: relative;
+}
+.hero .nested-slider {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 20;
   display: flex;
   max-width: 650px;
 }
-.hero .hero-slide .hero-content .nested-slider .nested-slide {
+.hero .nested-slider .nested-slide {
   margin-top: 20px;
   position: relative;
   transform: scale(0.8);
   transition: transform 0.8s ease;
 }
-.hero .hero-slide .hero-content .nested-slider .nested-slide::after {
+.hero .nested-slider .nested-slide::after {
   opacity: 0;
   content: "";
   position: absolute;
@@ -482,26 +503,28 @@ footer .footer-line .footer-line-content ul {
   clip-path: polygon(50% 0, 100% 100%, 0 100%);
   transition: opacity 0.8s ease;
 }
-.hero .hero-slide .hero-content .nested-slider .nested-slide .nested-content {
+.hero .nested-slider .nested-slide .nested-content {
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   aspect-ratio: 1;
-  border-radius: 14px;
+  border-radius: 16px;
   overflow: hidden;
   border: 1px solid transparent;
-  padding: 12px;
+  padding: 6px;
   transition: border-color 0.8s ease;
 }
-.hero .hero-slide .hero-content .nested-slider .nested-slide .nested-content .nested-image {
-  border-radius: 8px;
-  height: 100%;
-  width: 100%;
+.hero .nested-slider .nested-slide .nested-content .nested-image {
+  border-radius: 10px;
+  height: 200px;
+  width: 200px;
   object-fit: cover;
   aspect-ratio: 1;
+  max-width: none;
 }
-.hero .hero-slide .hero-content .nested-slider .nested-slide .nested-content .nested-bottom {
+.hero .nested-slider .nested-slide .nested-content .nested-bottom {
   opacity: 0;
   position: absolute;
   bottom: 0;
@@ -514,36 +537,25 @@ footer .footer-line .footer-line-content ul {
   padding: 6px;
   transition: opacity 0.8s ease;
 }
-.hero .hero-slide .hero-content .nested-slider .nested-slide .nested-content .nested-bottom .nested-name {
+.hero .nested-slider .nested-slide .nested-content .nested-bottom .nested-name {
   text-align: center;
   color: #ffffff;
   font-size: 18px;
 }
-.hero .hero-slide .hero-content .nested-slider .swiper-slide-active .nested-slide {
+.hero .nested-slider .swiper-slide-active .nested-slide {
   transform: scale(1);
 }
-.hero .hero-slide .hero-content .nested-slider .swiper-slide-active .nested-slide::after {
+.hero .nested-slider .swiper-slide-active .nested-slide::after {
   opacity: 1;
 }
-.hero .hero-slide .hero-content .nested-slider .swiper-slide-active .nested-slide .nested-content {
+.hero .nested-slider .swiper-slide-active .nested-slide .nested-content {
   border-color: #fff;
 }
-.hero .hero-slide .hero-content .nested-slider .swiper-slide-active .nested-slide .nested-content .nested-bottom {
+.hero .nested-slider .swiper-slide-active .nested-slide .nested-content .nested-bottom {
   opacity: 1;
 }
-.hero .hero-slide .hero-content .nested-slider .swiper-slide {
+.hero .nested-slider .swiper-slide {
   transition: transform 4s ease;
-}
-.hero .btn {
-  text-align: center;
-  padding: 6px 24px;
-  border-radius: 10px;
-  border: 1px solid #FFF;
-  backdrop-filter: blur(3px);
-  font-size: 24px;
-}
-.hero .btn::after {
-  background: rgba(217, 217, 217, 0.1);
 }
 
 .promotions-section {
@@ -1993,6 +2005,104 @@ textarea {
 }
 .post-navigation.next-post h4, .post-navigation.next-post span {
   text-align: right;
+}
+
+.faq {
+  margin: 40px 0;
+}
+
+.faqs-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.accordion .accordion-item {
+  border-bottom: 1px solid #032828;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+.accordion .accordion-item .accordion-head {
+  display: flex;
+  gap: 20px;
+}
+.accordion .accordion-item .accordion-head .accordion-sign {
+  height: 46px;
+  width: 46px;
+  aspect-ratio: 1;
+  border-radius: 10px;
+  background: #032828;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+}
+.accordion .accordion-item .accordion-head .accordion-sign::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 20px;
+  height: 3px;
+  background: #ffffff;
+}
+.accordion .accordion-item .accordion-head .accordion-sign::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 20px;
+  height: 3px;
+  transform: rotate(90deg);
+  background: #ffffff;
+  transition: transform 0.4s ease;
+}
+.accordion .accordion-item .accordion-head .accordion-btn {
+  color: #032828;
+  font-size: 25px;
+  transition: color 0.3s ease;
+}
+.accordion .accordion-item .accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: grid-template-rows 0.4s ease, padding 0.4s ease;
+  color: #ffffff;
+}
+.accordion .accordion-item .accordion-content > * {
+  min-height: 0;
+  margin-bottom: 0;
+}
+.accordion .accordion-item.active {
+  background: #032828;
+  transition: background 0.3s ease;
+}
+.accordion .accordion-item.active .accordion-sign {
+  background: #ffffff;
+  color: #032828;
+}
+.accordion .accordion-item.active .accordion-sign::before {
+  background-color: #032828;
+}
+.accordion .accordion-item.active .accordion-sign::after {
+  background-color: #032828;
+  transform: rotate(0deg);
+}
+.accordion .accordion-item.active .accordion-btn {
+  color: #ffffff;
+}
+.accordion .accordion-item.active .accordion-content {
+  grid-template-rows: 1fr;
+  padding: 15px 0;
 }
 
 .dark-block * {
