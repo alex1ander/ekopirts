@@ -63,7 +63,7 @@ footer{
     ul{
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 8px;
         list-style: inside;
         li{
             font-size: 14px;
@@ -103,6 +103,7 @@ footer{
 
             ul{
                 flex-direction: row;
+                gap: 24px;
                  @include mobile{
                     flex-direction: column;
                 }

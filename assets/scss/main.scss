@@ -52,12 +52,13 @@ main{
 }
 
 .btn{
+    cursor: pointer;
     display: inline-flex;
     padding: 6px 12px;
     border-radius: 12px;
     color:#ffffff;
     transition: background 0.4s ease;
-
+    text-wrap: nowrap;
     &-transparent{
         border:1px solid #ffffff;
         background: transparent;

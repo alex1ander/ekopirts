@@ -42,39 +42,66 @@
             <!-- Навигация по записям -->
             <div class="post-navigation">
                 <?php
-                $prev_post = get_previous_post();
-                if (!empty($prev_post)) : ?>
-                    <div class="prev-post post-navigation">
-                        <div class="content">
-                            <h4><?php echo esc_html(get_the_title($prev_post->ID)); ?></h4>
-                            <p><?php echo wp_trim_words(get_the_excerpt($prev_post->ID), 20); ?></p>
-                        </div>
-                        <?php echo get_the_post_thumbnail($prev_post->ID, 'thumbnail'); ?>
-                        <div class="icon">
-                            <svg width="15" height="28">
-                                <use href="#arrow-right-green"></use>
-                            </svg>
-                        </div>
-                    </div>
-                <?php endif; ?>
+                $current_id = get_the_ID();
 
-                <?php
-                $next_post = get_next_post();
-                if (!empty($next_post)) : ?>
-                    <div class="next-post post-navigation">
+                // Самый новый пост (последний по дате) кроме текущего
+                $latest_posts = get_posts([
+                    'posts_per_page' => 1,
+                    'post_status'    => 'publish',
+                    'orderby'        => 'date',
+                    'order'          => 'DESC',
+                    'post__not_in'   => [$current_id],
+                ]);
+
+                if (!empty($latest_posts)) {
+                    $latest = $latest_posts[0];
+                    $latest_link = get_permalink($latest->ID);
+                    ?>
+                    <a href="<?php echo esc_url($latest_link); ?>" class="prev-post post-navigation" aria-label="Перейти к самому новому посту">
                         <div class="content">
-                            <h4><?php echo esc_html(get_the_title($next_post->ID)); ?></h4>
-                            <p><?php echo wp_trim_words(get_the_excerpt($next_post->ID), 20); ?></p>
+                            <h4><?php echo esc_html(get_the_title($latest->ID)); ?></h4>
+                            <p><?php echo esc_html(mb_strimwidth(strip_tags(get_the_excerpt($latest->ID)), 0, 50, '…')); ?></p>
                         </div>
-                        <?php echo get_the_post_thumbnail($next_post->ID, 'thumbnail'); ?>
-                        <div class="icon">
+                        <?php echo get_the_post_thumbnail($latest->ID, 'thumbnail'); ?>
+                        <div class="icon arrow">
                             <svg width="15" height="28">
                                 <use href="#arrow-right-green"></use>
                             </svg>
                         </div>
-                    </div>
-                <?php endif; ?>
+                    </a>
+                    <?php
+                }
+
+                // Самый старый пост (первый по дате) кроме текущего
+                $oldest_posts = get_posts([
+                    'posts_per_page' => 1,
+                    'post_status'    => 'publish',
+                    'orderby'        => 'date',
+                    'order'          => 'ASC',
+                    'post__not_in'   => [$current_id],
+                ]);
+
+                if (!empty($oldest_posts)) {
+                    $oldest = $oldest_posts[0];
+                    $oldest_link = get_permalink($oldest->ID);
+                    ?>
+                    <a href="<?php echo esc_url($oldest_link); ?>" class="next-post post-navigation" aria-label="Перейти к самому старому посту">
+                        <div class="content">
+                            <h4><?php echo esc_html(get_the_title($oldest->ID)); ?></h4>
+                            <p><?php echo esc_html(mb_strimwidth(strip_tags(get_the_excerpt($oldest->ID)), 0, 50, '…')); ?></p>
+                        </div>
+                        <?php echo get_the_post_thumbnail($oldest->ID, 'thumbnail'); ?>
+                        <div class="icon arrow">
+                            <svg width="15" height="28">
+                                <use href="#arrow-right-green"></use>
+                            </svg>
+                        </div>
+                    </a>
+                    <?php
+                }
+                ?>
             </div>
+
 
         </div>
 

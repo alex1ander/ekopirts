@@ -343,7 +343,7 @@ footer .footer-content .footer-col .social-links {
 footer ul {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
   list-style: inside;
 }
 footer ul li {
@@ -382,6 +382,7 @@ footer .footer-line .footer-line-content .part {
 }
 footer .footer-line .footer-line-content ul {
   flex-direction: row;
+  gap: 24px;
 }
 @media (max-width: 767px) {
   footer .footer-line .footer-line-content ul {
@@ -2141,6 +2142,7 @@ textarea {
 }
 
 .post-content {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -2193,14 +2195,52 @@ textarea {
 .post-navigation.prev-post {
   flex-direction: row-reverse;
 }
+@media (max-width: 767px) {
+  .post-navigation.prev-post {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+    grid-template-areas: "arrow image" "text text";
+    justify-items: start;
+  }
+}
 .post-navigation.prev-post .icon {
   transform: rotate(180deg);
+}
+.post-navigation.prev-post .icon.arrow {
+  grid-area: arrow;
+}
+.post-navigation.prev-post .attachment-thumbnail {
+  grid-area: image;
+}
+.post-navigation.prev-post .content {
+  grid-area: text;
 }
 .post-navigation.next-post {
   flex-direction: row;
 }
+@media (max-width: 767px) {
+  .post-navigation.next-post {
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+    grid-template-areas: "text text" "image arrow";
+    justify-items: end;
+  }
+}
 .post-navigation.next-post h4, .post-navigation.next-post span {
   text-align: right;
+}
+.post-navigation.next-post .icon.arrow {
+  grid-area: arrow;
+}
+.post-navigation.next-post .attachment-thumbnail {
+  grid-area: image;
+}
+.post-navigation.next-post .content {
+  grid-area: text;
 }
 
 .faq {
@@ -2301,9 +2341,18 @@ textarea {
   padding: 15px 0;
 }
 
+.gallery {
+  margin: 40px 0;
+}
+.gallery-block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .gallery .gallery-head .gallery-tabs {
   display: flex;
-  gap: 20px;
+  gap: 12px;
+  overflow: auto;
 }
 .gallery .gallery-head .gallery-tabs .btn.active {
   color: #ffffff;
@@ -2313,6 +2362,11 @@ textarea {
   display: none;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+}
+@media (max-width: 767px) {
+  .gallery .gallery-body .grid-image-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .gallery .gallery-body .grid-image-gallery.active {
   display: grid;
@@ -2324,6 +2378,7 @@ textarea {
   border-radius: 8px;
   object-fit: cover;
   transition: transform 0.3s ease;
+  aspect-ratio: 16/9;
 }
 .gallery .gallery-body .grid-image-gallery img:hover {
   transform: scale(1.03);
@@ -2361,11 +2416,13 @@ main {
 }
 
 .btn {
+  cursor: pointer;
   display: inline-flex;
   padding: 6px 12px;
   border-radius: 12px;
   color: #ffffff;
   transition: background 0.4s ease;
+  text-wrap: nowrap;
 }
 .btn-transparent {
   border: 1px solid #ffffff;

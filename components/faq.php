@@ -1,37 +1,22 @@
+<?php $faq = get_field('faq'); ?>
+
 <section class="faq">
   <div class="container">
     <div class="faqs-block">
       <div class="accordion">
 
-        <div class="accordion-item">
-          <div class="accordion-head">
-            <span class="accordion-sign"></span>
-            <button class="accordion-btn">Vai ir iespējas kredīts, ar kādām bankām strādājat ?</button>
-          </div>
-          <div class="accordion-content">
-                <p>Содержимое раздела 1</p>
-          </div>
-        </div>
 
+        <?php foreach($faq as $accordion): ?>
         <div class="accordion-item">
           <div class="accordion-head">
             <span class="accordion-sign"></span>
-            <button class="accordion-btn">Раздел 2</button>
+            <button class="accordion-btn"><?= $accordion['title'];?></button>
           </div>
           <div class="accordion-content">
-                <p>Содержимое раздела 1</p>
+              <div><?= $accordion['text'];?></div>
           </div>
         </div>
-
-        <div class="accordion-item">
-          <div class="accordion-head">
-            <span class="accordion-sign"></span>
-            <button class="accordion-btn">Раздел 3</button>
-          </div>
-          <div class="accordion-content">
-            <p>Содержимое раздела 1</p>
-          </div>
-        </div>
+        <?php endforeach; ?>
 
       </div>
     </div>

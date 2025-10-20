@@ -1,5 +1,6 @@
 <?php
-include 'header.php';
+    /* Template Name: Faq */
+    get_header();
 ?>
 
 <main>
@@ -15,6 +16,8 @@ include 'components/partners.php';
 </main>
 
 <?php
-include 'footer.php';
+    get_footer();
 ?>
+
+
 

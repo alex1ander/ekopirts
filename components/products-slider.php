@@ -3,6 +3,16 @@ $showCategory = get_field('products_by_category');
 // echo '<pre>';
 // print_r($showCategory);
 // echo '</pre>';
+
+
+$category_link = '';
+if (!empty($showCategory['categories'])) {
+    $first_cat_id = $showCategory['categories'][0];
+    $term = get_term($first_cat_id, 'product_category');
+    if ($term && !is_wp_error($term)) {
+        $category_link = get_term_link($term);
+    }
+}
 ?>
 
 <section class="products-slider">
@@ -11,7 +21,7 @@ $showCategory = get_field('products_by_category');
 
       <div class="products-head">
         <div class="title-block">
-          <h2 class="products-title">Mūsu produkcija1</h2>
+          <h2 class="products-title">Mūsu produkcija</h2>
         </div>
 
         <ul class="category-tabs desktop-only">
@@ -31,7 +41,7 @@ $showCategory = get_field('products_by_category');
         </ul>
 
 
-        <a href="#" class="all-products">
+        <a href="<?php echo esc_url($category_link ? $category_link : '#'); ?>" class="all-products">
           <span>Show All</span>
           <div class="category-arrow">
               <svg width="15" height="28">

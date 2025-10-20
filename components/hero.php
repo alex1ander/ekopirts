@@ -58,46 +58,50 @@ $heroSlider = get_field('hero-slider');
 </section>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  // === Сначала создаём превью-слайдер (вспомогательный) ===
+document.addEventListener("DOMContentLoaded", function () {
+  // === Нижний (превью) слайдер ===
   const nestedSwiper = new Swiper(".nested-swiper", {
-    loop: true,
     slidesPerView: 2,
     spaceBetween: 10,
-    slideToClickedSlide: true,
     centeredSlides: true,
+    slideToClickedSlide: true,
     watchSlidesProgress: true,
     breakpoints: {
       540: { slidesPerView: 2 },
       768: { slidesPerView: 2.5 },
       1024: { slidesPerView: 3 },
-    }
+    },
   });
 
-  // === Затем главный слайдер с эффектом fade ===
+  // === Верхний (главный) слайдер ===
   const heroSwiper = new Swiper(".heroSwiper", {
-    loop: true,
-    centeredSlides: true,
     speed: 800,
-    effect: 'fade',
-    fadeEffect: {
-      crossFade: true
-    },
+    effect: "fade",
+    fadeEffect: { crossFade: true },
+    centeredSlides: true,
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
     },
-    // Привязываем превью как thumbs
-    thumbs: {
-      swiper: nestedSwiper
-    }
   });
 
-  // === Клик по превью переключает главный слайдер ===
-  nestedSwiper.slides.forEach((slide, index) => {
-    slide.addEventListener('click', () => {
-      heroSwiper.slideToLoop(index);
-    });
+  // === Синхронизация: при смене верхнего обновляем нижний ===
+  heroSwiper.on("slideChange", function () {
+    const realIndex = heroSwiper.activeIndex;
+    nestedSwiper.slideTo(realIndex);
+  });
+
+  // === Синхронизация: при смене нижнего обновляем верхний ===
+  nestedSwiper.on("slideChange", function () {
+    const realIndex = nestedSwiper.activeIndex;
+    heroSwiper.slideTo(realIndex);
+  });
+
+  // === Клик по нижнему слайду ===
+  nestedSwiper.on("click", function (swiper) {
+    if (typeof swiper.clickedIndex !== "undefined") {
+      heroSwiper.slideTo(swiper.clickedIndex);
+    }
   });
 });
 </script>

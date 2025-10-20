@@ -2,12 +2,20 @@
 @use '../mixins' as *;
 
 .gallery {
+    margin: 40px 0;
+
+    &-block{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
 
   .gallery-head {
 
     .gallery-tabs {
-      display: flex;
-      gap: 20px;
+        display: flex;
+        gap: 12px;
+        overflow: auto;
 
       .btn.active{
         color: #ffffff;
@@ -22,6 +30,10 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
 
+      @include mobile{
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       &.active {
         display: grid;
         animation: fadeIn 0.4s ease;
@@ -33,6 +45,7 @@
         border-radius: 8px;
         object-fit: cover;
         transition: transform 0.3s ease;
+        aspect-ratio: 16 / 9;
 
         &:hover {
           transform: scale(1.03);

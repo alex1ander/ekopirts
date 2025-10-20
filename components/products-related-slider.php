@@ -15,6 +15,17 @@ if ($related_category) {
     $terms = wp_get_post_terms($current_product_id, 'product_category', array('fields' => 'ids'));
 }
 
+
+$category_link = '';
+if (!empty($terms)) {
+    // Берем первую категорию из массива $terms
+    $term_id = $terms[0];
+    $term = get_term($term_id, 'product_category');
+    if ($term && !is_wp_error($term)) {
+        $category_link = get_term_link($term);
+    }
+}
+
 // Проверяем, есть ли категории
 if ($terms):
 
@@ -43,7 +54,7 @@ if ($terms):
 
                 <div class="w-100 void"></div>
 
-                <a href="#" class="all-products">
+                <a href="<?php echo esc_url($category_link ? $category_link : '#'); ?>" class="all-products">
                     <span>Show All</span>
                     <div class="category-arrow">
                         <svg width="15" height="28">
