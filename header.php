@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (inputName) inputName.value = title || '';
       if (inputImg) inputImg.value = img || '';
       if (inputPrice) inputPrice.value = price || '';
-      if (priceEl) priceEl.textContent = price ? price : '';
+      if (priceEl) priceEl.textContent = price ? '€ ' + price : '';
 
       openModal();
     });

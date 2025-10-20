@@ -1872,44 +1872,44 @@ body .categories .swiper-button-next svg * {
   margin: auto;
   padding: 32px 20px;
 }
-.modal .modal-form .modal-form-content form {
+.modal .modal-form .modal-form-content .custom-order-form {
   display: flex;
   flex-direction: column;
   gap: 13px;
 }
-.modal .modal-form .modal-form-content form span {
+.modal .modal-form .modal-form-content .custom-order-form span {
   font-size: 16px;
   font-weight: 400;
   text-align: center;
 }
 @media (max-width: 767px) {
-  .modal .modal-form .modal-form-content form span {
+  .modal .modal-form .modal-form-content .custom-order-form span {
     font-size: 14px;
   }
 }
-.modal .modal-form .modal-form-content form .short-product {
+.modal .modal-form .modal-form-content .custom-order-form .short-product {
   display: flex;
   flex-direction: row;
   gap: 26px;
 }
-.modal .modal-form .modal-form-content form .short-product .product-image {
+.modal .modal-form .modal-form-content .custom-order-form .short-product .product-image {
   width: 150px;
   height: 150px;
   aspect-ratio: 1;
 }
-.modal .modal-form .modal-form-content form .short-product .product-image img {
+.modal .modal-form .modal-form-content .custom-order-form .short-product .product-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 8px;
 }
-.modal .modal-form .modal-form-content form .short-product .product-info {
+.modal .modal-form .modal-form-content .custom-order-form .short-product .product-info {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
 }
-.modal .modal-form .modal-form-content form .short-product .product-info h3 {
+.modal .modal-form .modal-form-content .custom-order-form .short-product .product-info h3 {
   font-size: 24px;
   font-weight: 500;
   margin: 0;
@@ -1917,32 +1917,32 @@ body .categories .swiper-button-next svg * {
   text-wrap: balance;
 }
 @media (max-width: 767px) {
-  .modal .modal-form .modal-form-content form .short-product .product-info h3 {
+  .modal .modal-form .modal-form-content .custom-order-form .short-product .product-info h3 {
     font-size: 20px;
   }
 }
-.modal .modal-form .modal-form-content form .short-product .product-info .price {
+.modal .modal-form .modal-form-content .custom-order-form .short-product .product-info .price {
   color: #4C7378;
   font-size: 19px;
   font-weight: 700;
   text-decoration: underline;
 }
 @media (max-width: 767px) {
-  .modal .modal-form .modal-form-content form .short-product .product-info .price {
+  .modal .modal-form .modal-form-content .custom-order-form .short-product .product-info .price {
     font-size: 17px;
   }
 }
-.modal .modal-form .modal-form-content form .short-product .product-info .without-pdv {
+.modal .modal-form .modal-form-content .custom-order-form .short-product .product-info .without-pdv {
   color: #fc0000;
   font-size: 10px;
   font-weight: 400;
 }
 @media (max-width: 767px) {
-  .modal .modal-form .modal-form-content form .short-product .product-info .without-pdv {
+  .modal .modal-form .modal-form-content .custom-order-form .short-product .product-info .without-pdv {
     font-size: 9px;
   }
 }
-.modal .modal-form .modal-form-content form .btn {
+.modal .modal-form .modal-form-content .custom-order-form .btn {
   background: #4C7378;
   color: #ffffff;
   width: fit-content;
@@ -1953,7 +1953,7 @@ body .categories .swiper-button-next svg * {
   margin: auto;
 }
 @media (max-width: 767px) {
-  .modal .modal-form .modal-form-content form .btn {
+  .modal .modal-form .modal-form-content .custom-order-form .btn {
     font-size: 17px;
     padding: 9px 16px;
   }
@@ -2036,25 +2036,25 @@ textarea {
   display: flex;
   justify-content: center;
 }
-.form-area form h3 {
+.form-area .custom-order-form h3 {
   font-size: 34px;
 }
-.form-area form {
+.form-area .custom-order-form {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.form-area form input, .form-area form textarea {
+.form-area .custom-order-form input, .form-area .custom-order-form textarea {
   background: #4C7378;
   color: #ffffff;
   font-size: 24px;
 }
-.form-area form input::placeholder, .form-area form textarea::placeholder {
+.form-area .custom-order-form input::placeholder, .form-area .custom-order-form textarea::placeholder {
   font-size: 20px;
   color: rgba(255, 255, 255, 0.5019607843);
 }
-.form-area form .btn {
+.form-area .custom-order-form .btn {
   font-size: 24px;
   background: #fff;
   color: #000;
@@ -2069,7 +2069,7 @@ textarea {
   font-size: 34px;
   font-weight: 700;
 }
-.form-section .form-content form {
+.form-section .form-content .custom-order-form {
   display: flex;
   flex-direction: column;
   gap: 16px;

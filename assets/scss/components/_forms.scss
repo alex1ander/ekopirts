@@ -41,7 +41,7 @@
     display: flex;
     justify-content: center;
 
-    form{
+    .custom-order-form{
         h3{
             font-size: 34px;
         }
@@ -84,7 +84,7 @@
             font-weight: 700;
         }
 
-        form{
+        .custom-order-form{
             display: flex;
             flex-direction: column;
             gap: 16px;

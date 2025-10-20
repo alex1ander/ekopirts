@@ -12,35 +12,7 @@
 
 
        <div class="modal-form-content">
-            <form action="#">
-                <input type="hidden" id="order-product-name-input" name="product_name" value="">
-                <input type="hidden" id="order-product-image-input" name="product_image" value="">
-                <input type="hidden" id="order-product-price-input" name="product_price" value="">
-                <input type="text" placeholder="<?php echo esc_attr(__('First name, Last name', 'ekopirts')); ?>">
-                <input type="text" placeholder="<?php echo esc_attr(__('First name, Last name', 'ekopirts')); ?>">
-                <input type="text" placeholder="<?php echo esc_attr(__('First name, Last name', 'ekopirts')); ?>">
-                <span><?php _e('Object location', 'ekopirts'); ?></span>
-                <div class="row">
-                    <input type="text" placeholder="<?php echo esc_attr(__('First name, Last name', 'ekopirts')); ?>">
-                    <input type="text" placeholder="<?php echo esc_attr(__('First name, Last name', 'ekopirts')); ?>">
-                </div>
-
-                <div class="short-product">
-                    <div class="product-image">
-                        <img id="order-product-image" src="/images/product.png" alt="">
-                    </div>
-                    <div class="product-info">
-                        <h3 id="order-product-title"><?php _e('Product name', 'ekopirts'); ?></h3>
-                        <span class="price" id="order-product-price">€3,700.00</span>
-                        <span class="without-pdv"><?php _e('*Price is without VAT', 'ekopirts'); ?></span>
-                    </div>
-                </div>
-
-                <textarea name="" id=""></textarea>
-
-                <button href="#" class="btn"><?php _e('Order', 'ekopirts'); ?></button>
-
-            </form>
+            <?= do_shortcode('[contact-form-7 id="3546da9" title="Contact form 1"]') ?>
        </div>
 
    </div>
