@@ -176,20 +176,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // Открытие подменю в мобильном меню
-const submenuParents = document.querySelectorAll('.mobile-menu .menu-item-has-children > a');
+document.addEventListener('DOMContentLoaded', () => {
+  const submenuParents = document.querySelectorAll('.mobile-menu .has-submenu > a');
 
-submenuParents.forEach(parentLink => {
-  parentLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    const li = parentLink.parentElement;
+  submenuParents.forEach(parentLink => {
+    parentLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      const li = parentLink.parentElement;
 
-    // закрываем все другие подменю
-    document.querySelectorAll('.mobile-menu .menu-item-has-children').forEach(item => {
-      if (item !== li) item.classList.remove('open');
+      // закрываем все другие подменю
+      document.querySelectorAll('.mobile-menu .has-submenu').forEach(item => {
+        if (item !== li) item.classList.remove('open');
+      });
+
+      // переключаем текущее
+      li.classList.toggle('open');
     });
-
-    // переключаем текущее
-    li.classList.toggle('open');
   });
 });
 

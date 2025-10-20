@@ -1,5 +1,6 @@
 @use '../variables' as *;
 @use '../mixins' as *;
+@use 'sass:color';
 
 header {
   position: sticky;
@@ -13,6 +14,32 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 16px 0;
+
+    a {
+      display: flex;
+      align-items: center;
+      
+      svg {
+        width: 182px;
+        height: 45px;
+        transition: all 0.3s ease;
+        
+        @media (max-width: 768px) {
+          width: 140px;
+          height: 35px;
+        }
+        
+        @media (max-width: 480px) {
+          width: 120px;
+          height: 30px;
+        }
+        
+        @media (max-width: 360px) {
+          width: 100px;
+          height: 25px;
+        }
+      }
+    }
 
     .support-block {
       display: flex;
@@ -151,88 +178,163 @@ header {
 }
 
 /* === Мобильное меню === */
-/* === Мобильное меню === */
 .mobile-menu {
   position: fixed;
   top: 0;
-  left: -100%;
-  width: 80%;
-  max-width: 320px;
+  left: 0;
+  width: 85%;
+  max-width: 350px;
   height: 100vh;
-  background: $color-primary;
-  padding: 80px 20px 20px;
-  transition: left 0.4s ease;
+  background: linear-gradient(135deg, $color-primary 0%, color.scale($color-primary, $lightness: -10%) 100%);
+  padding: 90px 0 30px;
+  transform: translateX(-100%);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
 
   &.active {
-    left: 0;
+    transform: translateX(0);
   }
 
   ul {
     list-style: none;
-    padding: 0;
+    padding: 0 30px;
     margin: 0;
 
     li {
-      margin-bottom: 20px;
+      margin-bottom: 8px;
       position: relative;
+      opacity: 0;
+      transform: translateX(-20px);
+      animation: slideInLeft 0.4s ease forwards;
+
+      @for $i from 1 through 10 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{$i * 0.1}s;
+        }
+      }
+
+      a {
+        display: block;
+        padding: 15px 20px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.05);
+        position: relative;
+
+        &:hover {
+          color: $color-secondary;
+          background: rgba(255, 255, 255, 0.15);
+          transform: translateX(8px);
+        }
+      }
 
       &.has-submenu {
+        a::after {
+          content: '▶';
+          position: absolute;
+          right: 20px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 10px;
+          color: #fff;
+          transition: transform 0.3s ease;
+        }
 
-
-        & > a{
-          position: relative;
-          &::after {
-            content: '▼';
-            position: absolute;
-            right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 12px;
-            color: #fff;
-          }
+        &.open a::after {
+          transform: translateY(-50%) rotate(90deg);
         }
 
         .sub-menu {
           max-height: 0;
           overflow: hidden;
-          transition: max-height 0.4s ease;
-          margin-left: 20px;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+          margin-left: 15px;
+          background: rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+          margin-top: 5px;
 
-          li{
-            margin-top: 20px;
+          li {
+            margin: 0;
+            opacity: 1;
+            transform: none;
+            animation: none;
+
+            a {
+              display: block;
+              padding: 12px 20px;
+              font-size: 15px;
+              color: rgba(255, 255, 255, 0.9);
+              transition: all 0.3s ease;
+              border-radius: 6px;
+              margin: 2px 8px;
+              background: rgba(255, 255, 255, 0.03);
+
+              &:hover {
+                color: $color-secondary;
+                background: rgba(255, 255, 255, 0.1);
+                transform: translateX(8px);
+              }
+
+              &::after {
+                display: none;
+              }
+            }
           }
         }
 
-        &.open {
-          .sub-menu {
-            max-height: 500px; // достаточно большое значение, чтобы уместились все пункты
-          }
+        &.open .sub-menu {
+          max-height: 500px;
+          padding: 10px 0;
         }
-      }
-
-      a {
-        color: #fff;
-        text-decoration: none;
-        font-size: 18px;
-        transition: color 0.3s ease;
-
-        &:hover {
-          color: $color-secondary;
-        }
-      }
-
-      .sub-menu li a {
-        font-size: 16px;
-        color: #ffffff;
       }
     }
   }
 }
 
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
+
+
+/* Overlay для мобильного меню */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
 
 /* Блокировка прокрутки при открытии меню */
 body.menu-open {
   overflow: hidden;
+  
+  .mobile-menu {
+    transform: translateX(0);
+  }
 }
