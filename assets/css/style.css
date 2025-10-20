@@ -1261,6 +1261,29 @@ body .categories .swiper-button-next svg {
 body .categories .swiper-button-next svg * {
   fill: #000000;
 }
+body .partners-slider {
+  position: relative;
+}
+body .partners-slider .swiper-button-prev {
+  left: -50px;
+  transform: scale(0.6);
+}
+body .partners-slider .swiper-button-prev svg {
+  fill: #000000;
+}
+body .partners-slider .swiper-button-prev svg * {
+  fill: #000000;
+}
+body .partners-slider .swiper-button-next {
+  right: -50px;
+  transform: scale(0.6);
+}
+body .partners-slider .swiper-button-next svg {
+  fill: #000000;
+}
+body .partners-slider .swiper-button-next svg * {
+  fill: #000000;
+}
 
 .partners-slider {
   position: relative;
@@ -1999,6 +2022,7 @@ textarea {
 
 .text-form-section {
   background: #4C7378;
+  margin: 40px 0;
 }
 @media (max-width: 767px) {
   .text-form-section .container {
@@ -2105,6 +2129,7 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-top: 40px;
 }
 .contacts h3 {
   font-size: 30px;
@@ -2528,6 +2553,14 @@ main {
   object-fit: cover;
   aspect-ratio: 1;
   border-radius: 20px;
+}
+
+.text-section {
+  margin: 40px 0;
+}
+
+.delivery-info {
+  margin: 40px 0;
 }
 
 /*# sourceMappingURL=style.css.map */

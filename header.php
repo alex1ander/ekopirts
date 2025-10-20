@@ -103,7 +103,7 @@ if (!empty($languages)) : ?>
   </div>
 </header>
 
-<?php include 'components/modal-order.php'; ?>
+<?php get_template_part('components/modal-order'); ?>
 
 <!-- Мобильное меню -->
 <nav class="mobile-menu">
@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (inputName) inputName.value = title || '';
       if (inputImg) inputImg.value = img || '';
       if (inputPrice) inputPrice.value = price || '';
-      if (priceEl) priceEl.textContent = price ? '€ ' + price : '';
+      if (priceEl) priceEl.textContent = price ? '€' + price : '';
 
       openModal();
     });

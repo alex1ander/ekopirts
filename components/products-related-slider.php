@@ -44,7 +44,7 @@ if ($terms):
         ),
     ));
 ?>
-<section class="products-slider dark">
+<section class="products-slider dark1">
     <div class="container">
         <div class="products-slider-content">
             <div class="products-head">

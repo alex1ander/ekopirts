@@ -102,6 +102,34 @@ body{
             }
         }
     }
+
+
+    .partners-slider{
+        position: relative;
+        .swiper-button-prev{
+            left: -50px;
+            transform: scale(0.6);
+
+             svg{
+                fill: #000000;
+                *{
+                    fill: #000000;
+                }
+            }
+
+        }
+        .swiper-button-next{
+            right: -50px;
+            transform: scale(0.6);
+
+             svg{
+                fill: #000000;
+                *{
+                    fill: #000000;
+                }
+            }
+        }
+    }
 }
 
 .partners-slider{
