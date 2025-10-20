@@ -7,7 +7,7 @@
     margin-top: 24px;
     position: relative;
     display: flex;
-
+    margin-bottom: 32px;
     &:hover{
         img{
             transform: scale(1.2);
@@ -16,6 +16,11 @@
     .category-image{
         overflow: hidden;
         border-radius: 10px;
+
+        height: 100%;
+        width: 100%;
+        aspect-ratio: 8 / 5;
+        background: #D9D9D9;
 
         img{
             transition: transform 0.4s ease;

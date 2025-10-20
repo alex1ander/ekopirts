@@ -1,38 +1,46 @@
 @use '../variables' as *;
 @use '../mixins' as *;
 
-
-.blog-content{
+.blog-content {
     width: 100%;
 
-
     .image-text {
-        display: flex;
-        align-items: flex-start;
-        gap: 20px;
-
         img {
-            flex: 0 0 200px; // фиксируем ширину картинки
+            float: left;           // картинка слева         // фиксированная ширина
+            max-width: 40%;
+            margin-right: 20px;    // отступ справа от текста
+            margin-bottom: 15px;   // отступ снизу
             border-radius: 8px;
             object-fit: cover;
         }
 
-        p {
-            flex: 1;
+        .content, p {
+            display: block;
             text-align: justify;
             line-height: 1.6;
         }
 
+        // очищаем float после блока
+        &:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
         // адаптация под мобильные устройства
         @include mobile {
-            flex-direction: column;
             img {
-            width: 100%;
+                float: none;
+                width: 100%;
+                max-width: 100%;
+                margin-right: 0;
+                margin-bottom: 15px;
             }
         }
     }
-
 }
+
+
 
 
 

@@ -76,22 +76,25 @@ body{
     }
 
 
-    .benefits{
+    .categories{
         position: relative;
         .swiper-button-prev{
             left: -50px;
             transform: scale(0.6);
-            svg{
+
+             svg{
                 fill: #000000;
                 *{
                     fill: #000000;
                 }
             }
+
         }
         .swiper-button-next{
             right: -50px;
             transform: scale(0.6);
-            svg{
+
+             svg{
                 fill: #000000;
                 *{
                     fill: #000000;
@@ -107,4 +110,16 @@ body{
 
 .partners{
     margin: 40px 0;
+}
+
+.related-products-swiper{
+    width: 100%;
+}
+
+
+.image-slider{
+    .swiper-slide{
+        height: 100%;
+        margin: auto;
+    }
 }

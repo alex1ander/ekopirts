@@ -1,38 +1,41 @@
 <section class="grid-show">
     <div class="container products-area">
 
+        <!-- Блок с новостями (посты) -->
         <div class="category-elements-block">
             <div class="grid-products-elements">
+                <?php
+                $args = array(
+                    'post_type' => 'post',
+                    'posts_per_page' => 12,
+                    'category_name' => get_query_var('category_name'),
+                    'paged' => get_query_var('paged') ? get_query_var('paged') : 1,
+                );
+                $news_query = new WP_Query($args);
 
+                if($news_query->have_posts()):
+                    while($news_query->have_posts()): $news_query->the_post();
+                        // Подключаем отдельный компонент карточки
+                        get_template_part('components/news', 'card');
+                    endwhile;
 
-                <?php for($i = 0 ; $i < 15; $i++):?>
-                <?php include 'news-card.php' ?>
-                <?php endfor;?>
+                    the_posts_pagination(array(
+                        'prev_text' => __('« Previous'),
+                        'next_text' => __('Next »'),
+                    ));
+
+                else:
+                    echo '<p>No posts found.</p>';
+                endif;
+                wp_reset_postdata();
+                ?>
             </div>
+
         </div>
 
-
-        <div class="category-list-block">
-            <h3 class="category-block-title">Sadaļas</h3>
+        <?php get_template_part('components/category-list-block'); ?>
 
 
-            <ul class="category-list">
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li>
-                    <a href="#">Apaļās pirts mucas</a>
-                    <ul>
-                        <li><a href="#">Apaļās pirts mucas</a></li>
-                        <li><a href="#">Apaļās pirts mucas</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-            </ul>
-        </div>
-        
 
     </div>
 </section>

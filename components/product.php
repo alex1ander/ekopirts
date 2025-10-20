@@ -1,99 +1,87 @@
 <section class="grid-show">
     <div class="container products-area">
-        <div class="category-list-block">
-            <h3 class="category-block-title">Sadaļas</h3>
-
-            <ul class="category-list">
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-            </ul>
-        </div>
-        
+        <?php get_template_part('components/category-list-block'); ?>
 
         <div class="category-elements-block">
             <div class="the-product">
                 <div class="the-product-top">
-                    <!-- Большой слайдер -->
+                    <?php
+                    // Получаем данные ACF
+                    $additionalDesription = get_field('additional_desription');
+                    $shortDescription = get_field('short_description');
+                    $attributes = get_field('attributes');
 
+                    $gallery = get_field('gallery');
+                    $price = get_field('price');
+                    $old_price = isset($price['old']) ? $price['old'] : '';
+                    $new_price = isset($price['new']) ? $price['new'] : '';
+                    ?>
 
+                    <!-- Галерея товара -->
                     <div class="product-images">
-                        <div class="swiper main-slider">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="/images/product.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="/images/product.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="/images/product.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="/images/product.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="/images/product.png" alt="">
+                        <?php if (!empty($gallery) && is_array($gallery)): ?>
+                            <div class="swiper main-slider">
+                                <div class="swiper-wrapper">
+                                    <?php foreach ($gallery as $image): ?>
+                                        <div class="swiper-slide">
+                                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
-                        </div>
 
-                            <!-- Маленькие миниатюры -->
-                        <div class="swiper thumbs-slider">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <img src="/images/product.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="/images/product.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="/images/product.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="/images/product.png" alt="">
-                                </div>
-                                <div class="swiper-slide">
-                                    <img src="/images/product.png" alt="">
+                            <div class="swiper thumbs-slider">
+                                <div class="swiper-wrapper">
+                                    <?php foreach ($gallery as $image): ?>
+                                        <div class="swiper-slide">
+                                            <img src="<?php echo esc_url($image['sizes']['thumbnail']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
                     </div>
-
 
                     <div class="main-product-info">
                         <div class="block-info">
-                            <h1>2,5 m apaļā pirts muca</h1>
-                            <div class="price">
-                                <span class="old-price">€3,900.00</span>
-                                <span class="new-price">€2,900.00</span>
+                            <h1><?php the_title(); ?></h1>
+                            <?php if ($old_price || $new_price): ?>
+                                <div class="price">
+                                    <?php if ($old_price): ?>
+                                        <span class="old-price">€<?php echo esc_html(number_format($old_price, 2, '.', ',')); ?></span>
+                                    <?php endif; ?>
+                                    <?php if ($new_price): ?>
+                                        <span class="new-price">€<?php echo esc_html($new_price); ?></span>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+
+                        <?php if ($shortDescription): ?>
+                        <div class="block-info">
+                            <p class="short-description">
+                                <?php echo esc_html(strip_tags($shortDescription)); ?>
+                            </p>
+                        </div>
+                        <?php endif; ?>
+
+                        <!-- Характеристики -->
+                        <?php if (!empty($attributes) && is_array($attributes)): ?>
+                        <div class="block-info">
+                            <div class="product-characteristic">
+                                <?php foreach($attributes as $attribute): ?>
+                                    <?php if (isset($attribute['name']) && isset($attribute['value'])): ?>
+                                    <div class="characteristic-row">
+                                        <span class="char-name"><?php echo esc_html($attribute['name']); ?>:</span>
+                                        <span class="char-value"><?php echo esc_html($attribute['value']); ?></span>
+                                    </div>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
                             </div>
                         </div>
-                        <div class="block-info">
-                            <p class="short-description">Pirts muca(apaļā) 2,5m. Ekonomiskā pirtiņa.Pirts diametrs 2,25m.</p>
-                        </div>
-                        <div class="block-info">
-                                <div class="product-characteristic">
-                                    <div class="characteristic-row">
-                                        <span class="char-name">Izmērs:</span>
-                                        <span class="char-value">2,5m</span>
-                                    </div>
-                                      <div class="characteristic-row">
-                                        <span class="char-name">Izmērs:</span>
-                                        <span class="char-value">2,5m</span>
-                                    </div>
-                                      <div class="characteristic-row">
-                                        <span class="char-name">Izmērs:</span>
-                                        <span class="char-value">2,5m</span>
-                                    </div>
-                                </div>
-                        </div>
+                        <?php endif; ?>
 
-
+                        <!-- Кнопка заказа -->
                         <div class="add-order">
                             <div class="order-text">Noformēt pasūtījumu</div>
                             <div class="icon">
@@ -103,38 +91,31 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
-
-               <div class="the-product-bottom">
+                <!-- Tabs -->
+                <div class="the-product-bottom">
                     <div class="tabs">
                         <div class="tab-buttons">
-                        <button class="active">Tab 1</button>
-                        <button>Tab 2</button>
+                            <button class="active">Description</button>
+                            <button>Additional information</button>
                         </div>
 
                         <div class="tab-contents">
-                        <div class="tab-content active">
-                            <h3>Tab 1 Content</h3>
-                            <p>This is the content for Tab 1.</p>
-                        </div>
-                        <div class="tab-content">
-                            <h3>Tab 2 Content</h3>
-                            <p>This is the content for Tab 2.</p>
-                        </div>
+                            <div class="tab-content active">
+                                <?php the_content(); ?>
+                            </div>
+                            <div class="tab-content">
+                                <?php echo wp_kses_post($additionalDesription); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-
-
-
-            </div>
-        </div>
-    </div>
+            </div><!-- /.the-product -->
+        </div><!-- /.category-elements-block -->
+    </div><!-- /.container -->
 </section>
-
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -156,17 +137,22 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script>
-
+  const thumbsSlider = document.querySelector('.thumbs-slider');
+  const mainSlider = document.querySelector('.main-slider');
+  
+  if (thumbsSlider && mainSlider) {
     const thumbs = new Swiper('.thumbs-slider', {
-    slidesPerView: 4,
-    spaceBetween: 10,
-    watchSlidesProgress: true,
-  });
+      slidesPerView: 4,
+      spaceBetween: 10,
+      watchSlidesProgress: true,
+    });
 
-  const main = new Swiper('.main-slider', {
-    spaceBetween: 10,
-    thumbs: {
-      swiper: thumbs,
-    },
-  });
+    const main = new Swiper('.main-slider', {
+      autoHeight: true,
+      spaceBetween: 10,
+      thumbs: {
+        swiper: thumbs,
+      },
+    });
+  }
 </script>

@@ -3,38 +3,45 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-  <title>Header with Burger Menu</title>
+  <title><?php the_title(); ?></title>
+  <?php wp_head() ?>
 </head>
 
 <body>
 <header class="dark-block">
   <div class="container">
     <div class="top-part">
-      <svg width="182" height="45">
-        <use href="#logo"></use>
-      </svg>
+      <a href="<?= home_url();?>">
+        <svg width="182" height="45">
+          <use href="#logo"></use>
+        </svg>
+      </a>
 
       <div class="support-block">
-        <div class="language-codes">
-          <a href="#">
-            <svg width="33" height="32">
-              <use href="#russia"></use>
-            </svg>
-          </a>
-          <a href="#">
-            <svg width="33" height="32">
-              <use href="#latvia"></use>
-            </svg>
-          </a>
-          <a href="#">
-            <svg width="33" height="32">
-              <use href="#unitedkingdom"></use>
-            </svg>
-          </a>
-        </div>
+<?php
+$languages = apply_filters('wpml_active_languages', null, array('skip_missing' => 0));
+if (!empty($languages)) : ?>
+  <div class="language-codes">
+    <?php foreach ($languages as $lang) : ?>
+      <a href="<?php echo esc_url($lang['url']); ?>" 
+         class="<?php echo $lang['active'] ? 'active' : ''; ?>" 
+         title="<?php echo esc_attr($lang['native_name']); ?>">
+        <svg width="33" height="32">
+          <?php if ($lang['code'] === 'ru') : ?>
+            <use href="#russia"></use>
+          <?php elseif ($lang['code'] === 'lv') : ?>
+            <use href="#latvia"></use>
+          <?php elseif ($lang['code'] === 'en') : ?>
+            <use href="#unitedkingdom"></use>
+          <?php endif; ?>
+        </svg>
+      </a>
+    <?php endforeach; ?>
+  </div>
+<?php endif; ?>
+
 
         <a href="#" class="btn btn-transparent desktop-only">Jautājums?</a>
         <a href="#" class="btn btn-matte desktop-only">+371 25912321</a>
@@ -50,19 +57,47 @@
 
     <div class="bottom-part desktop-only">
       <ul class="main-menu">
-        <li><a href="#">page</a></li>
-        <li class="has-submenu">
-          <a href="#">menu</a>
-          <ul class="sub-menu">
-            <li><a href="#">menu second</a></li>
-            <li><a href="#">menu second</a></li>
-            <li><a href="#">menu second</a></li>  
-            <li><a href="#">menu second</a></li>      
-          </ul>
-        </li>
-        <li><a href="#">page</a></li>
-        <li><a href="#">page</a></li>
-        <li><a href="#">page</a></li>
+        <?php
+        $locations = get_nav_menu_locations();
+        $menu_id = isset($locations['header']) ? $locations['header'] : 0;
+        $menu_items = wp_get_nav_menu_items($menu_id);
+        
+        if ($menu_items) {
+          $menu_tree = array();
+          foreach ($menu_items as $item) {
+            if ($item->menu_item_parent == 0) {
+              $menu_tree[$item->ID] = array(
+                'item' => $item,
+                'children' => array()
+              );
+            }
+          }
+          foreach ($menu_items as $item) {
+            if ($item->menu_item_parent != 0) {
+              if (isset($menu_tree[$item->menu_item_parent])) {
+                $menu_tree[$item->menu_item_parent]['children'][] = $item;
+              }
+            }
+          }
+          
+          foreach ($menu_tree as $menu_item) {
+            $has_children = !empty($menu_item['children']);
+            $class = $has_children ? ' class="has-submenu"' : '';
+            echo '<li' . $class . '>';
+            echo '<a href="' . esc_url($menu_item['item']->url) . '">' . esc_html($menu_item['item']->title) . '</a>';
+            
+            if ($has_children) {
+              echo '<ul class="sub-menu">';
+              foreach ($menu_item['children'] as $child) {
+                echo '<li><a href="' . esc_url($child->url) . '">' . esc_html($child->title) . '</a></li>';
+              }
+              echo '</ul>';
+            }
+            
+            echo '</li>';
+          }
+        }
+        ?>
       </ul>
     </div>
   </div>
@@ -73,19 +108,47 @@
 <!-- Мобильное меню -->
 <nav class="mobile-menu">
   <ul>
-    <li><a href="#">page</a></li>
-    <li class="has-submenu">
-      <a href="#">page</a>
-      <ul class="sub-menu">
-        <li><a href="#">menu second</a></li>
-        <li><a href="#">menu second</a></li>
-        <li><a href="#">menu second</a></li>  
-        <li><a href="#">menu second</a></li>  
-      </ul>
-    </li>
-    <li><a href="#">page</a></li>
-    <li><a href="#">page</a></li>
-    <li><a href="#">page</a></li>
+    <?php
+    $locations = get_nav_menu_locations();
+    $menu_id = isset($locations['header']) ? $locations['header'] : 0;
+    $menu_items = wp_get_nav_menu_items($menu_id);
+    
+    if ($menu_items) {
+      $menu_tree = array();
+      foreach ($menu_items as $item) {
+        if ($item->menu_item_parent == 0) {
+          $menu_tree[$item->ID] = array(
+            'item' => $item,
+            'children' => array()
+          );
+        }
+      }
+      foreach ($menu_items as $item) {
+        if ($item->menu_item_parent != 0) {
+          if (isset($menu_tree[$item->menu_item_parent])) {
+            $menu_tree[$item->menu_item_parent]['children'][] = $item;
+          }
+        }
+      }
+      
+      foreach ($menu_tree as $menu_item) {
+        $has_children = !empty($menu_item['children']);
+        $class = $has_children ? ' class="has-submenu"' : '';
+        echo '<li' . $class . '>';
+        echo '<a href="' . esc_url($menu_item['item']->url) . '">' . esc_html($menu_item['item']->title) . '</a>';
+        
+        if ($has_children) {
+          echo '<ul class="sub-menu">';
+          foreach ($menu_item['children'] as $child) {
+            echo '<li><a href="' . esc_url($child->url) . '">' . esc_html($child->title) . '</a></li>';
+          }
+          echo '</ul>';
+        }
+        
+        echo '</li>';
+      }
+    }
+    ?>
   </ul>
 </nav>
 
@@ -113,15 +176,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // Открытие подменю в мобильном меню
-const submenuParents = document.querySelectorAll('.mobile-menu .has-submenu > a');
+const submenuParents = document.querySelectorAll('.mobile-menu .menu-item-has-children > a');
 
 submenuParents.forEach(parentLink => {
   parentLink.addEventListener('click', (e) => {
-    e.preventDefault(); // предотвращаем переход по ссылке
+    e.preventDefault();
     const li = parentLink.parentElement;
 
-    // закрываем все другие подменю (если хочешь, чтобы открывалось только одно)
-    document.querySelectorAll('.mobile-menu .has-submenu').forEach(item => {
+    // закрываем все другие подменю
+    document.querySelectorAll('.mobile-menu .menu-item-has-children').forEach(item => {
       if (item !== li) item.classList.remove('open');
     });
 

@@ -34,7 +34,7 @@
 
                     h1{
                         color: #032828;
-                        text-align: center;
+                        text-align: right;
                         font-size: 40px;
                         font-weight: 500;
                         margin-bottom: 0;
@@ -48,6 +48,7 @@
                             color: #FC0000;
                             font-size: 24px;
                             font-weight: 700;
+                            text-decoration: line-through;
                         }
 
                         .new-price{
@@ -70,6 +71,7 @@
 
                     .product-characteristic{
                         .characteristic-row{
+                            text-align: right;
                             .char-name{
                                 text-align: right;
                                 font-size: 22px;

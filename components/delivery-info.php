@@ -1,34 +1,33 @@
+<?php 
+$delivery_info = get_field('delivery-info'); // или get_field('delivery-info') если на странице
+
+if( $delivery_info ):
+?>
 <section class="delivery-info">
     <div class="container container-flex">
+
         <div class="title-block">
-            <h2 class="products-title">Pasūtīšana un Piegāde</h2>
+            <h2 class="products-title"><?= $delivery_info['title']; ?></h2>
         </div>
 
-        <h3 class="text-center m-0">Pirts pasūtīšanas process</h3>
-        <div class="text-with-image">
-            <div class="text">
-                <p>Pirts pasūtīšana iespējama 4 dažādos veidos:
-Tiekoties klātienē – braucot uz kādu no mūsu plačiem, kur apskatāmas jau gatavās pirtis, kas pieejamas pircējiem, vai apciemojot ražotni, un apskatot visu pirts tapšanas procesu.
-Izvēloties pirti no mājaslapā pieejamā kataloga.
-Aizpildot individuālu pasūtījuma formu, ja klients vēlas nestandarta pirti.
-Parasti gatavās pirtis uzstādām līdz 3 darbadienu laikā. Nestandarta pasūtījumu izpilde aizņem ilgāku laiku un pasūtījuma izpildes laiks ir atkarīgs no pasūtījuma sarežģītības pakāpes un komplektācijas.</p>
+        <?php 
+        $i = 0; // для чередования
+        foreach( $delivery_info['block'] as $block ): 
+            $reverse = $i % 2 !== 0 ? 'reverse' : ''; // если индекс нечётный, ставим класс reverse
+        ?>
+            <h3 class="text-center m-0"><?= esc_html($block['title']); ?></h3>
+            <div class="text-with-image <?= $reverse; ?>">
+                <div class="text">
+                    <?= $block['text']; // WYSIWYG, поэтому выводим без esc_html ?> 
+                </div>
+                <?php if( !empty($block['image']) ): ?>
+                    <img src="<?= esc_url($block['image']); ?>" alt="<?= esc_attr($block['title']); ?>">
+                <?php endif; ?>
             </div>
-
-            <img src="/images/delivery.png" alt="">
-        </div>
-
-
-        <h3 class="text-center m-0">Pirts pasūtīšanas process</h3>
-        <div class="text-with-image reverse">
-            <div class="text">
-                <p>Pirts pasūtīšana iespējama 4 dažādos veidos:
-Tiekoties klātienē – braucot uz kādu no mūsu plačiem, kur apskatāmas jau gatavās pirtis, kas pieejamas pircējiem, vai apciemojot ražotni, un apskatot visu pirts tapšanas procesu.
-Izvēloties pirti no mājaslapā pieejamā kataloga.
-Aizpildot individuālu pasūtījuma formu, ja klients vēlas nestandarta pirti.
-Parasti gatavās pirtis uzstādām līdz 3 darbadienu laikā. Nestandarta pasūtījumu izpilde aizņem ilgāku laiku un pasūtījuma izpildes laiks ir atkarīgs no pasūtījuma sarežģītības pakāpes un komplektācijas.</p>
-            </div>
-
-            <img src="/images/delivery.png" alt="">
-        </div>
+        <?php 
+            $i++;
+        endforeach; 
+        ?>
     </div>
 </section>
+<?php endif; ?>

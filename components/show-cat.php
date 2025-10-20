@@ -1,73 +1,57 @@
+<?php 
+$showCategory = get_field('show-category');
+?>
+
 <section class="show-cat">
     <div class="container">
         <div class="show-cat-content">
 
-            <div class="show-cat-titles">
-                <h2>Kādēļ Izvēlēties Mūsu Produkciju ?</h2>
-                <p>Ir daudz un dažādu iemeslu, bet svarīgākais, mēs savā darbā ieliekam dvēseli un to var just katrā mūsu produktu līnijā.</p>
-            </div>
-
-            <div class="benefits">
-                <div class="swiper benefits-slider-swiper">
+            <div class="categories">
+                <div class="swiper categories-slider-swiper">
                     <div class="swiper-wrapper">
-                        <?php for($i = 0;$i < 6; $i++): ?>
-                        <div class="swiper-slide">
-                            <div class="benefit">
-                                    <div class="gear-box">
-                                        <svg width="101" height="101">
-                                            <use href="#gear"></use>
-                                        </svg>
+                        <?php if (!empty($showCategory['categories'])): ?>
+                            <?php foreach ($showCategory['categories'] as $cat_id): ?>
+
+                                <?php
+                                // Получаем категорию
+                                $category = get_term($cat_id, 'product_category');
+
+                                if (!is_wp_error($category)) :
+                                ?>
+
+                                    <div class="swiper-slide">
+                                        <?php get_template_part('components/category-card', null, array(
+                                            'category' => $category
+                                        )); ?>
                                     </div>
-                                    <div class="benefit-title">Ražotāji</div>
-                                    <div class="benefit-text">Paši ražojam un pārdodam savu produkciju. Tas nav tikai produkts, ko pārdot, tas ir mūsu arods, mūsu hobijs, mūsu dvēsele.</div>
 
-                                    <ul class="benefit-list">
-                                        <li>Ražots Latvijā</li>
-                                        <li>Ražots Latvijā</li>
-                                        <li>Ražots Latvijā</li>
-                                        <li>Ražots Latvijā</li>
-                                    </ul>
+                                <?php endif; ?>
 
-
-                                    <div class="category-preview">
-                                        <div class="category-image">
-                                            <img src="/images/category.png" alt="">
-                                        </div>
-                                        <div class="category-info">
-                                            <span class="name">Apaļās pirts mucas</span>
-                                            <div class="category-arrow">
-                                                <svg width="15" height="28">
-                                                    <use href="#arrow-right"></use>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
-                        </div>
-                        <?php endfor; ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
-                <div class="swiper-button-next benefits-slider-button-next desktop-only"></div>
-                <div class="swiper-button-prev benefits-slider-button-prev desktop-only"></div>
-                <div class="benefits-slider-pagination"></div>
+
+                <div class="swiper-button-next categories-slider-button-next desktop-only"></div>
+                <div class="swiper-button-prev categories-slider-button-prev desktop-only"></div>
+                <div class="categories-slider-pagination"></div>
             </div>
 
         </div>
     </div>
 </section>
 
-
 <script>
-    var swiper = new Swiper(".benefits-slider-swiper", {
+    var swiper = new Swiper(".categories-slider-swiper", {
       slidesPerView: 1,
       spaceBetween: 20,
       pagination: {
-        el: '.benefits-slider-pagination',
+        el: '.categories-slider-pagination',
         clickable: true,
       },
       navigation: {
-        nextEl: '.benefits-slider-button-next',
-        prevEl: '.benefits-slider-button-prev',
+        nextEl: '.categories-slider-button-next',
+        prevEl: '.categories-slider-button-prev',
       },
       breakpoints: {
         540: {

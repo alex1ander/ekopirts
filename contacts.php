@@ -1,5 +1,6 @@
 <?php
-include 'header.php';
+    /* Template Name: Contacts */
+    get_header();
 ?>
 
 <main>
@@ -15,7 +16,6 @@ include 'components/partners.php';
 ?>
 
 </main>
-
 <?php
-include 'footer.php';
+    get_footer();
 ?>

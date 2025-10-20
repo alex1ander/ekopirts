@@ -1,25 +1,44 @@
 <div class="product-card">
-
     <div class="product-tags">
-        <div class="discount-tag">%</div>
+        <?php if (isset($args['price']['old']) && $args['price']['old'] > $args['price']['new']): ?>
+            <div class="discount-tag">%</div>
+        <?php endif; ?>
     </div>
 
-    <div class="product-image">
-        <img src="/images/product.png" alt="">
-    </div>
+    <?php 
+    // получаем ссылку на текущий пост (товар)
+    $product_link = get_permalink($args['id'] ?? get_the_ID());
+    ?>
 
-    <div class="product-content pb-30">
-        <h4 class="product-name">Pirts Muca (ovālā) 6m + Terase + Kubls</h4>
+    <a href="<?= esc_url($product_link); ?>" class="product-image">
+        <img src="<?= esc_url($args['gallery'][0]['url'] ?? ''); ?>" alt="<?= esc_attr($args['title']); ?>">
+    </a>
+
+    <div class="product-content pb-30-no">
+        <h4 class="product-name">
+            <a href="<?= esc_url($product_link); ?>"><?= esc_html($args['title']); ?></a>
+        </h4>
+
         <div class="product-info">
-            <p class="product-description">Pirts Muca (ovālā) 6m+Terase+ Kubls.</p>
+            <p class="product-description">
+                <?php 
+                $excerpt = wp_strip_all_tags($args['excerpt']); // удаляем теги, если они есть
+                echo esc_html(mb_strimwidth($excerpt, 0, 50, '...')); // обрезаем до 20 символов
+                ?>
+            </p>
+
         </div>
 
         <div class="product-price">
-            <span class="old-price">€ 5990</span>
-            <span class="current-price">€ 4990</span>
+            <?php if (!empty($args['price']['old'])): ?>
+                <span class="old-price">€ <?= esc_html($args['price']['old']); ?></span>
+            <?php endif; ?>
+            <?php if (!empty($args['price']['new'])): ?>
+                <span class="current-price">€ <?= esc_html($args['price']['new']); ?></span>
+            <?php endif; ?>
         </div>
 
-        <a href="#" class="product-more">Uzzināt vairāk</a>
+        <a href="<?= esc_url($product_link); ?>" class="product-more">Uzzināt vairāk</a>
 
         <div class="add-order">
             <div class="order-text">Noformēt pasūtījumu</div>

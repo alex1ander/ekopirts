@@ -1,18 +1,6 @@
 <section class="grid-show">
     <div class="container products-area">
-        <div class="category-list-block">
-            <h3 class="category-block-title">Sadaļas</h3>
-
-            <ul class="category-list">
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-            </ul>
-        </div>
+        <?php get_template_part('components/category-list-block');?>
         
 
         <div class="category-elements-block">

@@ -1,11 +1,19 @@
+<?php 
+$whyUs = get_field('why_us');
+// echo '<pre>';
+// print_r($whyUs);
+// echo '</pre>';
+?>
+
+
 <section class="why-choose-us">
     <div class="container">
         <div class="why-us-content">
             <div class="info">
-                <h2>KĀDĒĻ MĒS?</h2>
+                <h2><?= $whyUs['title'] ?></h2>
 
                 <div class="benefits-list">
-                    <?php for($i = 0; $i < 5; $i++):?>
+                    <?php foreach($whyUs['list'] as $element):?>
                         <div class="benefit">
                             <div class="checkmark">
                                 <div class="checkmark-area">
@@ -14,16 +22,14 @@
                                     </svg>
                                 </div>
                             </div>
-                            <div class="title">No skices,līdz pirts slotiņai</div>
-                            <div class="text">Piedalamies pirts izstrādā no projekta, līdz pilnīgai pirts aprīkošanai, ieskaitot, pirts slotiņas</div>
+                            <div class="title"><?= $element['title'];?></div>
+                            <div class="text"><?= $element['text'];?></div>
                         </div>
-                    <?php endfor; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
             <div class="video">
-                <iframe 
-                    src="https://www.youtube.com/embed/tgbNymZ7vqY">
-                </iframe>
+                <?= $whyUs['iframe'] ?>
             </div>
         </div>
     </div>

@@ -1,87 +1,104 @@
+<?php 
+$showCategory = get_field('products_by_category');
+// echo '<pre>';
+// print_r($showCategory);
+// echo '</pre>';
+?>
+
 <section class="products-slider">
   <div class="container">
     <div class="products-slider-content">
+
       <div class="products-head">
         <div class="title-block">
-          <h2 class="products-title">Mūsu produkcija</h2>
+          <h2 class="products-title">Mūsu produkcija1</h2>
         </div>
-        <ul class="category-tabs">
-          <li data-tab="tab1" class="active">Mucu Pirtis</li>
-          <li data-tab="tab2">Kubli</li>
-          <li data-tab="tab3">Produktu katalogs</li>
-          <li data-tab="tab4">Mājas</li>
+
+        <ul class="category-tabs desktop-only">
+          <?php 
+          $first = true;
+          foreach($showCategory['categories'] as $cat_id):
+              $term = get_term($cat_id, 'product_category');
+              if(is_wp_error($term)) continue;
+          ?>
+              <li data-tab="tab-<?= $cat_id; ?>" class="<?= $first ? 'active' : ''; ?>">
+                  <?= esc_html($term->name); ?>
+              </li>
+          <?php 
+              $first = false;
+          endforeach; 
+          ?>
         </ul>
-        <a href="#" class="products-link">Radit visu</a>
+
+
+        <a href="#" class="all-products">
+          <span>Show All</span>
+          <div class="category-arrow">
+              <svg width="15" height="28">
+                  <use href="#arrow-right"></use>
+              </svg>
+          </div>
+        </a>
+
       </div>
 
       <div class="products-body">
-        <!-- TAB 1 -->
-        <div class="products-tab-content active" data-tab-content="tab1">
-          <div class="swiper products-slider-swiper tab1-swiper">
-            <div class="swiper-wrapper">
-              <?php for($i = 0; $i < 8; $i++): ?>
-                <div class="swiper-slide flex-slide">
-                  <?php include 'product-card.php'; ?>
-                </div>
-              <?php endfor; ?>
-            </div>
-          </div>
-          <div class="swiper-button-next products-slider-button-next desktop-only"></div>
-          <div class="swiper-button-prev products-slider-button-prev desktop-only"></div>
-          <div class="products-slider-pagination"></div>
-        </div>
+        <?php 
+        $first = true;
+        foreach($showCategory['categories'] as $cat_id):
+            $term = get_term($cat_id, 'product_category');
+            if(is_wp_error($term)) continue;
 
-        <!-- TAB 2 -->
-        <div class="products-tab-content" data-tab-content="tab2">
-          <div class="swiper products-slider-swiper tab2-swiper">
-            <div class="swiper-wrapper">
-              <?php for($i = 0; $i < 6; $i++): ?>
-                <div class="swiper-slide flex-slide">
-                  <?php include 'product-card.php'; ?>
-                </div>
-              <?php endfor; ?>
-            </div>
-          </div>
-          <div class="swiper-button-next products-slider-button-next desktop-only"></div>
-          <div class="swiper-button-prev products-slider-button-prev desktop-only"></div>
-          <div class="products-slider-pagination"></div>
-        </div>
+            // Получаем все товары из этой категории
+            $products = new WP_Query(array(
+                'post_type' => 'product',
+                'posts_per_page' => -1,
+                'tax_query' => array(
+                    array(
+                        'taxonomy' => 'product_category',
+                        'field' => 'term_id',
+                        'terms' => $cat_id,
+                    )
+                )
+            ));
+        ?>
+          <div class="products-tab-content <?= $first ? 'active' : ''; ?>" data-tab-content="tab-<?= $cat_id; ?>">
+            <div class="swiper products-slider-swiper tab-<?= $cat_id; ?>">
+              <div class="swiper-wrapper">
+                <?php if($products->have_posts()): ?>
+                  <?php while($products->have_posts()): $products->the_post(); ?>
+                    <div class="swiper-slide flex-slide">
+                      <?php 
+                        $product_data = array(
+                            'gallery'   => get_field('gallery'),
+                            'price'     => get_field('price'),
+                            'title'     => get_the_title(), // название товара
+                            'excerpt'   => wp_trim_words(get_the_excerpt(), 10, '...'), // описание до ~50 символов
+                        );
 
-        <!-- TAB 3 -->
-        <div class="products-tab-content" data-tab-content="tab3">
-          <div class="swiper products-slider-swiper tab3-swiper">
-            <div class="swiper-wrapper">
-              <?php for($i = 0; $i < 4; $i++): ?>
-                <div class="swiper-slide flex-slide">
-                  <?php include 'product-card.php'; ?>
-                </div>
-              <?php endfor; ?>
+                        get_template_part('components/product-card', null, $product_data);
+                        ?>
+                    </div>
+                  <?php endwhile; wp_reset_postdata(); ?>
+                <?php else: ?>
+                  <p>No products in this category</p>
+                <?php endif; ?>
+              </div>
             </div>
+            <div class="swiper-button-next products-slider-button-next desktop-only"></div>
+            <div class="swiper-button-prev products-slider-button-prev desktop-only"></div>
+            <div class="products-slider-pagination"></div>
           </div>
-          <div class="swiper-button-next products-slider-button-next desktop-only"></div>
-          <div class="swiper-button-prev products-slider-button-prev desktop-only"></div>
-          <div class="products-slider-pagination"></div>
-        </div>
-
-        <!-- TAB 4 -->
-        <div class="products-tab-content" data-tab-content="tab4">
-          <div class="swiper products-slider-swiper tab4-swiper">
-            <div class="swiper-wrapper">
-              <?php for($i = 0; $i < 5; $i++): ?>
-                <div class="swiper-slide flex-slide">
-                  <?php include 'product-card.php'; ?>
-                </div>
-              <?php endfor; ?>
-            </div>
-          </div>
-          <div class="swiper-button-next products-slider-button-next desktop-only"></div>
-          <div class="swiper-button-prev products-slider-button-prev desktop-only"></div>
-          <div class="products-slider-pagination"></div>
-        </div>
+        <?php 
+          $first = false;
+        endforeach; 
+        ?>
       </div>
+
     </div>
   </div>
 </section>
+
 
 <script>
   // Инициализация всех слайдеров

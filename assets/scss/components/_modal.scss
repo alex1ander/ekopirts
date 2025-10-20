@@ -4,11 +4,23 @@
 .modal {
   position: fixed;
   inset: 0;
-  display: none;
   padding: 0 20px;
+  display: flex;
+  
+  background: #032828AD;
+  
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 
   &.is-open {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    
+    .modal-form {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
   }
 
   z-index: 2000;
@@ -20,6 +32,10 @@
     background: #ffffff;
     border-radius: 16px;
     overflow: hidden;
+    
+    transform: scale(0.9) translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 
     .modal-head {
       background: $color-secondary;

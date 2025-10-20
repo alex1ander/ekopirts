@@ -1,6 +1,6 @@
 
 <div class="page-title-area">
     <div class="container">
-        <h1 class="page-title">page-title</h1>
+        <h1 class="page-title"><?php the_title(); ?></h1>
     </div>
 </div>

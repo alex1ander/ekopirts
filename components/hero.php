@@ -1,29 +1,34 @@
+<?php 
+$heroSlider = get_field('hero-slider');
+// echo '<pre>';
+// print_r($heroSlider);
+// echo '</pre>';
+?>
+
+
 <section id="hero" class="hero hero-section">
   <div class="slider-area">
     <!-- === Главный слайдер === -->
     <div class="swiper heroSwiper">
       <div class="swiper-wrapper">
-        <?php for($i = 0; $i < 6; $i++): ?>
+        <?php foreach($heroSlider as $slide): ?>
         <div class="swiper-slide">
           <div class="hero-slide">
-            <?php if($i % 2 == 0): ?>
-              <img class="hero-background" src="/images/hero.png" alt="">
-            <?php else: ?>
-              <img class="hero-background" src="/images/nested.png" alt="">
-            <?php endif; ?>
+        
+            <img class="hero-background" src="<?= $slide['image'] ?>" alt="">
 
             <div class="container">
               <div class="hero-content">
                 <div class="hero-info">
-                  <h1 class="hero-title">Tava Mucu Pirts</h1>
-                  <p class="hero-text">Pērc No Ražotāja būs Lētāk</p>
-                  <a href="#" class="btn btn-matte hover-red">Uzzināt Vairak</a>
+                  <h1 class="hero-title"><?= $slide['title'] ?></h1>
+                  <p class="hero-text"><?= $slide['text'] ?></p>
+                  <a href="<?= $slide['button']['url'] ?>" target="<?= $slide['button']['target'] ?>" class="btn btn-matte hover-red"><?= $slide['button']['title'] ?></a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <?php endfor; ?>
+        <?php endforeach; ?>
       </div>
 
       <div class="swiper-button-prev desktop-only"></div>
@@ -34,22 +39,18 @@
     <div class="nested-slider">
       <div class="swiper nested-swiper">
         <div class="swiper-wrapper">
-          <?php for($j = 0; $j < 6; $j++): ?>
+          <?php foreach($heroSlider as $slide): ?>
           <div class="swiper-slide">
             <div class="nested-slide">
               <div class="nested-content">
-                <?php if($j % 2 == 0): ?>
-                  <img class="nested-image" src="/images/hero.png" alt="">
-                <?php else: ?>
-                  <img class="nested-image" src="/images/nested.png" alt="">
-                <?php endif; ?>
+                <img class="nested-image" src="<?= $slide['image'] ?>" alt="">
                 <div class="nested-bottom">
-                  <span class="nested-name">Name <?php echo $j + 1; ?></span>
+                  <span class="nested-name"><?= $slide['icon-text'] ?></span>
                 </div>
               </div>
             </div>
           </div>
-          <?php endfor; ?>
+           <?php endforeach; ?>
         </div>
       </div>
     </div>
@@ -58,19 +59,14 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const totalSlides = 6;
-  let isHeroChanging = false;
-  let isNestedChanging = false;
-
-  // === Сначала создаём превью-слайдер ===
+  // === Сначала создаём превью-слайдер (вспомогательный) ===
   const nestedSwiper = new Swiper(".nested-swiper", {
     loop: true,
-    slidesPerView: 3,
+    slidesPerView: 2,
     spaceBetween: 10,
     slideToClickedSlide: true,
     centeredSlides: true,
     watchSlidesProgress: true,
-    loopedSlides: totalSlides,
     breakpoints: {
       540: { slidesPerView: 2 },
       768: { slidesPerView: 2.5 },
@@ -81,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function() {
   // === Затем главный слайдер с эффектом fade ===
   const heroSwiper = new Swiper(".heroSwiper", {
     loop: true,
-    loopedSlides: totalSlides,
     centeredSlides: true,
     speed: 800,
     effect: 'fade',
@@ -91,32 +86,18 @@ document.addEventListener("DOMContentLoaded", function() {
     navigation: {
       nextEl: ".swiper-button-next",
       prevEl: ".swiper-button-prev",
+    },
+    // Привязываем превью как thumbs
+    thumbs: {
+      swiper: nestedSwiper
     }
   });
 
-  // === Полная двусторонняя синхронизация ===
-  
-  // Когда меняется главный слайдер -> обновляем превью
-  heroSwiper.on('slideChange', function() {
-    if (!isNestedChanging) {
-      isHeroChanging = true;
-      nestedSwiper.slideToLoop(heroSwiper.realIndex);
-      setTimeout(() => { isHeroChanging = false; }, 50);
-    }
-  });
-
-  // Когда меняется превью -> обновляем главный
-  nestedSwiper.on('slideChange', function() {
-    if (!isHeroChanging) {
-      isNestedChanging = true;
-      heroSwiper.slideToLoop(nestedSwiper.realIndex);
-      setTimeout(() => { isNestedChanging = false; }, 50);
-    }
-  });
-
-  // Клик по превью
-  nestedSwiper.on('click', function() {
-    heroSwiper.slideToLoop(nestedSwiper.clickedIndex);
+  // === Клик по превью переключает главный слайдер ===
+  nestedSwiper.slides.forEach((slide, index) => {
+    slide.addEventListener('click', () => {
+      heroSwiper.slideToLoop(index);
+    });
   });
 });
 </script>

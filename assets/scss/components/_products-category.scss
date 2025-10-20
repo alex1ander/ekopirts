@@ -62,6 +62,18 @@
                     background: #ccc;
                 }
 
+
+                li{ 
+                    a{
+                        &:hover,&.active{
+                            color: $color-secondary;
+                            > a{
+                                color: $color-secondary;
+                            }
+                        }
+                    }
+                }
+
                 > li{
                     position: relative;
                     line-height: 1;
@@ -82,22 +94,13 @@
                     }
 
 
-                    &:hover{
-                        // color: $color-secondary;
-
+                    &:hover,&.active{
 
                         &::before{
                             background: $color-secondary;
                         }
                     }
 
-                    li{
-                        &:hover{
-                            a{
-                                color: $color-secondary;
-                            }
-                        }
-                    }
 
                     ul{
                         display: flex;

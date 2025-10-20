@@ -1,38 +1,30 @@
 <section class="grid-show">
     <div class="container products-area">
-        <div class="category-list-block">
-            <h3 class="category-block-title">Sadaļas</h3>
 
-            <ul class="category-list">
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-            </ul>
-        </div>
-        
-
+        <!-- Товары текущей категории -->
         <div class="category-elements-block">
             <div class="grid-products-elements">
-                <?php for($i = 0 ; $i < 15; $i++):?>
-                <div class="category-preview">
-                    <div class="category-image">
-                        <img src="/images/category.png" alt="">
-                    </div>
-                    <div class="category-info">
-                        <span class="name">Apaļās pirts mucas</span>
-                        <div class="category-arrow">
-                            <svg width="15" height="28">
-                                <use href="#arrow-right"></use>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <?php endfor;?>
+                <?php
+                // Получаем только главные категории (parent = 0)
+                $main_categories = get_terms(array(
+                    'taxonomy' => 'product_category',
+                    'hide_empty' => false,
+                    'parent' => 0,
+                ));
+
+                if (!empty($main_categories) && !is_wp_error($main_categories)) :
+                    foreach ($main_categories as $category) :
+                        // Используем компонент
+                        get_template_part('components/category-card', null, array(
+                            'category' => $category
+                        ));
+                    endforeach;
+                else :
+                ?>
+                    <p>Empty</p>
+                <?php endif; ?>
             </div>
         </div>
+
     </div>
 </section>

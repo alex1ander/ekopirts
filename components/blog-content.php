@@ -1,113 +1,85 @@
 <section class="grid-show">
     <div class="container products-area">
 
-
-
         <div class="post-content">
             <div class="blog-content">
-                <div class="image-text">
-                    <img src="/images/product.png" alt="Фото">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                        Suspendisse varius enim in eros elementum tristique. 
-                        Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, 
-                        ut commodo diam libero vitae erat. Aenean faucibus nibh et justo cursus id rutrum lorem imperdiet.
-                    </p>
-                </div>
-                <p>Tagad mūsu klientiem ir lieliska iespēja apskatīt un izbaudīt jaunās mucveida kempinga mājas viesu namā “Grāveri Kempings”.Tagad mūsu klientiem ir lieliska iespēja apskatīt un izbaudīt jaunās mucveida kempinga mājas viesu namā “Grāveri Kempings”.</p>
+
+                <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                    <div class="image-text">
+                        <?php if (has_post_thumbnail()) : ?>
+                            <?php  $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full');?>
+                            <img src="<?= $thumbnail_url ?>" alt="">
+                        <?php else : ?>
+                            <img src="/images/product.png" alt="">
+                        <?php endif; ?>
+                        
+                        <div class="content"><?php the_content(); ?></div>
+                    </div>
+
+                    <!-- Теги текущей записи -->
+                    <div class="current-category-tags">
+                        <h4>Kategorijas</h4>
+                        <div class="tags">
+                            <?php
+                            $post_tags = get_the_tags();
+                            if ($post_tags) :
+                                foreach ($post_tags as $tag) : ?>
+                                    <div class="tag">
+                                        <svg width="18" height="18">
+                                            <use href="#tag"></use>
+                                        </svg>
+                                        <span><?php echo esc_html($tag->name); ?></span>
+                                    </div>
+                                <?php endforeach;
+                            endif; ?>
+                        </div>
+                    </div>
+
+                <?php endwhile; endif; ?>
 
             </div>
 
+            <!-- Навигация по записям -->
+            <div class="post-navigation">
+                <?php
+                $prev_post = get_previous_post();
+                if (!empty($prev_post)) : ?>
+                    <div class="prev-post post-navigation">
+                        <div class="content">
+                            <h4><?php echo esc_html(get_the_title($prev_post->ID)); ?></h4>
+                            <p><?php echo wp_trim_words(get_the_excerpt($prev_post->ID), 20); ?></p>
+                        </div>
+                        <?php echo get_the_post_thumbnail($prev_post->ID, 'thumbnail'); ?>
+                        <div class="icon">
+                            <svg width="15" height="28">
+                                <use href="#arrow-right-green"></use>
+                            </svg>
+                        </div>
+                    </div>
+                <?php endif; ?>
 
-        <div class="current-category-tags">
-            <h4>Kategorijas</h4>
-            <div class="tags">
-                <div class="tag">
-                    <svg width="18" height="18">
-                        <use href="#tag"></use>
-                    </svg>
-                    <span>Grāveri</span>
-                </div>
-                        <div class="tag">
-                    <svg width="18" height="18">
-                        <use href="#tag"></use>
-                    </svg>
-                    <span>Grāveri</span>
-                </div>
-                        <div class="tag">
-                    <svg width="18" height="18">
-                        <use href="#tag"></use>
-                    </svg>
-                    <span>Grāveri</span>
-                </div>
-                        <div class="tag">
-                    <svg width="18" height="18">
-                        <use href="#tag"></use>
-                    </svg>
-                    <span>Grāveri</span>
-                </div>
-            </div>
-        </div>
-
-
-
-         <div class="post-navigation">
-            <div class="prev-post post-navigation">
-                <div class="content">
-                    <h4>Kempinga mājas viesu namam “Lakši”!</h4>
-                    <p>Viesu nams “Lakši” Ventspils novadā...</p>
-                </div>
-                <img src="/images/product.png" alt=""/>
-                <div class="icon">
-                    <svg width="15" height="28">
-                        <use href="#arrow-right-green"></use>
-                    </svg>
-                </div>
+                <?php
+                $next_post = get_next_post();
+                if (!empty($next_post)) : ?>
+                    <div class="next-post post-navigation">
+                        <div class="content">
+                            <h4><?php echo esc_html(get_the_title($next_post->ID)); ?></h4>
+                            <p><?php echo wp_trim_words(get_the_excerpt($next_post->ID), 20); ?></p>
+                        </div>
+                        <?php echo get_the_post_thumbnail($next_post->ID, 'thumbnail'); ?>
+                        <div class="icon">
+                            <svg width="15" height="28">
+                                <use href="#arrow-right-green"></use>
+                            </svg>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
 
-
-            <div class="next-post post-navigation">
-                 <div class="content">
-                    <h4>Kempinga mājas viesu namam “Lakši”!</h4>
-                    <p>Viesu nams “Lakši” Ventspils novadā...</p>
-                </div>
-                <img src="/images/product.png" alt=""/>
-                <div class="icon">
-                    <svg width="15" height="28">
-                        <use href="#arrow-right-green"></use>
-                    </svg>
-                </div>
-            </div>
         </div>
 
-
-        </div>
-
-
-        <div class="category-list-block">
-            <h3 class="category-block-title">Sadaļas</h3>
-
-
-            <ul class="category-list">
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li>
-                    <a href="#">Apaļās pirts mucas</a>
-                    <ul>
-                        <li><a href="#">Apaļās pirts mucas</a></li>
-                        <li><a href="#">Apaļās pirts mucas</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-                <li><a href="#">Apaļās pirts mucas</a></li>
-            </ul>
-        </div>
-
-
+        <!-- Список категорий -->
+        <?php get_template_part('components/category-list-block'); ?>
 
     </div>
 </section>
-
-
