@@ -83,7 +83,12 @@
 
                         <!-- Кнопка заказа -->
                         <div class="add-order">
-                            <div class="order-text"><?php _e('Place an order', 'ekopirts'); ?></div>
+                            <div 
+                                class="order-text"
+                                data-product-title="<?php echo esc_attr(get_the_title()); ?>"
+                                data-product-image="<?php echo esc_url(!empty($gallery[0]['url']) ? $gallery[0]['url'] : ''); ?>"
+                                data-product-price="<?php echo esc_attr($new_price ? $new_price : ($old_price ? $old_price : '')); ?>"
+                            ><?php _e('Place an order', 'ekopirts'); ?></div>
                             <div class="icon">
                                 <svg width="33" height="33">
                                     <use href="#whatsapp"></use>

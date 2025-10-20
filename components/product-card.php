@@ -41,7 +41,12 @@
         <a href="<?= esc_url($product_link); ?>" class="product-more"><?php _e('Learn more', 'ekopirts'); ?></a>
 
         <div class="add-order">
-            <div class="order-text"><?php _e('Place an order', 'ekopirts'); ?></div>
+            <div 
+                class="order-text"
+                data-product-title="<?= esc_attr($args['title'] ?? ''); ?>"
+                data-product-image="<?= esc_url($args['gallery'][0]['url'] ?? ''); ?>"
+                data-product-price="<?= esc_attr(isset($args['price']['new']) ? $args['price']['new'] : ''); ?>"
+            ><?php _e('Place an order', 'ekopirts'); ?></div>
             <div class="icon">
                 <svg width="33" height="33">
                     <use href="#whatsapp"></use>

@@ -87,15 +87,14 @@
           gap: 26px;
 
           .product-image {
+            width: 150px;
+            height: 150px;
+            aspect-ratio: 1;
             img {
-              height: 64px;
-              width: 64px;
-              aspect-ratio: 1;
-
-              @include mobile {
-                height: 56px;
-                width: 56px;
-              }
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+               border-radius: 8px;
             }
           }
 
@@ -110,6 +109,7 @@
               font-weight: 500;
               margin: 0;
               line-height: 1;
+              text-wrap: balance;
 
               @include mobile {
                 font-size: 20px;

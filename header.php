@@ -219,20 +219,23 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       // Найдём карточку товара и вытащим данные
       const card = btn.closest('.product-card, .the-product');
-      const titleEl = card ? card.querySelector('.product-name, h1') : null;
-      const imgEl = card ? card.querySelector('img') : null;
-      const title = titleEl ? titleEl.textContent.trim() : '';
-      const img = imgEl ? imgEl.getAttribute('src') : '/images/product.png';
+      const title = btn.getAttribute('data-product-title') || (card ? (card.querySelector('.product-name, h1')?.textContent || '').trim() : '');
+      const img = btn.getAttribute('data-product-image') || (card ? (card.querySelector('img')?.getAttribute('src') || '') : '') || '/images/product.png';
+      const price = btn.getAttribute('data-product-price') || (card ? (card.querySelector('.new-price, .current-price')?.textContent || '') : '');
 
       // Проставим в модалку
       const modalTitle = document.getElementById('order-product-title');
       const modalImg = document.getElementById('order-product-image');
       const inputName = document.getElementById('order-product-name-input');
       const inputImg = document.getElementById('order-product-image-input');
+      const inputPrice = document.getElementById('order-product-price-input');
+      const priceEl = document.getElementById('order-product-price');
       if (modalTitle) modalTitle.textContent = title || '<?php echo esc_js(__('Product', 'ekopirts')); ?>';
       if (modalImg && img) modalImg.src = img;
       if (inputName) inputName.value = title || '';
       if (inputImg) inputImg.value = img || '';
+      if (inputPrice) inputPrice.value = price || '';
+      if (priceEl) priceEl.textContent = price ? price : '';
 
       openModal();
     });
