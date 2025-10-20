@@ -12,7 +12,7 @@ if (!$partners) {
     <div class="container">
         <div class="partners-content">
             <div class="title-block">
-                <h2 class="products-title">Mūsu produkcija</h2>
+                <h2 class="products-title"><?php _e('Our Products', 'ekopirts'); ?></h2>
             </div>
 
             <?php if ($partners): // проверяем, есть ли изображения ?>

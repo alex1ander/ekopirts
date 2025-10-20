@@ -14,15 +14,15 @@
             </div>
             <div class="form-area">
                 <form action="#" class="mxw-380">
-                    <h3>Uzdot jautājumu</h3>
+                    <h3><?php _e('Ask a question', 'ekopirts'); ?></h3>
 
-                    <input type="text" placeholder="Vārds, Uzvārds">
-                    <input type="text" placeholder="Vārds, Uzvārds">
-                    <input type="text" placeholder="Vārds, Uzvārds">
+                    <input type="text" placeholder="<?php echo esc_attr(__('First name, Last name', 'ekopirts')); ?>">
+                    <input type="text" placeholder="<?php echo esc_attr(__('First name, Last name', 'ekopirts')); ?>">
+                    <input type="text" placeholder="<?php echo esc_attr(__('First name, Last name', 'ekopirts')); ?>">
 
                     <textarea name="" id=""></textarea>
 
-                    <button href="#" class="btn">Pasūtīt</button>
+                    <button href="#" class="btn"><?php _e('Order', 'ekopirts'); ?></button>
 
                 </form>
             </div>

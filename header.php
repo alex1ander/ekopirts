@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="lv">
+<html <?php language_attributes(); ?>>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -43,7 +43,7 @@ if (!empty($languages)) : ?>
 <?php endif; ?>
 
 
-        <a href="#" class="btn btn-transparent desktop-only">Jautājums?</a>
+        <a href="#" class="btn btn-transparent desktop-only"><?php _e('Ask a question', 'ekopirts'); ?></a>
         <a href="#" class="btn btn-matte desktop-only">+371 25912321</a>
 
         <!-- Бургер -->
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const modalImg = document.getElementById('order-product-image');
       const inputName = document.getElementById('order-product-name-input');
       const inputImg = document.getElementById('order-product-image-input');
-      if (modalTitle) modalTitle.textContent = title || 'Produkts';
+      if (modalTitle) modalTitle.textContent = title || '<?php echo esc_js(__('Product', 'ekopirts')); ?>';
       if (modalImg && img) modalImg.src = img;
       if (inputName) inputName.value = title || '';
       if (inputImg) inputImg.value = img || '';

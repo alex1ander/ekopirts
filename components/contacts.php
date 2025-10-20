@@ -10,16 +10,16 @@ $social_links = get_field('social_links', 'options'); // Ссылки на со�
 
             <!-- Контакты -->
             <div class="contact-block">
-                <h4><?php _e('Contacts', 'ecopirts'); ?></h4>
+                <h4><?php _e('Contacts', 'ekopirts'); ?></h4>
                 <?php if (!empty($contacts)) : ?>
                     <ul>
                         <?php foreach ($contacts as $item) : ?>
                             <li>
                                 <?php 
                                 if ($item['acf_fc_layout'] === 'phone') {
-                                    echo __('Phone', 'ecopirts') . ': <a href="tel:' . esc_attr($item['text']) . '">' . esc_html($item['text']) . '</a>';
+                                    echo __('Phone', 'ekopirts') . ': <a href="tel:' . esc_attr($item['text']) . '">' . esc_html($item['text']) . '</a>';
                                 } elseif ($item['acf_fc_layout'] === 'email') {
-                                    echo __('Email', 'ecopirts') . ': <a href="mailto:' . esc_attr($item['text']) . '">' . esc_html($item['text']) . '</a>';
+                                    echo __('Email', 'ekopirts') . ': <a href="mailto:' . esc_attr($item['text']) . '">' . esc_html($item['text']) . '</a>';
                                 } else {
                                     echo esc_html($item['text']);
                                 }
@@ -33,7 +33,7 @@ $social_links = get_field('social_links', 'options'); // Ссылки на со�
 
             <!-- Реквизиты -->
             <div class="contact-block">
-                <h4><?php _e('Company Details', 'ecopirts'); ?></h4>
+                <h4><?php _e('Company Details', 'ekopirts'); ?></h4>
                 <?php if (!empty($details)) : ?>
                     <ul>
                         <?php foreach ($details as $item) : ?>
@@ -45,7 +45,7 @@ $social_links = get_field('social_links', 'options'); // Ссылки на со�
 
             <!-- Соцсети -->
             <div class="contact-block">
-                <h4><?php _e('Social Networks', 'ecopirts'); ?></h4>
+                <h4><?php _e('Social Networks', 'ekopirts'); ?></h4>
 
                 <?php if (!empty($social_links)) : ?>
                     <div class="social-links">
@@ -70,7 +70,7 @@ $social_links = get_field('social_links', 'options'); // Ссылки на со�
     </div>
 
     <!-- Карта -->
-    <h3 class="text-center"><?php _e('How to find us?', 'ecopirts'); ?></h3>
+    <h3 class="text-center"><?php _e('How to find us?', 'ekopirts'); ?></h3>
     <iframe style="width: 100%; height: 700px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d166542.77267000405!2d24.129073299999998!3d56.9717416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecfb0e5073ded%3A0x400cfcd68f2fe30!2z0KDQuNCz0LAsINCb0LDRgtCy0LjRjw!5e1!3m2!1sru!2sde!4v1759516095983!5m2!1sru!2sde" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       
 

@@ -20,9 +20,9 @@ $categories = get_field('categories', 'options');
                             <li>
                                <?php 
                                 if ($item['acf_fc_layout'] === 'phone') {
-                                    echo __('Phone', 'ecopirts') . ': <a href="tel:' . esc_attr($item['text']) . '">' . esc_html($item['text']) . '</a>';
+                                    echo __('Phone', 'ekopirts') . ': <a href="tel:' . esc_attr($item['text']) . '">' . esc_html($item['text']) . '</a>';
                                 } elseif ($item['acf_fc_layout'] === 'email') {
-                                    echo __('Email', 'ecopirts') . ': <a href="mailto:' . esc_attr($item['text']) . '">' . esc_html($item['text']) . '</a>';
+                                    echo __('Email', 'ekopirts') . ': <a href="mailto:' . esc_attr($item['text']) . '">' . esc_html($item['text']) . '</a>';
                                 } else {
                                     echo esc_html($item['text']);
                                 }
@@ -41,7 +41,7 @@ $categories = get_field('categories', 'options');
 
             <!-- Колонка 2 — Реквизиты -->
             <div class="footer-col">
-                <h3><?php _e('Rekvizīti', 'ecopirts'); ?></h3>
+                <h3><?php _e('Company Details', 'ekopirts'); ?></h3>
                 <?php if (!empty($details)) : ?>
                     <ul>
                         <?php foreach ($details as $item) : ?>
@@ -53,7 +53,7 @@ $categories = get_field('categories', 'options');
 
             <!-- Колонка 3 — Категории -->
             <div class="footer-col">
-                <h3><?php _e('Kategorijas', 'ecopirts'); ?></h3>
+                <h3><?php _e('Categories', 'ekopirts'); ?></h3>
                 <?php if (!empty($categories)) : ?>
                     <ul>
                         <?php foreach ($categories as $cat_id) : 
@@ -72,9 +72,9 @@ $categories = get_field('categories', 'options');
 
             <!-- Колонка 4 — Карта -->
             <div class="footer-col">
-                <h3><?php _e('Atrašanās vieta', 'ecopirts'); ?></h3>
+                <h3><?php _e('Location', 'ekopirts'); ?></h3>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d166542.77267000405!2d24.129073299999998!3d56.9717416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46eecfb0e5073ded%3A0x400cfcd68f2fe30!2z0KDQuNCz0LAsINCb0LDRgtCy0LjRjw!5e1!3m2!1sru!2sde!4v1759516095983!5m2!1sru!2sde" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                <p><?php _e('Paegļu iela 11, Vītoliņi, Valgundes pag, Jelgavas nov.', 'ecopirts'); ?></p>
+                <p><?php _e('Paegļu street 11, Vītoliņi, Valgunde parish, Jelgava municipality', 'ekopirts'); ?></p>
             </div>
         </div>
     </div>
@@ -83,10 +83,10 @@ $categories = get_field('categories', 'options');
         <div class="container">
             <div class="footer-line-content">
                 <div class="part">
-                    <span><?php _e('Izstrādāja', 'ecopirts'); ?></span>
+                    <span><?php _e('Developed by', 'ekopirts'); ?></span>
                     <?php include __DIR__ . '/assets/svg/jkonsult.svg'; ?>
                     <?php include __DIR__ . '/assets/svg/kurpirkt.svg'; ?>
-                    <span>© 2024 <?php _e('Eko Pirts | Visas tiesības aizsargātas', 'ecopirts'); ?></span>
+                    <span>© 2024 <?php _e('Eko Pirts | All rights reserved', 'ekopirts'); ?></span>
                 </div>
 
                 <div class="part">

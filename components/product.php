@@ -83,7 +83,7 @@
 
                         <!-- Кнопка заказа -->
                         <div class="add-order">
-                            <div class="order-text">Noformēt pasūtījumu</div>
+                            <div class="order-text"><?php _e('Place an order', 'ekopirts'); ?></div>
                             <div class="icon">
                                 <svg width="33" height="33">
                                     <use href="#whatsapp"></use>

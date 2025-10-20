@@ -1,5 +1,5 @@
 <div class="category-list-block">
-    <h3 class="category-block-title">Sadaļas</h3>
+    <h3 class="category-block-title"><?php _e('Categories', 'ekopirts'); ?></h3>
 
     <ul class="category-list">
         <?php
@@ -66,7 +66,7 @@
             display_category_tree(0, $current_term, $taxonomy);
 
         } else { ?>
-            <li>Категории не найдены.</li>
+            <li><?php _e('No categories found.', 'ekopirts'); ?></li>
         <?php } ?>
     </ul>
 </div>

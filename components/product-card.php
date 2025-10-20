@@ -38,10 +38,10 @@
             <?php endif; ?>
         </div>
 
-        <a href="<?= esc_url($product_link); ?>" class="product-more">Uzzināt vairāk</a>
+        <a href="<?= esc_url($product_link); ?>" class="product-more"><?php _e('Learn more', 'ekopirts'); ?></a>
 
         <div class="add-order">
-            <div class="order-text">Noformēt pasūtījumu</div>
+            <div class="order-text"><?php _e('Place an order', 'ekopirts'); ?></div>
             <div class="icon">
                 <svg width="33" height="33">
                     <use href="#whatsapp"></use>

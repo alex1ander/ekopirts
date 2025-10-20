@@ -38,6 +38,6 @@
             </div>
         <?php endif; ?>
 
-        <a href="<?php the_permalink(); ?>" class="view-news">Noformēt pasūtījumu</a>
+        <a href="<?php the_permalink(); ?>" class="view-news"><?php _e('Place an order', 'ekopirts'); ?></a>
     </div>
 </div>

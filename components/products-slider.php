@@ -21,7 +21,7 @@ if (!empty($showCategory['categories'])) {
 
       <div class="products-head">
         <div class="title-block">
-          <h2 class="products-title">Mūsu produkcija</h2>
+          <h2 class="products-title"><?php _e('Our Products', 'ekopirts'); ?></h2>
         </div>
 
         <ul class="category-tabs desktop-only">
@@ -42,7 +42,7 @@ if (!empty($showCategory['categories'])) {
 
 
         <a href="<?php echo esc_url($category_link ? $category_link : '#'); ?>" class="all-products">
-          <span>Show All</span>
+          <span><?php _e('Show All', 'ekopirts'); ?></span>
           <div class="category-arrow">
               <svg width="15" height="28">
                   <use href="#arrow-right"></use>
@@ -91,7 +91,7 @@ if (!empty($showCategory['categories'])) {
                     </div>
                   <?php endwhile; wp_reset_postdata(); ?>
                 <?php else: ?>
-                  <p>No products in this category</p>
+                  <p><?php _e('No products in this category', 'ekopirts'); ?></p>
                 <?php endif; ?>
               </div>
             </div>
