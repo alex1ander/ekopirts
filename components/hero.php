@@ -60,11 +60,11 @@ document.addEventListener("DOMContentLoaded", function () {
     centeredSlides: true,
     slideToClickedSlide: true,
     watchSlidesProgress: true,
-    initialSlide: 1, 
+    initialSlide: 2, 
     breakpoints: {
       540: { slidesPerView: 2 },
       768: { slidesPerView: 2.5 },
-      1024: { slidesPerView: 3 },
+      1024: { slidesPerView: 5 }
     },
   });
 

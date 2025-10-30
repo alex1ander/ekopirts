@@ -19,10 +19,8 @@
                             'category' => $category
                         ));
                     endforeach;
-                else :
-                ?>
-                    <p>Empty</p>
-                <?php endif; ?>
+            
+                endif; ?>
             </div>
         </div>
 

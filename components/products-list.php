@@ -10,17 +10,17 @@
 
             if ($current_category && isset($current_category->term_id)) :
 
-                // Получаем выбранную сортировку из GET
+                // Get selected sort from GET
                 $sort = $_GET['sort'] ?? '';
 
-                // Настройки сортировки
+                // Sort settings
                 $meta_key = '';
                 $orderby  = 'date';
                 $order    = 'DESC';
 
                 switch ($sort) {
                     case 'price_asc':
-                        $meta_key = 'price'; // поле ACF "price"
+                        $meta_key = 'price'; // ACF field "price"
                         $orderby  = 'meta_value_num';
                         $order    = 'ASC';
                         break;
@@ -30,7 +30,7 @@
                         $order    = 'DESC';
                         break;
                     case 'views_asc':
-                        $meta_key = 'views'; // поле ACF "views"
+                        $meta_key = 'views'; // ACF field "views"
                         $orderby  = 'meta_value_num';
                         $order    = 'ASC';
                         break;
@@ -41,7 +41,7 @@
                         break;
                 }
 
-                // Основной запрос
+                // Main query
                 $args = [
                     'post_type'      => 'product',
                     'posts_per_page' => -1,
@@ -56,7 +56,7 @@
                     'order'   => $order,
                 ];
 
-                // Если сортировка по метаполю, добавляем его
+                // If sorting by meta field, add it
                 if ($meta_key) {
                     $args['meta_key'] = $meta_key;
                     $args['meta_query'] = [
@@ -71,21 +71,21 @@
                 $product_count = $products->found_posts;
             ?>
 
-                <!-- Верхняя панель -->
-                <div class="products-top-bar" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+                <!-- Top panel -->
+                <div class="products-top-bar">
                     <div class="products-count">
-                        Количество товаров: <strong><?php echo $product_count; ?></strong>
+                        <?php _e('Number of products:', 'ekopirts'); ?> <strong><?php echo $product_count; ?></strong>
                     </div>
 
                     <div class="products-sort">
                         <form method="get" id="sort-form">
-                            <label for="sort" style="margin-right:8px;">Сортировать по:</label>
+                            <label for="sort"><?php _e('Sort by:', 'ekopirts'); ?></label>
                             <select name="sort" id="sort" onchange="this.form.submit()">
-                                <option value="">По умолчанию</option>
-                                <option value="price_asc" <?php selected($sort, 'price_asc'); ?>>Цене (возрастание)</option>
-                                <option value="price_desc" <?php selected($sort, 'price_desc'); ?>>Цене (убывание)</option>
-                                <option value="views_asc" <?php selected($sort, 'views_asc'); ?>>Популярности (меньше → больше)</option>
-                                <option value="views_desc" <?php selected($sort, 'views_desc'); ?>>Популярности (больше → меньше)</option>
+                                <option value=""><?php _e('Default', 'ekopirts'); ?></option>
+                                <option value="price_asc" <?php selected($sort, 'price_asc'); ?>><?php _e('Price (Low to High)', 'ekopirts'); ?></option>
+                                <option value="price_desc" <?php selected($sort, 'price_desc'); ?>><?php _e('Price (High to Low)', 'ekopirts'); ?></option>
+                                <option value="views_asc" <?php selected($sort, 'views_asc'); ?>><?php _e('Popularity (Less → More)', 'ekopirts'); ?></option>
+                                <option value="views_desc" <?php selected($sort, 'views_desc'); ?>><?php _e('Popularity (More → Less)', 'ekopirts'); ?></option>
                             </select>
                         </form>
                     </div>
@@ -101,7 +101,7 @@
                                 'price'   => get_field('price'),
                                 'title'   => get_the_title(),
                                 'excerpt' => wp_trim_words(get_the_excerpt(), 10, '...'),
-                                'views'   => get_field('views'), // используем ACF
+                                'views'   => get_field('views'), // use ACF
                             ];
 
                             get_template_part('components/product-card', null, $product_data);
