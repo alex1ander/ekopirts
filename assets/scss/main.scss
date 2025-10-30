@@ -27,6 +27,7 @@
 @use  'components/blog';
 @use  'components/faq';
 @use  'components/gallery';
+@use  'components/timeline';
 // Пример использования миксинов
 
 .dark-block{
@@ -54,6 +55,7 @@ main{
 .btn{
     cursor: pointer;
     display: inline-flex;
+    width: auto;
     padding: 6px 12px;
     border-radius: 12px;
     color:#ffffff;

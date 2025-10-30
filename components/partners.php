@@ -6,13 +6,15 @@ if (!$partners) {
     $front_id = get_option('page_on_front'); // ID главной страницы
     $partners = get_field('partners', $front_id);
 }
+
+if ($partners && !empty($partners)):
 ?>
 
 <section class="partners">
     <div class="container">
         <div class="partners-content">
             <div class="title-block">
-                <h2 class="products-title"><?php _e('Our Products', 'ekopirts'); ?></h2>
+                <h2 class="products-title"><?php _e('Our Partners', 'ekopirts'); ?></h2>
             </div>
 
             <?php if ($partners): // проверяем, есть ли изображения ?>
@@ -63,3 +65,5 @@ var swiper = new Swiper(".partners-slider-swiper", {
         },
 });
 </script>
+
+<?php endif; ?>

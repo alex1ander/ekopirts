@@ -22,9 +22,17 @@
                         <?php if (!empty($gallery) && is_array($gallery)): ?>
                             <div class="swiper main-slider">
                                 <div class="swiper-wrapper">
-                                    <?php foreach ($gallery as $image): ?>
+                                    <?php foreach ($gallery as $index => $image): ?>
                                         <div class="swiper-slide">
-                                            <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                                            <a 
+                                                href="<?php echo esc_url($image['url']); ?>" 
+                                                class="glightbox" 
+                                                data-gallery="product-gallery">
+                                                <img 
+                                                    src="<?php echo esc_url($image['url']); ?>" 
+                                                    alt="<?php echo esc_attr($image['alt']); ?>" 
+                                                    style="cursor:pointer;">
+                                            </a>
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
@@ -34,7 +42,9 @@
                                 <div class="swiper-wrapper">
                                     <?php foreach ($gallery as $image): ?>
                                         <div class="swiper-slide">
-                                            <img src="<?php echo esc_url($image['sizes']['thumbnail']); ?>" alt="<?php echo esc_attr($image['alt']); ?>">
+                                            <img 
+                                                src="<?php echo esc_url($image['sizes']['thumbnail']); ?>" 
+                                                alt="<?php echo esc_attr($image['alt']); ?>">
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
@@ -82,19 +92,38 @@
                         <?php endif; ?>
 
                         <!-- Кнопка заказа -->
+                       <!-- Кнопка заказа -->
                         <div class="add-order">
-                            <div 
-                                class="order-text"
-                                data-product-title="<?php echo esc_attr(get_the_title()); ?>"
-                                data-product-image="<?php echo esc_url(!empty($gallery[0]['url']) ? $gallery[0]['url'] : ''); ?>"
-                                data-product-price="<?php echo esc_attr($new_price ? $new_price : ($old_price ? $old_price : '')); ?>"
-                            ><?php _e('Place an order', 'ekopirts'); ?></div>
-                            <div class="icon">
+                            <?php 
+                                $phone = '+37129749161';
+                                $product_title = urlencode(get_the_title());
+                                $product_link = get_permalink(get_the_ID());
+                                $product_link_encoded = urlencode($product_link);
+
+                                // Многоязычный текст
+                                $message_text = urlencode(__('Hello! I want to order a product:', 'ekopirts'));
+
+                                // Формируем сообщение с переводом и ссылкой на товар
+                                $message = "{$message_text}%20{$product_title}%0A{$product_link_encoded} - ";
+                                $whatsapp_link = " https://wa.me/{$phone}?text={$message}";
+                            ?>
+
+                            <a href="<?= esc_url($whatsapp_link); ?>" 
+                            target="_blank" 
+                            class="order-text"
+                            data-product-title="<?= esc_attr(get_the_title()); ?>"
+                            data-product-image="<?= esc_url(!empty($gallery[0]['url']) ? $gallery[0]['url'] : ''); ?>"
+                            data-product-price="<?= esc_attr($new_price ? $new_price : ($old_price ? $old_price : '')); ?>">
+                                <?php _e('Place an order', 'ekopirts'); ?>
+                            </a>
+
+                            <a href="<?= esc_url($whatsapp_link); ?>" target="_blank" class="icon">
                                 <svg width="33" height="33">
                                     <use href="#whatsapp"></use>
                                 </svg>
-                            </div>
+                            </a>
                         </div>
+
                     </div>
                 </div>
 
@@ -102,8 +131,8 @@
                 <div class="the-product-bottom">
                     <div class="tabs">
                         <div class="tab-buttons">
-                            <button class="active">Description</button>
-                            <button>Additional information</button>
+                            <button class="active"><?php _e('Description','ekopirts'); ?></button>
+                            <button><?php _e('Additional information','ekopirts'); ?></button>
                         </div>
 
                         <div class="tab-contents">
@@ -112,6 +141,23 @@
                             </div>
                             <div class="tab-content">
                                 <?php echo wp_kses_post($additionalDesription); ?>
+                            </div>
+
+
+                            <div class="file-list">
+                                <?php $filesList = get_field('files-list'); ?>
+                                <?php if($filesList && !empty($filesList)): ?>
+                                <?php foreach($filesList as $file): ?>
+                                <div class="file-block">
+                                    <a href="<?= $file['file'] ?>" target="_blank">
+                                        <svg class="icon" width="48" height="48">
+                                            <use href="#pdf-file"></use>
+                                        </svg>
+                                    </a>
+                                    <a href="<?= $file['file'] ?>" target="_blank"><?= $file['title'] ?></a>
+                                </div>
+                                <?php endforeach; ?> 
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -160,4 +206,20 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
   }
+</script>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+// GLightbox
+  const lightbox = GLightbox({
+    selector: '.glightbox',
+    touchNavigation: true,
+    loop: true,
+    zoomable: true,
+    openEffect: 'zoom',
+    closeEffect: 'fade',
+  });
+});
 </script>

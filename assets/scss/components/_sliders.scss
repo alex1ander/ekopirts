@@ -52,7 +52,12 @@ body{
     }
 
     .partners-slider{
-          .swiper-button-prev{
+        img{
+            filter: grayscale(1);
+        }
+
+
+        .swiper-button-prev{
             left: -50px;
             transform: scale(0.6);
             svg{
@@ -149,5 +154,11 @@ body{
     .swiper-slide{
         height: 100%;
         margin: auto;
+    }
+    .aspect-ratio-1{
+        img{
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
     }
 }

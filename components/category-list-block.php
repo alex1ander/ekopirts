@@ -1,32 +1,32 @@
-<div class="category-list-block">
+<div class="category-list-block desktop-only">
     <h3 class="category-block-title"><?php _e('Categories', 'ekopirts'); ?></h3>
 
     <ul class="category-list">
         <?php
         $current_term = null;
-        $taxonomy = '';
+        $taxonomy = 'product_category';
 
         // Определяем текущий объект и таксономию
-        if (is_tax('product_category')) {
-            $current_term = get_queried_object();
-            $taxonomy = 'product_category';
-        } elseif (is_singular('product')) {
-            $terms = wp_get_post_terms(get_the_ID(), 'product_category');
-            if (!empty($terms) && !is_wp_error($terms)) {
-                $current_term = $terms[0];
-                $taxonomy = 'product_category';
-            }
-        } elseif (is_category()) {
-            $current_term = get_queried_object();
-            $taxonomy = 'category';
-        } elseif (is_singular('post')) {
-            $terms = wp_get_post_terms(get_the_ID(), 'category'); // стандартная таксономия категорий
-            if (!empty($terms) && !is_wp_error($terms)) {
-                // Берем первую категорию записи
-                $current_term = $terms[0];
-                $taxonomy = 'category';
-            }
-        }
+        // if (is_tax('product_category')) {
+        //     $current_term = get_queried_object();
+        //     $taxonomy = 'product_category';
+        // } elseif (is_singular('product')) {
+        //     $terms = wp_get_post_terms(get_the_ID(), 'product_category');
+        //     if (!empty($terms) && !is_wp_error($terms)) {
+        //         $current_term = $terms[0];
+        //         $taxonomy = 'product_category';
+        //     }
+        // } elseif (is_category()) {
+        //     $current_term = get_queried_object();
+        //     $taxonomy = 'category';
+        // } elseif (is_singular('post')) {
+        //     $terms = wp_get_post_terms(get_the_ID(), 'category'); // стандартная таксономия категорий
+        //     if (!empty($terms) && !is_wp_error($terms)) {
+        //         // Берем первую категорию записи
+        //         $current_term = $terms[0];
+        //         $taxonomy = 'category';
+        //     }
+        // }
 
         if ($taxonomy) {
 

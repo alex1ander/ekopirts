@@ -1,6 +1,7 @@
+<?php $form = get_field('contact_forms','options'); ?>
+
 <div class="modal" id="order-modal" aria-hidden="true" role="dialog">
    <div class="modal-form">
-
         <div class="modal-head">
             <h2 class="modal-title"><?php _e('Order', 'ekopirts'); ?></h2>
             <button class="modal-close" aria-label="Close modal" data-micromodal-close>
@@ -12,7 +13,7 @@
 
 
        <div class="modal-form-content">
-            <?= do_shortcode('[contact-form-7 id="3546da9" title="Contact form 1"]') ?>
+            <?= do_shortcode($form['modal']) ?>
        </div>
 
    </div>

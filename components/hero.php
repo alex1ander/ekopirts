@@ -1,54 +1,48 @@
 <?php 
 $heroSlider = get_field('hero-slider');
-// echo '<pre>';
-// print_r($heroSlider);
-// echo '</pre>';
+
+if ($heroSlider && !empty($heroSlider)):
 ?>
 
 
 <section id="hero" class="hero hero-section">
   <div class="slider-area">
     <!-- === Главный слайдер === -->
-    <div class="swiper heroSwiper">
+     <div class="swiper heroSwiper">
       <div class="swiper-wrapper">
-        <?php foreach($heroSlider as $slide): ?>
         <div class="swiper-slide">
           <div class="hero-slide">
         
-            <img class="hero-background" src="<?= $slide['image'] ?>" alt="">
+            <img class="hero-background" src="<?= $heroSlider['image'] ?>" alt="">
 
             <div class="container">
               <div class="hero-content">
                 <div class="hero-info">
-                  <h1 class="hero-title"><?= $slide['title'] ?></h1>
-                  <p class="hero-text"><?= $slide['text'] ?></p>
-                  <a href="<?= $slide['button']['url'] ?>" target="<?= $slide['button']['target'] ?>" class="btn btn-matte hover-red"><?= $slide['button']['title'] ?></a>
+                  <h1 class="hero-title"><?= $heroSlider['title'] ?></h1>
+                  <p class="hero-text"><?= $heroSlider['text'] ?></p>
+                  <a href="<?= $heroSlider['button']['url'] ?>" target="<?= $heroSlider['button']['target'] ?>" class="btn btn-matte hover-red"><?= $heroSlider['button']['title'] ?></a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <?php endforeach; ?>
       </div>
-
-      <div class="swiper-button-prev desktop-only"></div>
-      <div class="swiper-button-next desktop-only"></div>
     </div>
 
     <!-- === Превью (нижний слайдер) === -->
     <div class="nested-slider">
       <div class="swiper nested-swiper">
         <div class="swiper-wrapper">
-          <?php foreach($heroSlider as $slide): ?>
+          <?php foreach($heroSlider['slider_link'] as $slide): ?>
           <div class="swiper-slide">
-            <div class="nested-slide">
+            <a href="<?= $slide['link']['url'] ?>" target="<?= $slide['link']['target'] ?>" class="nested-slide">
               <div class="nested-content">
                 <img class="nested-image" src="<?= $slide['image'] ?>" alt="">
                 <div class="nested-bottom">
-                  <span class="nested-name"><?= $slide['icon-text'] ?></span>
+                  <span class="nested-name"><?= $slide['link']['title'] ?></span>
                 </div>
               </div>
-            </div>
+            </a>
           </div>
            <?php endforeach; ?>
         </div>
@@ -66,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     centeredSlides: true,
     slideToClickedSlide: true,
     watchSlidesProgress: true,
+    initialSlide: 1, 
     breakpoints: {
       540: { slidesPerView: 2 },
       768: { slidesPerView: 2.5 },
@@ -73,29 +68,6 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
-  // === Верхний (главный) слайдер ===
-  const heroSwiper = new Swiper(".heroSwiper", {
-    speed: 800,
-    effect: "fade",
-    fadeEffect: { crossFade: true },
-    centeredSlides: true,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
-
-  // === Синхронизация: при смене верхнего обновляем нижний ===
-  heroSwiper.on("slideChange", function () {
-    const realIndex = heroSwiper.activeIndex;
-    nestedSwiper.slideTo(realIndex);
-  });
-
-  // === Синхронизация: при смене нижнего обновляем верхний ===
-  nestedSwiper.on("slideChange", function () {
-    const realIndex = nestedSwiper.activeIndex;
-    heroSwiper.slideTo(realIndex);
-  });
 
   // === Клик по нижнему слайду ===
   nestedSwiper.on("click", function (swiper) {
@@ -105,3 +77,5 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+
+<?php endif; ?>

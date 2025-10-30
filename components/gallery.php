@@ -6,67 +6,144 @@ if ($gallery):
     <div class="container">
         <div class="gallery-block">
             <div class="gallery-head">
-            <ul class="gallery-tabs">
-                <?php foreach ($gallery as $index => $item): ?>
-                <li 
-                    data-tab="tab-<?php echo $index; ?>" 
-                    class="btn btn-secondary  <?php echo $index === 0 ? 'active' : ''; ?>">
-                    <?php echo esc_html($item['title']); ?>
-                </li>
-                <?php endforeach; ?>
-            </ul>
+                <!-- Обертка для теней -->
+                <div class="gallery-tabs-wrapper">
+                    <!-- Swiper контейнер -->
+                    <div class="gallery-tabs swiper">
+                        <div class="swiper-wrapper">
+                            <?php foreach ($gallery as $index => $item): ?>
+                                <div 
+                                    class="swiper-slide btn btn-secondary <?php echo $index === 0 ? 'active' : ''; ?>" 
+                                    data-tab="tab-<?php echo $index; ?>">
+                                    <?php echo esc_html($item['title']); ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <!-- Тени -->
+                    <div class="gallery-shadow gallery-shadow-left"></div>
+                    <div class="gallery-shadow gallery-shadow-right"></div>
+                </div>
             </div>
 
             <div class="gallery-body">
-            <?php foreach ($gallery as $index => $item): ?>
+                <?php foreach ($gallery as $index => $item): ?>
                 <div 
-                class="grid-image-gallery <?php echo $index === 0 ? 'active' : ''; ?>" 
-                data-tab-content="tab-<?php echo $index; ?>">
-                <?php if (!empty($item['gallery'])): ?>
-                    <?php foreach ($item['gallery'] as $image): ?>
-                    <img class="lightbox-img" src="<?php echo esc_url($image); ?>" alt="" style="cursor:pointer;">
-                    <?php endforeach; ?>
-                <?php endif; ?>
+                    class="grid-image-gallery <?php echo $index === 0 ? 'active' : ''; ?>" 
+                    data-tab-content="tab-<?php echo $index; ?>">
+                    <?php if (!empty($item['gallery'])): ?>
+                        <?php foreach ($item['gallery'] as $image): ?>
+                        <a 
+                            href="<?php echo esc_url($image); ?>" 
+                            class="glightbox"
+                            data-gallery="gallery-<?php echo $index; ?>">
+                            <img src="<?php echo esc_url($image); ?>" alt="" style="cursor:pointer;">
+                        </a>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
 </section>
-<?php endif; ?>
 
-<!-- Подключаем basicLightbox -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css">
-<script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
+
+<?php endif; ?>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Переключение табов
-  const tabs = document.querySelectorAll('.gallery-tabs li');
-  const contents = document.querySelectorAll('.grid-image-gallery');
 
+  const tabs = document.querySelectorAll('.gallery-tabs .swiper-slide');
+  const contents = document.querySelectorAll('.grid-image-gallery');
+  const shadowLeft = document.querySelector('.gallery-shadow-left');
+  const shadowRight = document.querySelector('.gallery-shadow-right');
+  const swiperContainer = document.querySelector('.gallery-tabs');
+
+  // Добавляем класс инициализации
+  if (swiperContainer) {
+    swiperContainer.classList.add('swiper-initializing');
+  }
+
+  // Инициализация Swiper для drag
+  const gallerySwiper = new Swiper(".gallery-tabs", {
+    slidesPerView: "auto",
+    spaceBetween: 12,
+    freeMode: true,
+    grabCursor: true,
+    on: {
+      init: function() {
+        // Убираем класс инициализации после init
+        if (swiperContainer) {
+          swiperContainer.classList.remove('swiper-initializing');
+        }
+        updateShadows(this);
+      },
+      slideChange: function() {
+        updateShadows(this);
+      },
+      reachBeginning: function() {
+        updateShadows(this);
+      },
+      reachEnd: function() {
+        updateShadows(this);
+      },
+      progress: function() {
+        updateShadows(this);
+      },
+      setTranslate: function() {
+        updateShadows(this);
+      }
+    }
+  });
+
+  // Функция обновления видимости теней
+  function updateShadows(swiper) {
+    const isBeginning = swiper.isBeginning;
+    const isEnd = swiper.isEnd;
+
+    // Показываем левую тень, если не в начале
+    if (shadowLeft) {
+      shadowLeft.classList.toggle('visible', !isBeginning);
+    }
+
+    // Показываем правую тень, если не в конце
+    if (shadowRight) {
+      shadowRight.classList.toggle('visible', !isEnd);
+    }
+  }
+
+  // Переключение табов
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const target = tab.getAttribute('data-tab');
 
+      // Снимаем активные классы
       tabs.forEach(t => t.classList.remove('active'));
       contents.forEach(c => c.classList.remove('active'));
 
+      // Делаем активными выбранный таб и контент
       tab.classList.add('active');
       const activeContent = document.querySelector(`.grid-image-gallery[data-tab-content="${target}"]`);
       if (activeContent) activeContent.classList.add('active');
+
+      // Прокрутка к выбранному табу
+      gallerySwiper.slideTo(Array.from(tabs).indexOf(tab), 300);
     });
   });
 
-  // Lightbox для изображений
-  const lightboxImages = document.querySelectorAll('.lightbox-img');
-  lightboxImages.forEach(img => {
-    img.addEventListener('click', () => {
-      const instance = basicLightbox.create(`
-        <img src="${img.src}" alt="" style="max-width:90vw; max-height:90vh;">
-      `);
-      instance.show();
-    });
+  // Инициализация GLightbox
+  GLightbox({
+    selector: '.glightbox',
+    touchNavigation: true,
+    loop: true,
+    zoomable: true,
   });
+
+  // Обновление теней при изменении размера окна
+  window.addEventListener('resize', () => {
+    updateShadows(gallerySwiper);
+  });
+
 });
 </script>

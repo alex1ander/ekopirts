@@ -41,17 +41,33 @@
         <a href="<?= esc_url($product_link); ?>" class="product-more"><?php _e('Learn more', 'ekopirts'); ?></a>
 
         <div class="add-order">
-            <div 
-                class="order-text"
-                data-product-title="<?= esc_attr($args['title'] ?? ''); ?>"
-                data-product-image="<?= esc_url($args['gallery'][0]['url'] ?? ''); ?>"
-                data-product-price="<?= esc_attr(isset($args['price']['new']) ? $args['price']['new'] : ''); ?>"
-            ><?php _e('Place an order', 'ekopirts'); ?></div>
-            <div class="icon">
+            <?php 
+                $phone = '+37129749161';
+                $product_title = urlencode($args['title'] ?? '');
+                $product_link = get_permalink($args['id'] ?? get_the_ID());
+                $product_link_encoded = urlencode($product_link);
+
+                // Многоязычный текст через __()
+                $message_text = urlencode(__('Hello! I want to order a product:', 'ekopirts'));
+
+                $message = "{$message_text} {$product_title} {$product_link_encoded}";
+                $whatsapp_link = "https://wa.me/{$phone}?text={$message}";
+            ?>
+            <a href="<?= esc_url($whatsapp_link); ?>" target="_blank" class="order-text"
+            data-product-title="<?= esc_attr($args['title'] ?? ''); ?>"
+            data-product-image="<?= esc_url($args['gallery'][0]['url'] ?? ''); ?>"
+            data-product-price="<?= esc_attr(isset($args['price']['new']) ? $args['price']['new'] : ''); ?>">
+                <?php _e('Place an order', 'ekopirts'); ?>
+            </a>
+            <a href="<?= esc_url($whatsapp_link); ?>" target="_blank" class="icon">
                 <svg width="33" height="33">
                     <use href="#whatsapp"></use>
                 </svg>
-            </div>
+            </a>
         </div>
+
+
+
+
     </div>
 </div>

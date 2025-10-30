@@ -4,8 +4,8 @@ add_filter( 'wpcf7_autop_or_not', '__return_false' );
 // Регистрируем меню
 function my_theme_register_menus() {
     register_nav_menus(array(
-        'header' => __('Header Menu', 'your-theme-textdomain'),
-        'footer' => __('Footer Menu', 'your-theme-textdomain')
+        'header' => __('Header Menu', 'ekopirts'),
+        'footer' => __('Footer Menu', 'ekopirts')
     ));
 }
 add_action('after_setup_theme', 'my_theme_register_menus');
@@ -41,7 +41,7 @@ function create_products_post_type() {
     $args = array(
         'labels' => $labels,
         'public' => true,
-        'has_archive' => true,
+        // 'has_archive' => true,
         'rewrite' => array('slug' => 'products'),
         'supports' => array('title', 'editor', 'thumbnail'),
         'show_in_rest' => true,
@@ -85,17 +85,11 @@ function create_product_taxonomy() {
 }
 add_action('init', 'create_product_taxonomy');
 
-// // === Редирект /product-category/ на архив продуктов ===
-// function redirect_taxonomy_base_to_archive() {
-//     // Проверяем, что это именно /product-category/ без категории
-//     $request_uri = trim($_SERVER['REQUEST_URI'], '/');
-    
-//     if ($request_uri === 'product-category') {
-//         wp_redirect(home_url('/products/'), 301);
-//         exit;
-//     }
-// }
-// add_action('template_redirect', 'redirect_taxonomy_base_to_archive');
+
+if (function_exists('icl_register_string')) {
+    icl_register_string('Theme', 'Products', 'Products');
+}
+
 
 
 
@@ -150,3 +144,21 @@ if ( function_exists('acf_add_options_page') ) {
         'icon_url'    => 'dashicons-admin-generic' // иконка WordPress
     ));
 }
+
+
+add_theme_support( 'title-tag' );
+
+
+//просмотры
+function ekopirts_track_product_views() {
+    if (is_singular('product')) {
+        global $post;
+
+        $views = (int) get_field('views', $post->ID); // через ACF
+        $views++;
+        update_field('views', $views, $post->ID);    // через ACF
+    }
+}
+add_action('wp', 'ekopirts_track_product_views');
+
+

@@ -1,4 +1,5 @@
 <?php
+    /* Template Name: About-us */
     get_header();
 ?>
 
@@ -6,6 +7,7 @@
     
 <?php
 include 'components/text.php';
+include 'components/timeline.php';
 ?>
 
 </main>

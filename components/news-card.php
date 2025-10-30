@@ -25,19 +25,20 @@
 
         </div>
 
-        <?php if(has_tag()): ?>
-            <div class="tags">
-                <?php foreach(get_the_tags() as $tag): ?>
-                    <div class="tag">
-                        <svg width="18" height="18">
-                            <use href="#tag"></use>
-                        </svg>
-                        <span><?php echo esc_html($tag->name); ?></span>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+        <div class="tags">
+        <?php if (has_tag()): ?>
+            <?php foreach (get_the_tags() as $tag): ?>
+                <a href="<?php echo esc_url(get_tag_link($tag->term_id)); ?>" class="tag">
+                    <svg width="18" height="18">
+                        <use href="#tag"></use>
+                    </svg>
+                    <span><?php echo esc_html($tag->name); ?></span>
+                </a>
+            <?php endforeach; ?>
         <?php endif; ?>
+        </div>
 
-        <a href="<?php the_permalink(); ?>" class="view-news"><?php _e('Place an order', 'ekopirts'); ?></a>
+
+        <a href="<?php the_permalink(); ?>" class="view-news"><?php _e('Learn more', 'ekopirts'); ?></a>
     </div>
 </div>

@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
   <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-  <title><?php the_title(); ?></title>
+
+  <!-- GLightbox -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <?php wp_head() ?>
 </head>
 
@@ -13,9 +16,12 @@
 <header class="dark-block">
   <div class="container">
     <div class="top-part">
-      <a href="<?= home_url();?>">
-        <svg width="182" height="45">
+      <a href="<?= home_url();?>" class="logoc">
+        <svg class="desktop-only" width="182" height="45">
           <use href="#logo"></use>
+        </svg>
+        <svg class="mobile-only" width="135" height="33">
+          <use href="#logo-mobile"></use>
         </svg>
       </a>
 
@@ -42,9 +48,30 @@ if (!empty($languages)) : ?>
   </div>
 <?php endif; ?>
 
+<?php 
+$headerLinks = get_field('header_links', 'options');
 
-        <a href="#" class="btn btn-transparent desktop-only"><?php _e('Ask a question', 'ekopirts'); ?></a>
-        <a href="#" class="btn btn-matte desktop-only">+371 25912321</a>
+if ($headerLinks) : 
+    $btnTransparent = $headerLinks['btn-transparent'] ?? null;
+    $btnMatte = $headerLinks['btn-matte'] ?? null;
+?>
+
+    <?php if (!empty($btnTransparent['url']) && !empty($btnTransparent['title'])) : ?>
+        <a href="<?= esc_url($btnTransparent['url']); ?>" 
+           target="<?= esc_attr($btnTransparent['target'] ?? '_self'); ?>" 
+           class="btn btn-transparent desktop-only">
+           <?= esc_html($btnTransparent['title']); ?>
+        </a>
+    <?php endif; ?>
+
+    <?php if (!empty($btnMatte)) : ?>
+        <a href="telto:<?= $btnMatte; ?>" 
+           class="btn btn-matte desktop-only">
+           <?= $btnMatte; ?>
+        </a>
+    <?php endif; ?>
+
+<?php endif; ?>
 
         <!-- Бургер -->
         <div class="burger-menu mobile-only">
@@ -106,7 +133,8 @@ if (!empty($languages)) : ?>
 <?php get_template_part('components/modal-order'); ?>
 
 <!-- Мобильное меню -->
-<nav class="mobile-menu">
+<div class="mobile-menu">
+  
   <ul>
     <?php
     $locations = get_nav_menu_locations();
@@ -150,7 +178,45 @@ if (!empty($languages)) : ?>
     }
     ?>
   </ul>
-</nav>
+
+
+  <div class="buttons">
+    <?php $social_links = get_field('social_links', 'options'); // Ссылки на соцсети ?>
+
+    <?php if (!empty($social_links) && is_array($social_links)) : ?>
+        <div class="social-links">
+            <?php foreach ($social_links as $social) : 
+                $link = !empty($social['link']) ? esc_url($social['link']) : '#';
+                $icon = !empty($social['icon']) ? $social['icon'] : '';
+                if ($icon) :
+            ?>
+                <a href="<?= $link; ?>" target="_blank" rel="noopener noreferrer">
+                    <?= $icon; ?>
+                </a>
+            <?php 
+                endif;
+            endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+    <div class="bottom">
+    <?php if (!empty($btnTransparent['url']) && !empty($btnTransparent['title'])) : ?>
+          <a href="<?= esc_url($btnTransparent['url']); ?>" 
+            target="<?= esc_attr($btnTransparent['target'] ?? '_self'); ?>" 
+            class="btn btn-transparent">
+            <?= esc_html($btnTransparent['title']); ?>
+          </a>
+      <?php endif; ?>
+
+      <?php if (!empty($btnMatte)) : ?>
+        <a href="telto:<?= $btnMatte; ?>" 
+           class="btn btn-matte">
+           <?= $btnMatte; ?>
+        </a>
+      <?php endif; ?>
+    </div>
+  </div>
+</div>
 
 <!-- Фоновая подложка (опционально, если хочешь затемнение) -->
 <div class="menu-overlay"></div>

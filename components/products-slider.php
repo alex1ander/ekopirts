@@ -1,18 +1,9 @@
 <?php 
 $showCategory = get_field('products_by_category');
-// echo '<pre>';
-// print_r($showCategory);
-// echo '</pre>';
 
+if ($showCategory && !empty($showCategory['categories'])):
+$category_link = $showCategory['show_all'];
 
-$category_link = '';
-if (!empty($showCategory['categories'])) {
-    $first_cat_id = $showCategory['categories'][0];
-    $term = get_term($first_cat_id, 'product_category');
-    if ($term && !is_wp_error($term)) {
-        $category_link = get_term_link($term);
-    }
-}
 ?>
 
 <section class="products-slider">
@@ -159,3 +150,5 @@ if (!empty($showCategory['categories'])) {
     });
   });
 </script>
+
+<?php endif; ?>

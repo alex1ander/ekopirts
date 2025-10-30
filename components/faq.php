@@ -1,5 +1,6 @@
 <?php $faq = get_field('faq'); ?>
 
+<?php if ($faq && !empty($faq)): ?>
 <section class="faq">
   <div class="container">
     <div class="faqs-block">
@@ -42,3 +43,5 @@
     });
   });
 </script>
+
+<?php endif; ?>

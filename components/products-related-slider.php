@@ -45,69 +45,81 @@ if ($terms):
     ));
 ?>
 <section class="products-slider dark1">
-    <div class="container">
-        <div class="products-slider-content">
-            <div class="products-head">
-                <div class="title-block">
-                    <h2 class="products-title"><?php _e('Related Products', 'ekopirts'); ?></h2>
-                </div>
+  <div class="container">
+    <div class="products-slider-content">
 
-                <div class="w-100 void"></div>
-
-                <a href="<?php echo esc_url($category_link ? $category_link : '#'); ?>" class="all-products">
-                    <span><?php _e('Show All', 'ekopirts'); ?></span>
-                    <div class="category-arrow">
-                        <svg width="15" height="28">
-                            <use href="#arrow-right"></use>
-                        </svg>
-                    </div>
-                </a>
-            </div>
-
-            <div class="swiper related-products-swiper">
-                <div class="swiper-wrapper">
-                    <?php if ($related_products->have_posts()): ?>
-                        <?php while ($related_products->have_posts()): $related_products->the_post(); ?>
-                            <div class="swiper-slide flex-slide">
-                                <?php 
-                                    $product_data = array(
-                                        'gallery' => get_field('gallery'),
-                                        'price'   => get_field('price'),
-                                        'title'   => get_the_title(),
-                                        'excerpt' => wp_trim_words(get_the_excerpt(), 10, '...'),
-                                    );
-                                    get_template_part('components/product-card', null, $product_data);
-                                ?>
-                            </div>
-                        <?php endwhile; wp_reset_postdata(); ?>
-                    <?php else: ?>
-                        <p><?php _e('No products in this category', 'ekopirts'); ?></p>
-                    <?php endif; ?>
-                </div>
-                <div class="swiper-button-next related-products-next"></div>
-                <div class="swiper-button-prev related-products-prev"></div>
-                <div class="swiper-pagination related-products-pagination"></div>
-            </div>
+      <div class="products-head">
+        <div class="title-block">
+          <h2 class="products-title"><?php _e('Related Products', 'ekopirts'); ?></h2>
         </div>
+
+        <a href="<?php echo esc_url($category_link ? $category_link : '#'); ?>" class="all-products">
+          <span><?php _e('Show All', 'ekopirts'); ?></span>
+          <div class="category-arrow">
+              <svg width="15" height="28">
+                  <use href="#arrow-right"></use>
+              </svg>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="products-body">
+        <div class="products-tab-content active">
+          <div class="swiper products-slider-swiper related-products-swiper">
+            <div class="swiper-wrapper">
+              <?php if ($related_products->have_posts()): ?>
+                <?php while ($related_products->have_posts()): $related_products->the_post(); ?>
+                  <div class="swiper-slide flex-slide">
+                    <?php 
+                      $product_data = array(
+                          'gallery' => get_field('gallery'),
+                          'price'   => get_field('price'),
+                          'title'   => get_the_title(),
+                          'excerpt' => wp_trim_words(get_the_excerpt(), 10, '...'),
+                      );
+                      get_template_part('components/product-card', null, $product_data);
+                    ?>
+                  </div>
+                <?php endwhile; wp_reset_postdata(); ?>
+              <?php else: ?>
+                <p><?php _e('No products in this category', 'ekopirts'); ?></p>
+              <?php endif; ?>
+            </div>
+          </div>
+          <div class="swiper-button-next products-slider-button-next desktop-only"></div>
+          <div class="swiper-button-prev products-slider-button-prev desktop-only"></div>
+          <div class="products-slider-pagination gray"></div>
+        </div>
+      </div>
+
     </div>
+  </div>
 </section>
+
 
 <script>
   new Swiper('.related-products-swiper', {
     slidesPerView: 1,
     spaceBetween: 20,
-    navigation: {
-      nextEl: '.related-products-next',
-      prevEl: '.related-products-prev',
-    },
     pagination: {
-      el: '.related-products-pagination',
+      el: '.products-slider-pagination',
       clickable: true,
     },
+    navigation: {
+      nextEl: '.products-slider-button-next',
+      prevEl: '.products-slider-button-prev',
+    },
     breakpoints: {
-      540: { slidesPerView: 1 },
-      768: { slidesPerView: 2 },
-      1024: { slidesPerView: 4 },
+      540: {
+        slidesPerView: 1,
+      },
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 4,
+      },
     },
   });
 </script>

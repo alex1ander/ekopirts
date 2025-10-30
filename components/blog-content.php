@@ -2,6 +2,9 @@
     <div class="container products-area">
 
         <div class="post-content">
+
+            <?php get_template_part('components/share-post'); ?>
+
             <div class="blog-content">
 
                 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -23,17 +26,22 @@
                             <?php
                             $post_tags = get_the_tags();
                             if ($post_tags) :
-                                foreach ($post_tags as $tag) : ?>
-                                    <div class="tag">
+                                foreach ($post_tags as $tag) : 
+                                    $tag_link = get_tag_link($tag->term_id);
+                                    ?>
+                                    <a href="<?php echo esc_url($tag_link); ?>" class="tag">
                                         <svg width="18" height="18">
                                             <use href="#tag"></use>
                                         </svg>
                                         <span><?php echo esc_html($tag->name); ?></span>
-                                    </div>
-                                <?php endforeach;
-                            endif; ?>
+                                    </a>
+                                <?php 
+                                endforeach;
+                            endif;
+                            ?>
                         </div>
                     </div>
+
 
                 <?php endwhile; endif; ?>
 
