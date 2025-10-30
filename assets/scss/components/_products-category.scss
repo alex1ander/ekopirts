@@ -14,10 +14,12 @@
         }
         
         .category-list-block{
+            width: 100%;
+            max-width: 300px;
             border: 1px solid rgba(3, 40, 40, 0.43);
             border-radius: 20px;
             overflow: hidden;
-            padding: 10px 24px 32px;
+            padding: 10px 12px 32px;
             min-width: 280px;
             height: fit-content;
             position: sticky;
@@ -60,16 +62,13 @@
                     height: 100%;
                     width: 1px;
                     background: #ccc;
-                }
+                }   
 
 
-                li{ 
-                    a{
-                        &:hover,&.active{
+                li{
+                    &.active{
+                        > a{
                             color: $color-secondary;
-                            > a{
-                                color: $color-secondary;
-                            }
                         }
                     }
                 }
@@ -98,6 +97,10 @@
 
                         &::before{
                             background: $color-secondary;
+                        }
+
+                        > a{
+                            color: $color-secondary;
                         }
                     }
 
@@ -141,4 +144,34 @@
 
     }
 
+}
+
+
+
+.recent-news-cards{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .news-card-recent{
+
+        display: flex;
+        flex-direction: column;
+        .product-name,.product-description{
+            margin-bottom: 0;
+        }
+
+        .product-name{
+            font-size: 18px;
+        }
+
+        .product-image{
+            img{
+                aspect-ratio: 16 / 9;
+                border-radius: 20px;
+                object-fit: cover;
+            }
+        }
+    }
 }

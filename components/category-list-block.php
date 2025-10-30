@@ -1,36 +1,67 @@
 <div class="category-list-block desktop-only">
-    <h3 class="category-block-title"><?php _e('Categories', 'ekopirts'); ?></h3>
 
+
+    <?php if (is_category() || is_singular('post')): ?>
+    <div class="recent-news-block">
+        <h3 class="category-block-title"><?php _e('Latest News', 'ekopirts'); ?></h3>
+        <div class="recent-news-cards">
+
+            <?php
+            $news_query = new WP_Query(array(
+                'posts_per_page' => 3,
+                'post_status' => 'publish',
+            ));
+
+            if ($news_query->have_posts()):
+                while ($news_query->have_posts()): $news_query->the_post(); ?>
+                    <div class="news-card-recent">
+                        <div class="product-image">
+                            <?php if(has_post_thumbnail()): ?>
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_post_thumbnail('medium'); ?>
+                                </a>
+                            <?php else: ?>
+                                <a href="<?php the_permalink(); ?>">
+                                    <img src="<?php echo get_template_directory_uri(); ?>/images/no-image.jpg" alt="">
+                                </a>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="product-content">
+                            <h4 class="product-name">
+                                <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+                            </h4>
+                            <div class="product-info">
+                                <p class="product-description">
+                                    <?php 
+                                    $excerpt = wp_strip_all_tags(get_the_excerpt());
+                                    echo mb_strimwidth($excerpt, 0, 120, '...');
+                                    ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile;
+                wp_reset_postdata();
+            endif; ?>
+
+        </div>
+    </div>
+<?php endif; ?>
+
+
+    <h3 class="category-block-title"><?php _e('Categories', 'ekopirts'); ?></h3>
     <ul class="category-list">
         <?php
         $current_term = null;
         $taxonomy = 'product_category';
 
-        // Определяем текущий объект и таксономию
-        // if (is_tax('product_category')) {
-        //     $current_term = get_queried_object();
-        //     $taxonomy = 'product_category';
-        // } elseif (is_singular('product')) {
-        //     $terms = wp_get_post_terms(get_the_ID(), 'product_category');
-        //     if (!empty($terms) && !is_wp_error($terms)) {
-        //         $current_term = $terms[0];
-        //         $taxonomy = 'product_category';
-        //     }
-        // } elseif (is_category()) {
-        //     $current_term = get_queried_object();
-        //     $taxonomy = 'category';
-        // } elseif (is_singular('post')) {
-        //     $terms = wp_get_post_terms(get_the_ID(), 'category'); // стандартная таксономия категорий
-        //     if (!empty($terms) && !is_wp_error($terms)) {
-        //         // Берем первую категорию записи
-        //         $current_term = $terms[0];
-        //         $taxonomy = 'category';
-        //     }
-        // }
+        if (is_tax($taxonomy)) {
+            $current_term = get_queried_object();
+        }
 
         if ($taxonomy) {
 
-            // Рекурсивная функция вывода категорий
             function display_category_tree($parent_id, $current_term, $taxonomy) {
                 $categories = get_terms(array(
                     'taxonomy'   => $taxonomy,
@@ -47,8 +78,8 @@
                             'parent'     => $cat->term_id,
                         ));
                         ?>
-                        <li>
-                            <a href="<?php echo esc_url(get_term_link($cat)); ?>" class="<?php echo $is_active ? 'active' : ''; ?>">
+                        <li class="<?php echo $is_active ? 'active' : ''; ?>">
+                            <a href="<?php echo esc_url(get_term_link($cat)); ?>">
                                 <?php echo esc_html($cat->name); ?>
                             </a>
                             <?php if (!empty($children)) { ?>
@@ -62,11 +93,11 @@
                 }
             }
 
-            // Выводим всю ветку начиная с корня
             display_category_tree(0, $current_term, $taxonomy);
 
         } else { ?>
             <li><?php _e('No categories found.', 'ekopirts'); ?></li>
         <?php } ?>
+
     </ul>
 </div>

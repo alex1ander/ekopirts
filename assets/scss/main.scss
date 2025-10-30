@@ -55,6 +55,7 @@ main{
 .btn{
     cursor: pointer;
     display: inline-flex;
+    gap: 8px;
     width: auto;
     padding: 6px 12px;
     border-radius: 12px;
@@ -95,6 +96,14 @@ main{
         border:1px solid $color-secondary;
         color: $color-secondary;
         background: transparent;
+    }
+
+    &-red{
+        background: #a2001d;
+
+        &:hover{
+            background: #8f021b;
+        }
     }
 }
 

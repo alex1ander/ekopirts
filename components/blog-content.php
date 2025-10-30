@@ -12,8 +12,6 @@
                         <?php if (has_post_thumbnail()) : ?>
                             <?php  $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full');?>
                             <img src="<?= $thumbnail_url ?>" alt="">
-                        <?php else : ?>
-                            <img src="/images/product.png" alt="">
                         <?php endif; ?>
                         
                         <div class="content"><?php the_content(); ?></div>

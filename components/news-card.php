@@ -6,7 +6,6 @@
             </a>
         <?php else: ?>
             <a href="<?php the_permalink(); ?>">
-            <img src="<?php echo get_template_directory_uri(); ?>/images/product.png" alt="">
             </a>
         <?php endif; ?>
     </div>

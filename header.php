@@ -66,8 +66,11 @@ if ($headerLinks) :
 
     <?php if (!empty($btnMatte)) : ?>
         <a href="telto:<?= $btnMatte; ?>" 
-           class="btn btn-matte desktop-only">
-           <?= $btnMatte; ?>
+           class="btn btn-red desktop-only">
+            <svg width="27" height="27">
+              <use href="#whatsapp-btn"></use>
+            </svg>
+            <?= $btnMatte; ?>
         </a>
     <?php endif; ?>
 
@@ -288,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Найдём карточку товара и вытащим данные
       const card = btn.closest('.product-card, .the-product');
       const title = btn.getAttribute('data-product-title') || (card ? (card.querySelector('.product-name, h1')?.textContent || '').trim() : '');
-      const img = btn.getAttribute('data-product-image') || (card ? (card.querySelector('img')?.getAttribute('src') || '') : '') || '/images/product.png';
+      const img = btn.getAttribute('data-product-image') || (card ? (card.querySelector('img')?.getAttribute('src') || '') : '') || '';
       const price = btn.getAttribute('data-product-price') || (card ? (card.querySelector('.new-price, .current-price')?.textContent || '') : '');
 
       // Проставим в модалку

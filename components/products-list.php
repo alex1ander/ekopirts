@@ -108,8 +108,6 @@
 
                         endwhile;
                         wp_reset_postdata();
-                    else :
-                        echo '<p>Товары не найдены.</p>';
                     endif;
                     ?>
                 </div>
