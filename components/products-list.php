@@ -44,7 +44,8 @@
                 // Main query
                 $args = [
                     'post_type'      => 'product',
-                    'posts_per_page' => -1,
+                    'posts_per_page' => 12,
+                    'paged'          => 1,
                     'tax_query'      => [
                         [
                             'taxonomy' => 'product_category',
@@ -91,7 +92,7 @@
                     </div>
                 </div>
 
-                <div class="grid-products-elements">
+                <div class="grid-products-elements" id="products-container">
                     <?php
                     if ($products->have_posts()) :
                         while ($products->have_posts()) : $products->the_post();
@@ -111,6 +112,21 @@
                     endif;
                     ?>
                 </div>
+
+                <?php if ($products->max_num_pages > 1) : ?>
+                    <div class="load-more-wrapper">
+                        <button class="load-more-products" 
+                                data-page="1" 
+                                data-max="<?php echo $products->max_num_pages; ?>"
+                                data-category="<?php echo $current_category->term_id; ?>"
+                                data-sort="<?php echo esc_attr($sort); ?>"
+                                data-meta-key="<?php echo esc_attr($meta_key); ?>"
+                                data-orderby="<?php echo esc_attr($orderby); ?>"
+                                data-order="<?php echo esc_attr($order); ?>">
+                            <?php _e('Load More', 'ekopirts'); ?>
+                        </button>
+                    </div>
+                <?php endif; ?>
 
             <?php endif; ?>
         </div>

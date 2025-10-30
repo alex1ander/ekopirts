@@ -20,6 +20,24 @@ function theme_enqueue_styles() {
     );
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_styles');
+
+function theme_enqueue_scripts() {
+    wp_enqueue_script('jquery');
+    
+    wp_enqueue_script(
+        'load-more',
+        get_template_directory_uri() . '/assets/js/load-more.js',
+        array('jquery'),
+        filemtime(get_template_directory() . '/assets/js/load-more.js'),
+        true
+    );
+    
+    wp_localize_script('load-more', 'ajax_params', array(
+        'ajax_url' => admin_url('admin-ajax.php')
+    ));
+}
+add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
+
 add_theme_support( 'post-thumbnails' );
 
 // === Custom Post Type: Products ===
@@ -160,5 +178,100 @@ function ekopirts_track_product_views() {
     }
 }
 add_action('wp', 'ekopirts_track_product_views');
+
+
+// === Ajax Load More для товаров ===
+function ekopirts_load_more_products() {
+    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+    $category = isset($_POST['category']) ? intval($_POST['category']) : 0;
+    $sort = isset($_POST['sort']) ? sanitize_text_field($_POST['sort']) : '';
+    $meta_key = isset($_POST['meta_key']) ? sanitize_text_field($_POST['meta_key']) : '';
+    $orderby = isset($_POST['orderby']) ? sanitize_text_field($_POST['orderby']) : 'date';
+    $order = isset($_POST['order']) ? sanitize_text_field($_POST['order']) : 'DESC';
+
+    $args = [
+        'post_type'      => 'product',
+        'posts_per_page' => 12,
+        'paged'          => $page,
+        'tax_query'      => [
+            [
+                'taxonomy' => 'product_category',
+                'field'    => 'term_id',
+                'terms'    => $category,
+            ],
+        ],
+        'orderby' => $orderby,
+        'order'   => $order,
+    ];
+
+    if ($meta_key) {
+        $args['meta_key'] = $meta_key;
+        $args['meta_query'] = [
+            [
+                'key'     => $meta_key,
+                'compare' => 'EXISTS',
+            ]
+        ];
+    }
+
+    $products = new WP_Query($args);
+
+    if ($products->have_posts()) :
+        while ($products->have_posts()) : $products->the_post();
+            $product_data = [
+                'gallery' => get_field('gallery'),
+                'price'   => get_field('price'),
+                'title'   => get_the_title(),
+                'excerpt' => wp_trim_words(get_the_excerpt(), 10, '...'),
+                'views'   => get_field('views'),
+            ];
+            get_template_part('components/product-card', null, $product_data);
+        endwhile;
+        wp_reset_postdata();
+    endif;
+
+    wp_die();
+}
+add_action('wp_ajax_load_more_products', 'ekopirts_load_more_products');
+add_action('wp_ajax_nopriv_load_more_products', 'ekopirts_load_more_products');
+
+
+// === Ajax Load More для новостей ===
+function ekopirts_load_more_news() {
+    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+    $taxonomy = isset($_POST['taxonomy']) ? sanitize_text_field($_POST['taxonomy']) : '';
+    $term = isset($_POST['term']) ? sanitize_text_field($_POST['term']) : '';
+
+    $tax_query = array();
+    if ($taxonomy && $term) {
+        $tax_query = array(
+            array(
+                'taxonomy' => $taxonomy,
+                'field'    => 'slug',
+                'terms'    => $term,
+            ),
+        );
+    }
+
+    $args = array(
+        'post_type'      => 'post',
+        'posts_per_page' => 12,
+        'paged'          => $page,
+        'tax_query'      => $tax_query,
+    );
+
+    $news_query = new WP_Query($args);
+
+    if ($news_query->have_posts()) :
+        while ($news_query->have_posts()) : $news_query->the_post();
+            get_template_part('components/news', 'card');
+        endwhile;
+        wp_reset_postdata();
+    endif;
+
+    wp_die();
+}
+add_action('wp_ajax_load_more_news', 'ekopirts_load_more_news');
+add_action('wp_ajax_nopriv_load_more_news', 'ekopirts_load_more_news');
 
 

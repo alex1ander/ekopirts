@@ -3050,4 +3050,18 @@ main {
   margin: 40px 0;
 }
 
+.load-more-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0 20px;
+}
+.load-more-wrapper .load-more-products,
+.load-more-wrapper .load-more-news {
+  color: #032828;
+  text-decoration: underline;
+  font-weight: 700;
+  font-size: 18px;
+}
+
 /*# sourceMappingURL=style.css.map */

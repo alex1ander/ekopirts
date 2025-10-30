@@ -193,3 +193,19 @@ main{
 .delivery-info{
     margin: 40px 0;
 }
+
+// Load More Button
+.load-more-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0 20px;
+
+    .load-more-products,
+    .load-more-news{
+        color: $color-primary;
+        text-decoration: underline;
+        font-weight: 700;
+        font-size: 18px;
+    }
+}
